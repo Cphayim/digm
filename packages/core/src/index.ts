@@ -1,8 +1,5 @@
-import { ensureObject } from '@cphayim/digm-shared'
-import Digm from './digm'
+import Digm from './Digm'
 
 export function createDigm(...args: ConstructorParameters<typeof Digm>) {
   return new Digm(...args)
 }
-
-console.log(ensureObject('{ "name": "Cphayim" }'))
