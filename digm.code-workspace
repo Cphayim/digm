@@ -1,0 +1,28 @@
+{
+  "folders": [
+    {
+      "name": "✨ digm-monorepo",
+      "path": "."
+    },
+    {
+      "name": "📦 @cphayim/digm-core",
+      "path": "packages/core"
+    },
+    {
+      "name": "📦 @cphayim/digm-shared",
+      "path": "packages/shared"
+    },
+    {
+      "name": "📦 @cphayim/digm-vue",
+      "path": "packages/vue"
+    },
+    {
+      "name": "playground",
+      "path": "playground"
+    }
+  ],
+  "settings": {
+    "cSpell.words": ["digm"],
+    "commentTranslate.source": "Baidu"
+  }
+}
