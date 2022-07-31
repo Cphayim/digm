@@ -1,7 +1,7 @@
 import { ensureObject } from '@cphayim/digm-shared'
 import { CloudEvent, CloudEventHandler } from './event-type'
 
-export { CloudEvent, CloudEventHandler }
+export * from './event-type'
 
 export class RenderEvent {
   private _eventMap = new Map<CloudEvent, Set<CloudEventHandler>>()
