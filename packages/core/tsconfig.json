@@ -4,7 +4,7 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": ["src/**/*", "../global.d.ts"],
+  "include": ["src/**/*", "type.d.ts"],
   "references": [
     {
       "path": "../shared"

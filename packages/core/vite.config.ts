@@ -16,6 +16,9 @@ export default defineConfig({
       external: ['51superapi', '@cphayim/digm-shared'],
     },
   },
+  define: {
+    __DEV__: process.env.NODE_ENV === '"development"',
+  },
   plugins: [
     dts({
       rollupTypes: true,
