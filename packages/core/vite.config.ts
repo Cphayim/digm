@@ -22,6 +22,7 @@ export default defineConfig({
   plugins: [
     dts({
       rollupTypes: true,
+      copyDtsFiles: false,
       beforeWriteFile: (filePath, content) => {
         return { filePath, content }
       },
