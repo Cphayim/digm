@@ -82,7 +82,7 @@ export default class Digm {
   private _event = new RenderEvent()
 
   private _status = RenderStatus.UN_INIT
-  private _statusSubscribers: StatusSubscriber[] = []
+  private _statusSubscribers: Set<StatusSubscriber> = new Set()
 
   // features...
   public scene!: Scene
@@ -93,7 +93,25 @@ export default class Digm {
 
   set status(status: RenderStatus) {
     this._status = status
-    // trigger all subscriber
+    // trigger all subscriber when status change
+    this._triggerStatusSubScribers()
+  }
+
+  addStatusSubscriber(statusSubscriber: StatusSubscriber) {
+    this._statusSubscribers.add(statusSubscriber)
+  }
+  removeStatusSubscriber(statusSubscriber: StatusSubscriber) {
+    this._statusSubscribers.delete(statusSubscriber)
+  }
+
+  private _triggerStatusSubScribers() {
+    this._statusSubscribers.forEach(async (statusSubscriber) => {
+      try {
+        await statusSubscriber(this._status)
+      } catch (error) {
+        console.error(error)
+      }
+    })
   }
 
   /**
