@@ -1,7 +1,65 @@
 import CloudRenderer from '51superapi'
+import { sleep } from '@cphayim/digm-shared'
 
 import { CloudEvent, CloudEventHandler, RenderEvent } from './events'
 import { Scene } from './features'
+
+export enum RenderStatus {
+  /**
+   * 未初始化
+   */
+  UN_INIT = 0,
+
+  /**
+   * 初始化渲染器
+   */
+  INIT_RENDER = 11,
+
+  /**
+   * 初始化渲染器失败
+   */
+  INIT_RENDER_FAILED = 12,
+
+  /**
+   * 请求渲染地址
+   */
+  REQUEST_RENDER_URL = 21,
+
+  /**
+   * 请求渲染地址失败
+   */
+  REQUEST_RENDER_URL_FAILED = 22,
+
+  /**
+   * 加载模型
+   */
+  LOAD_MODEL = 31,
+
+  /**
+   * 加载模型失败
+   */
+  LOAD_MODEL_FAILED = 32,
+
+  /**
+   * 渲染模型
+   */
+  RENDER_MODEL = 41,
+
+  /**
+   * 渲染模型失败
+   */
+  RENDER_MODEL_FAILED = 42,
+
+  /**
+   * 渲染完成
+   */
+  RENDER_MODEL_FINISHED = 43,
+
+  /**
+   * 停止渲染
+   */
+  STOP = -1,
+}
 
 export interface FetchRenderUrlOptions {
   url: string
@@ -12,29 +70,21 @@ export interface FetchRenderUrlOptions {
 
 export interface RenderPrepareOptions {
   enableLog?: boolean
+  sleepTime?: number
 }
 
 export type StartEngineOptions = FetchRenderUrlOptions & RenderPrepareOptions
 
-export enum RenderStatus {
-  UNINIT = 0,
-  INIT_RENDER = 11, // 初始化渲染器
-  INIT_RENDER_FAILED = 12, // 初始化渲染器失败
-  REQUEST_RENDER_URL = 21, // 请求渲染地址
-  REQUEST_RENDER_URL_FAILED = 22, // 请求渲染地址失败
-  LOAD_MODEL = 31, // 加载模型
-  LOAD_MODEL_FAILED = 32, // 加载模型失败
-  RENDER_MODEL = 41, //41, // 渲染模型
-  RENDER_MODEL_FAILED = 42, // 渲染模型失败
-  RENDER_MODEL_FINISHED = 43, // 渲染完成
-  STOP = -1, // 停止渲染
-}
+export type StatusSubscriber = (status: RenderStatus) => void | Promise<void>
 
 export default class Digm {
   private _cloudRenderer: any
-  private _status = RenderStatus.UNINIT
   private _event = new RenderEvent()
 
+  private _status = RenderStatus.UN_INIT
+  private _statusSubscribers: StatusSubscriber[] = []
+
+  // features...
   public scene!: Scene
 
   get status() {
@@ -42,10 +92,13 @@ export default class Digm {
   }
 
   set status(status: RenderStatus) {
-    // TODO：加入订阅
     this._status = status
+    // trigger all subscriber
   }
 
+  /**
+   * Initial renderer
+   */
   init(idOrElement: string | Element) {
     this.status = RenderStatus.INIT_RENDER
     let id: string
@@ -62,30 +115,38 @@ export default class Digm {
       this._cloudRenderer = new CloudRenderer(id, 0)
       this._initFeatures()
     } catch (e) {
-      if (__DEV__) {
-        console.log(e)
-      }
+      if (__DEV__) console.error(e)
       this.status = RenderStatus.INIT_RENDER_FAILED
       throw e
     }
   }
 
+  /**
+   * Start render engine
+   */
   async startEngine(options: StartEngineOptions) {
     this.verifyStatus()
+    /**
+     * - fetch renderUrl
+     * - set renderer log, bind global event handler
+     * - start render
+     */
     const url = await this._fetchRenderUrl(options)
     this._renderPrepare(options)
     this._render(url)
   }
 
+  /**
+   * Stop render engine
+   */
   stopEngine() {
+    this.verifyStatus()
     try {
       this._cloudRenderer.SuperAPI('StopRenderCloud')
     } catch (e) {
-      if (__DEV__) {
-        console.log(e)
-        // 设置状态
-        this._status = RenderStatus.STOP
-      }
+      if (__DEV__) console.warn(e)
+      this._status = RenderStatus.STOP
+      throw e
     }
   }
 
@@ -110,11 +171,22 @@ export default class Digm {
     }
   }
 
-  private _renderPrepare({ enableLog = false }: RenderPrepareOptions) {
-    // set render log
+  private _renderPrepare({ enableLog = false, sleepTime = 5000 }: RenderPrepareOptions) {
+    // 设置渲染器日志开关
     this._cloudRenderer.SuperAPI('SetLogMode', enableLog)
-    // bind global event
-    this._cloudRenderer.SuperAPI('RegisterCloudResponse', this._event.globalEventHandler)
+    // 绑定全局事件代理器
+    this._cloudRenderer.SuperAPI(
+      'RegisterCloudResponse',
+      this._event.globalEventHandler.bind(this._event),
+    )
+    // 监听模型加载完成的事件用于更新状态
+    this.addEventListener('APIAlready', async () => {
+      this.status = RenderStatus.RENDER_MODEL
+      // 这里其实主要模型已经加载完成，但是可能会有闪屏现象
+      // 延迟几秒再修改状态（让订阅 status 的视图延迟关闭遮罩层，规避闪屏）
+      await sleep(sleepTime)
+      this.status = RenderStatus.RENDER_MODEL_FINISHED
+    })
   }
 
   private _render(url: string) {

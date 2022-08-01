@@ -6,3 +6,7 @@ export const noop = () => void 0
 export function ensureObject<T = any>(obj: unknown): T {
   return typeof obj === 'string' ? JSON.parse(obj) : obj
 }
+
+export function sleep(duration: number) {
+  return new Promise((resolve) => setTimeout(resolve, duration))
+}
