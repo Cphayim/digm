@@ -1,5 +1,4 @@
-import Digm from './Digm'
-
-export function createDigm(...args: ConstructorParameters<typeof Digm>) {
-  return new Digm(...args)
-}
+export * from './Digm'
+export * from './status'
+export * from './features'
+export * from './events'

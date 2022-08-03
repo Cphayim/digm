@@ -1,75 +1,44 @@
 import CloudRenderer from '51superapi'
 import { sleep } from '@cphayim/digm-shared'
 
+import { RenderStatus } from './status'
 import { CloudEvent, CloudEventHandler, RenderEvent } from './events'
-import { Scene } from './features'
-
-export enum RenderStatus {
-  /**
-   * 未初始化
-   */
-  UN_INIT = 0,
-
-  /**
-   * 初始化渲染器
-   */
-  INIT_RENDER = 11,
-
-  /**
-   * 初始化渲染器失败
-   */
-  INIT_RENDER_FAILED = 12,
-
-  /**
-   * 请求渲染地址
-   */
-  REQUEST_RENDER_URL = 21,
-
-  /**
-   * 请求渲染地址失败
-   */
-  REQUEST_RENDER_URL_FAILED = 22,
-
-  /**
-   * 加载模型
-   */
-  LOAD_MODEL = 31,
-
-  /**
-   * 加载模型失败
-   */
-  LOAD_MODEL_FAILED = 32,
-
-  /**
-   * 渲染模型
-   */
-  RENDER_MODEL = 41,
-
-  /**
-   * 渲染模型失败
-   */
-  RENDER_MODEL_FAILED = 42,
-
-  /**
-   * 渲染完成
-   */
-  RENDER_MODEL_FINISHED = 43,
-
-  /**
-   * 停止渲染
-   */
-  STOP = -1,
-}
+import { SceneCamera } from './features'
 
 export interface FetchRenderUrlOptions {
+  /**
+   * 渲染服务器 baseUrl
+   */
   url: string
+
+  /**
+   * 渲染口令
+   */
   order: string
-  width: number
-  height: number
+
+  /**
+   * 输出像素宽度
+   */
+  width?: number
+
+  /**
+   * 输出像素高度
+   */
+  height?: number
 }
 
 export interface RenderPrepareOptions {
+  /**
+   * 是否启用渲染器日志
+   *
+   * 默认值: `false`
+   */
   enableLog?: boolean
+  /**
+   * 渲染器完成延迟（防止闪屏）
+   *
+   * 默认值: `5000`
+   */
   sleepTime?: number
 }
 
@@ -77,25 +46,32 @@ export type StartEngineOptions = FetchRenderUrlOptions & RenderPrepareOptions
 
 export type StatusSubscriber = (status: RenderStatus) => void | Promise<void>
 
-export default class Digm {
-  private _cloudRenderer: any
+export class Digm {
+  private _renderer: any
+
+  get renderer(): any {
+    this._verifyStatus()
+    return this._renderer
+  }
+
   private _event = new RenderEvent()
 
   private _status = RenderStatus.UN_INIT
-  private _statusSubscribers: Set<StatusSubscriber> = new Set()
-
-  // features...
-  public scene!: Scene
 
   get status() {
     return this._status
   }
 
-  set status(status: RenderStatus) {
+  private set status(status: RenderStatus) {
     this._status = status
     // trigger all subscriber when status change
     this._triggerStatusSubScribers()
   }
+
+  private _statusSubscribers: Set<StatusSubscriber> = new Set()
+
+  // features...
+  public readonly sceneCamera: SceneCamera = new SceneCamera(this)
 
   addStatusSubscriber(statusSubscriber: StatusSubscriber) {
     this._statusSubscribers.add(statusSubscriber)
@@ -130,8 +106,7 @@ export default class Digm {
     }
 
     try {
-      this._cloudRenderer = new CloudRenderer(id, 0)
-      this._initFeatures()
+      this._renderer = new CloudRenderer(id, 0)
     } catch (e) {
       if (__DEV__) console.error(e)
       this.status = RenderStatus.INIT_RENDER_FAILED
@@ -143,7 +118,12 @@ export default class Digm {
    * Start render engine
    */
   async startEngine(options: StartEngineOptions) {
-    this.verifyStatus()
+    if (!options.url) throw new Error(`[Error] options.url is required`)
+    if (!options.order) throw new Error(`[Error] options.order is required`)
+    if (!options.width) throw new Error(`[Error] options.width is required`)
+    if (!options.height) throw new Error(`[Error] options.height is required`)
+
+    this._verifyStatus()
     /**
      * - fetch renderUrl
      * - set renderer log, bind global event handler
@@ -158,9 +138,9 @@ export default class Digm {
    * Stop render engine
    */
   stopEngine() {
-    this.verifyStatus()
+    this._verifyStatus()
     try {
-      this._cloudRenderer.SuperAPI('StopRenderCloud')
+      this._renderer.SuperAPI('StopRenderCloud')
     } catch (e) {
       if (__DEV__) console.warn(e)
       this._status = RenderStatus.STOP
@@ -168,17 +148,14 @@ export default class Digm {
     }
   }
 
-  private _initFeatures() {
-    this.scene = new Scene(this._cloudRenderer)
-  }
-
   private async _fetchRenderUrl(options: FetchRenderUrlOptions) {
     this.status = RenderStatus.REQUEST_RENDER_URL
     try {
-      const { url, ...rest } = options
+      const { url, order, width, height } = options
       const res = await fetch(`${url}/Renderers/Any/order`, {
         method: 'POST',
-        body: JSON.stringify(rest),
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({ order, width, height }),
       })
       const data = await res.json()
       if (!data.success) throw new Error('[Error] request renderer url failed')
@@ -191,9 +168,9 @@ export default class Digm {
 
   private _renderPrepare({ enableLog = false, sleepTime = 5000 }: RenderPrepareOptions) {
     // 设置渲染器日志开关
-    this._cloudRenderer.SuperAPI('SetLogMode', enableLog)
+    this._renderer.SuperAPI('SetLogMode', enableLog)
     // 绑定全局事件代理器
-    this._cloudRenderer.SuperAPI(
+    this._renderer.SuperAPI(
       'RegisterCloudResponse',
       this._event.globalEventHandler.bind(this._event),
     )
@@ -210,14 +187,14 @@ export default class Digm {
   private _render(url: string) {
     this.status = RenderStatus.LOAD_MODEL
     try {
-      this._cloudRenderer.SuperAPI('StartRenderCloud', url)
+      this._renderer.SuperAPI('StartRenderCloud', url, 'keyboardnofn')
     } catch (e) {
       this.status = RenderStatus.LOAD_MODEL_FAILED
       throw e
     }
   }
 
-  private verifyStatus(
+  private _verifyStatus(
     status = RenderStatus.INIT_RENDER,
     message = 'Please call method named digm.init first',
   ) {
@@ -231,4 +208,8 @@ export default class Digm {
   removeEventListener(name: CloudEvent, handler: CloudEventHandler) {
     this._event.remove(name, handler)
   }
+}
+
+export function createDigm(...args: ConstructorParameters<typeof Digm>) {
+  return new Digm(...args)
 }

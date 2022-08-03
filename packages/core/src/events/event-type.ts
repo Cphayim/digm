@@ -4,6 +4,15 @@
 type RenderEvent = 'beginPlay' | 'APIAlready' | 'OnSuperAPI_Error_Catch'
 
 /**
+ * 场景镜头事件
+ */
+type SceneCameraEvent =
+  | 'OnCameraRoamingProStart'
+  | 'OnCameraRoamingProEnd'
+  | 'OnCameraToMoveStart'
+  | 'OnCameraToMoveEnd'
+
+/**
  * POI 事件
  */
 type POIEvent =
@@ -39,5 +48,6 @@ type CustomPOIEvent =
   | 'OnUpdateCustomPOILabelFailed'
   | 'OnUpdateCustomPOIWindowFailed'
 
-export type CloudEvent = RenderEvent | POIEvent | CustomPOIEvent
+export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent
+
 export type CloudEventHandler = (...args: any[]) => void | Promise<void>
