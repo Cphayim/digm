@@ -2,6 +2,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import vue from '@vitejs/plugin-vue'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 export default defineConfig({
   build: {
@@ -14,7 +15,7 @@ export default defineConfig({
       fileName: (format) => `index${format === 'es' ? '.mjs' : '.cjs'}`,
     },
     rollupOptions: {
-      external: ['@cphayim/digm-core'],
+      external: ['vue', '@vueuse/core', '@cphayim/digm-core'],
       output: {
         assetFileNames: (assetInfo) =>
           assetInfo.name === 'style.css' ? 'index.css' : (assetInfo.name as string),
@@ -23,6 +24,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    cssInjectedByJsPlugin(),
     dts({
       rollupTypes: true,
       beforeWriteFile: (filePath, content) => {

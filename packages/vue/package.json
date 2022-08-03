@@ -17,8 +17,7 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
-    },
-    "./style": "./dist/index.css"
+    }
   },
   "types": "dist/index.d.ts",
   "scripts": {
@@ -26,6 +25,13 @@
     "build": "vue-tsc --noEmit && vite build"
   },
   "dependencies": {
-    "@cphayim/digm-core": "workspace:*"
+    "@cphayim/digm-core": "workspace:*",
+    "@cphayim/digm-shared": "workspace:*"
+  },
+  "devDependencies": {
+    "vue": "^3.2.33"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.25"
   }
 }

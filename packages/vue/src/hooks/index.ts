@@ -1,1 +1,1 @@
-export const a = 3
+export * from './digm'
