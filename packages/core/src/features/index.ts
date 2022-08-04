@@ -5,3 +5,4 @@ export type FeatureResult<T = any> = {
 }
 
 export * from './SceneCamera'
+export * from './Covering'
