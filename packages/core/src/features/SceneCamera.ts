@@ -1,7 +1,6 @@
-import { Digm } from '../Digm'
-
 import { promiseWrapper } from './utils'
-import { FeatureResult } from '.'
+import { BaseFeature } from './BaseFeature'
+import type { FeatureResult } from './BaseFeature'
 
 export type GetCameraInfoOptions = {
   /**
@@ -507,13 +506,7 @@ export type SetModeResult = FeatureResult<{
 /**
  * 场景镜头功能
  */
-export class SceneCamera {
-  constructor(private _digm: Digm) {}
-
-  private get _superAPI() {
-    return this._digm.renderer.SuperAPI
-  }
-
+export class SceneCamera extends BaseFeature {
   /**
    * 获取当前的场景镜头信息
    */
