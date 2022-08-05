@@ -3,7 +3,7 @@ import { sleep } from '@cphayim/digm-shared'
 
 import { RenderStatus } from './status'
 import { CloudEvent, CloudEventHandler, RenderEvent } from './events'
-import { SceneCamera, SceneEdit } from './features'
+import { SceneCamera, SceneEdit, Section } from './features'
 
 export interface FetchRenderUrlOptions {
   /**
@@ -73,6 +73,7 @@ export class Digm {
   // features...
   public readonly sceneCamera: SceneCamera = new SceneCamera(this)
   public readonly sceneEdit: SceneEdit = new SceneEdit(this)
+  public readonly section: Section = new Section(this)
 
   addStatusSubscriber(statusSubscriber: StatusSubscriber) {
     this._statusSubscribers.add(statusSubscriber)
