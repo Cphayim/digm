@@ -1,5 +1,4 @@
 import { BaseFeature } from './BaseFeature'
-import { SceneEdit } from './SceneEdit'
 
 export type BuildingItem = {
   /**
@@ -22,7 +21,9 @@ export type BuildingItem = {
  * @enhance 增强功能
  */
 export class Building extends BaseFeature {
-  private _sceneEdit = new SceneEdit(this._digm)
+  private get _sceneEdit() {
+    return this._digm.sceneEdit
+  }
 
   private _buildingMap = new Map<string, BuildingItem[]>()
 
