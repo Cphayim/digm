@@ -186,7 +186,7 @@ export class SceneEdit extends BaseFeature {
    *
    * 显示/隐藏当前3D世界中指定EID的实体
    */
-  showAESObject(options: ShowHideAESObjectOptions) {
+  showHideAESObject(options: ShowHideAESObjectOptions) {
     return promiseWrapper(this._superAPI, 'ShowHideAESObject', options) as Promise<FeatureResult>
   }
 
