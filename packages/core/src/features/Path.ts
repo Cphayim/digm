@@ -43,44 +43,14 @@ export type PathIDOptions = {
   id: string
 }
 
-export type AddPathOptions = PathIDOptions & {
-  /**
-   * 高级设置
-   */
-  advancedSetting: PathAdvancedSetting
-  /**
-   * 坐标类型(0:经纬度坐标, 1:cad坐标)
-   */
-  coord_type: 0 | 1
-  /**
-   * 坐标高度类型(0:相对3D世界表面；1:相对3D世界地面；2:相对3D世界海拔; 注:cad坐标无效)
-   */
-  coord_z_type: 0 | 1 | 2
-  /**
-   * CAD基准点Key值, 项目中约定，坐标类型为 0 时传 ''
-   */
-  cad_mapkey: string
-  /**
-   * 样式类型
-   */
-  type: PathType
-  /**
-   * 颜色(HEX颜色值, 空值即透明; railway类型无效, 默认黑白色)
-   */
-  color: string
-  /**
-   * 覆盖物移动经过路径颜色(HEX颜色值)
-   */
-  pass_color: string
-  /**
-   * 宽度(单位:米, 圆柱直径或方柱边长)
-   */
-  width: number
-  /**
-   * 路径点位
-   */
-  points: PathPoint[]
-}
+export type AddPathOptions = PathIDOptions &
+  Omit<UpdatePathCoordOptions, 'is_append'> &
+  UpdatePathStyleOptions & {
+    /**
+     * 高级设置
+     */
+    advancedSetting: PathAdvancedSetting
+  }
 
 export type UpdatePathCoordOptions = PathIDOptions & {
   /**
@@ -96,13 +66,13 @@ export type UpdatePathCoordOptions = PathIDOptions & {
    */
   cad_mapkey: string
   /**
-   * true: 追加路径数据(注意顺序); false: 重建路径数据
-   */
-  is_append: boolean
-  /**
    * 路径点位
    */
   points: PathPoint[]
+  /**
+   * true: 追加路径数据(注意顺序); false: 重建路径数据
+   */
+  is_append: boolean
 }
 
 export type UpdatePathStyleOptions = PathIDOptions & {
