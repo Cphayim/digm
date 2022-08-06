@@ -1,8 +1,11 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import { createBaseConfig } from '../vite.base.config'
 
 export default defineConfig(({ mode }) => ({
+  ...createBaseConfig(mode),
+
   build: {
     outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,
