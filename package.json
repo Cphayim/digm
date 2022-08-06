@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "author": "Cphayim <i@cphayim.me>",
+  "repository": "git@github.com:Cphayim/digm.git",
   "license": "ISC",
   "packageManager": "pnpm@7.0.0",
   "engines": {

@@ -2,7 +2,7 @@
   "name": "@cphayim/digm-shared",
   "version": "0.0.1",
   "author": "Cphayim <i@cphayim.me>",
-  "description": "digm shared package",
+  "description": "Encapsulation and enhancement of Digital Model renderer, shared toolkit",
   "license": "ISC",
   "files": [
     "dist"
@@ -25,5 +25,13 @@
     "build": "vite build"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cphayim/digm.git",
+    "directory": "packages/shared"
+  },
+  "bugs": {
+    "url": "https://github.com/Cphayim/digm/issues"
+  }
 }
