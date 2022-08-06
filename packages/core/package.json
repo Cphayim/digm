@@ -2,7 +2,7 @@
   "name": "@cphayim/digm-core",
   "version": "0.0.1",
   "author": "Cphayim <i@cphayim.me>",
-  "description": "digm core package",
+  "description": "Encapsulation and enhancement of Digital Model renderer",
   "license": "ISC",
   "files": [
     "dist"
@@ -10,7 +10,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "sideEffects": false,
   "main": "dist/index.cjs",
   "exports": {
     ".": {
@@ -27,5 +26,13 @@
   "dependencies": {
     "51superapi": "^6.3.9",
     "@cphayim/digm-shared": "workspace:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cphayim/digm.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/Cphayim/digm/issues"
   }
 }
