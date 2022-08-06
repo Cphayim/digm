@@ -2,7 +2,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   build: {
     outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,
@@ -15,10 +15,8 @@ export default defineConfig({
   },
   plugins: [
     dts({
-      rollupTypes: true,
-      beforeWriteFile: (filePath, content) => {
-        return { filePath, content }
-      },
+      rollupTypes: mode === 'production',
+      copyDtsFiles: false,
     }),
   ],
-})
+}))
