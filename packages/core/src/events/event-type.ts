@@ -48,6 +48,15 @@ type CustomPOIEvent =
   | 'OnUpdateCustomPOILabelFailed'
   | 'OnUpdateCustomPOIWindowFailed'
 
-export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent
+/**
+ * 栅格图事件
+ */
+type RasterEvent =
+  | 'OnAddRasterSuccess'
+  | 'OnUpdateRasterStyleSuccess'
+  | 'OnAddRasterFailed'
+  | 'OnUpdateRasterStyleFailed'
+
+export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent | RasterEvent
 
 export type CloudEventHandler = (...args: any[]) => void | Promise<void>
