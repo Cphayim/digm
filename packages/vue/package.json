@@ -21,7 +21,7 @@
   },
   "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "vite build --watch",
+    "dev": "vite build --mode=development --watch",
     "build": "vue-tsc --noEmit && vite build"
   },
   "dependencies": {

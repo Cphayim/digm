@@ -1,9 +1,12 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import { createBaseConfig } from '../vite.base.config'
 
 export default defineConfig(({ mode }) => {
   return {
+    ...createBaseConfig(mode),
+
     build: {
       outDir: resolve(__dirname, 'dist'),
       emptyOutDir: true,
@@ -17,12 +20,9 @@ export default defineConfig(({ mode }) => {
         external: ['51superapi', '@cphayim/digm-shared'],
       },
     },
-    define: {
-      __DEV__: mode === 'development',
-    },
     plugins: [
       dts({
-        rollupTypes: true,
+        rollupTypes: mode === 'production',
         copyDtsFiles: false,
         beforeWriteFile: (filePath, content) => {
           return { filePath, content }

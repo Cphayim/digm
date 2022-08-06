@@ -21,8 +21,8 @@
     }
   },
   "scripts": {
-    "dev": "vite build --config ./vite.config.ts --watch",
-    "build": "vite build --config ./vite.config.ts"
+    "dev": "vite build --mode=development --watch",
+    "build": "vite build"
   },
   "dependencies": {},
   "devDependencies": {}
