@@ -1,3 +1,5 @@
+import type { FeatureResult } from '../features/BaseFeature'
+
 /**
  * 渲染器事件
  */
@@ -48,6 +50,14 @@ type CustomPOIEvent =
   | 'OnUpdateCustomPOILabelFailed'
   | 'OnUpdateCustomPOIWindowFailed'
 
-export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent
+type PathEvent =
+  | 'OnAddPathSuccess'
+  | 'OnUpdatePathCoordSuccess'
+  | 'OnUpdatePathStyleSuccess'
+  | 'OnAddPOIFailed'
+  | 'OnUpdatePathCoordFailed'
+  | 'OnUpdatePathStyleFailed'
 
-export type CloudEventHandler = (...args: any[]) => void | Promise<void>
+export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent | PathEvent
+
+export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>

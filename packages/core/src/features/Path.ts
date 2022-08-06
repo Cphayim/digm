@@ -113,6 +113,20 @@ export type ModifyPathCoordOptions = PathIDOptions & {
   points?: PathPoint[]
 }
 
+export type AddShpPathOptions = Omit<AddPathOptions, 'points'> & {
+  /**
+   * shp 文件路径
+   */
+  shp_path: string
+}
+
+export type AddGeoPathOptions = Omit<AddPathOptions, 'points'> & {
+  /**
+   * geojson 文件路径 或 对象
+   */
+  geojson: any
+}
+
 export class Path extends BaseFeature {
   private get _covering() {
     return this._digm.covering
@@ -164,5 +178,23 @@ export class Path extends BaseFeature {
    */
   modifyPathCoord(options: ModifyPathCoordOptions) {
     return promiseWrapper(this._superAPI, 'ModifyPathCoord', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 添加shp路径
+   *
+   * 创建多条路径或坐标点过多时, 创建需要花费一定的时间, 在创建完成时, 即未收到success前不要执行删除等操作
+   */
+  addShpPath(options: AddShpPathOptions) {
+    return promiseWrapper(this._superAPI, 'AddShpPath', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 添加GeoJSON路径
+   *
+   * 创建多条路径或坐标点过多时, 创建需要花费一定的时间, 在创建完成时, 即未收到success前不要执行删除等操作
+   */
+  addGeoPath(options: AddGeoPathOptions) {
+    return promiseWrapper(this._superAPI, 'AddGeoPath', options) as Promise<FeatureResult>
   }
 }
