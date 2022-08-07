@@ -70,7 +70,7 @@ export type UpdateRasterStyleOptions = RasterIDOptions & {
 /**
  * 栅格图
  */
-export class Section extends BaseFeature {
+export class Raster extends BaseFeature {
   private get _covering() {
     return this._digm.covering
   }
