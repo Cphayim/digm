@@ -1,4 +1,5 @@
 import { ensureObject } from '@cphayim/digm-shared'
+import type { FeatureResult } from '../features/BaseFeature'
 import { CloudEvent, CloudEventHandler } from './event-type'
 
 export class RenderEvent {
@@ -15,7 +16,7 @@ export class RenderEvent {
     if (eventSet) eventSet.delete(handler)
   }
 
-  globalEventHandler(data: any) {
+  globalEventHandler(data: FeatureResult) {
     const obj = ensureObject(data)
     const eventSet = this._eventMap.get(obj.func_name)
     if (eventSet) {
