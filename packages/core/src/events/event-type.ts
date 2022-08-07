@@ -51,6 +51,35 @@ type CustomPOIEvent =
   | 'OnUpdateCustomPOIWindowFailed'
 
 /**
+ * 热力图事件
+ */
+type HeatMapEvent =
+  | 'OnAddHeatMapSuccess'
+  | 'OnUpdateHeatMapCoordSuccess'
+  | 'OnUpdateHeatMapStyleSuccess'
+  | 'OnAddHeatMapFailed'
+  | 'OnUpdateHeatMapCoordFailed'
+  | 'OnUpdateHeatMapStyleFailed'
+  | 'OnAddColumnHeatMapSuccess'
+  | 'OnUpdateColumnHeatMapCoordSuccess'
+  | 'OnUpdateColumnHeatMapStyleSuccess'
+  | 'OnAddColumnHeatMapFailed'
+  | 'OnUpdateColumnHeatMapCoordFailed'
+  | 'OnUpdateColumnHeatMapStyleFailed'
+  | 'OnAddSpaceHeatMapSuccess'
+  | 'OnUpdateSpaceHeatMapCoordSuccess'
+  | 'OnUpdateSpaceHeatMapStyleSuccess'
+  | 'OnAddSpaceHeatMapFailed'
+  | 'OnUpdateSpaceHeatMapCoordFailed'
+  | 'OnUpdateSpaceHeatMapStyleFailed'
+  | 'OnAddRoadHeatMapSuccess'
+  | 'OnUpdateRoadHeatMapCoordSuccess'
+  | 'OnUpdateRoadHeatMapStyleSuccess'
+  | 'OnAddRoadHeatMapFailed'
+  | 'OnUpdateRoadHeatMapCoordFailed'
+  | 'OnUpdateRoadHeatMapStyleFailed'
+
+/**
  * 栅格图事件
  */
 type RasterEvent =
@@ -67,6 +96,6 @@ type PathEvent =
   | 'OnUpdatePathCoordFailed'
   | 'OnUpdatePathStyleFailed'
 
-export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent | RasterEvent | PathEvent
+export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent | RasterEvent | PathEvent | HeatMapEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
