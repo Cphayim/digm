@@ -1,3 +1,5 @@
+import type { FeatureResult } from '../features/BaseFeature'
+
 /**
  * 渲染器事件
  */
@@ -56,7 +58,15 @@ type RasterEvent =
   | 'OnUpdateRasterStyleSuccess'
   | 'OnAddRasterFailed'
   | 'OnUpdateRasterStyleFailed'
+  
+type PathEvent =
+  | 'OnAddPathSuccess'
+  | 'OnUpdatePathCoordSuccess'
+  | 'OnUpdatePathStyleSuccess'
+  | 'OnAddPOIFailed'
+  | 'OnUpdatePathCoordFailed'
+  | 'OnUpdatePathStyleFailed'
 
-export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent | RasterEvent
+export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent | RasterEvent | PathEvent
 
-export type CloudEventHandler = (...args: any[]) => void | Promise<void>
+export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>

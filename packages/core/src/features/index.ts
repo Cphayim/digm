@@ -3,6 +3,7 @@ export * from './SceneEdit'
 export * from './Section'
 export * from './Covering'
 export * from './Raster'
+export * from './Path'
 
 /**
  * @enhance
