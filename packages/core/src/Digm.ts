@@ -3,7 +3,7 @@ import { sleep } from '@cphayim/digm-shared'
 
 import { RenderStatus } from './status'
 import { CloudEvent, CloudEventHandler, RenderEvent } from './events'
-import { SceneCamera, SceneEdit, Section, Building, Covering, MigrationMap } from './features'
+import { SceneCamera, SceneEdit, Section, Building, Covering, MigrationMap, HeatMap, Raster, Path } from './features'
 
 export interface FetchRenderUrlOptions {
   /**
@@ -76,6 +76,9 @@ export class Digm {
   public readonly section: Section = new Section(this)
   public readonly covering: Covering = new Covering(this)
   public readonly migrationMap: MigrationMap = new MigrationMap(this)
+  public readonly heatMap: HeatMap = new HeatMap(this)
+  public readonly raster: Raster = new Raster(this)
+  public readonly path: Path = new Path(this)
 
   public readonly building: Building = new Building(this)
 

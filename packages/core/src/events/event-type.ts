@@ -1,3 +1,5 @@
+import type { FeatureResult } from '../features/BaseFeature'
+
 /**
  * 渲染器事件
  */
@@ -56,11 +58,52 @@ type CustomPOIEvent =
   | 'OnUpdateCustomPOILabelFailed'
   | 'OnUpdateCustomPOIWindowFailed'
 
-export type CloudEvent =
-  | RenderEvent
-  | SceneCameraEvent
-  | POIEvent
-  | MigrationMapEvent
-  | CustomPOIEvent
+/**
+ * 热力图事件
+ */
+type HeatMapEvent =
+  | 'OnAddHeatMapSuccess'
+  | 'OnUpdateHeatMapCoordSuccess'
+  | 'OnUpdateHeatMapStyleSuccess'
+  | 'OnAddHeatMapFailed'
+  | 'OnUpdateHeatMapCoordFailed'
+  | 'OnUpdateHeatMapStyleFailed'
+  | 'OnAddColumnHeatMapSuccess'
+  | 'OnUpdateColumnHeatMapCoordSuccess'
+  | 'OnUpdateColumnHeatMapStyleSuccess'
+  | 'OnAddColumnHeatMapFailed'
+  | 'OnUpdateColumnHeatMapCoordFailed'
+  | 'OnUpdateColumnHeatMapStyleFailed'
+  | 'OnAddSpaceHeatMapSuccess'
+  | 'OnUpdateSpaceHeatMapCoordSuccess'
+  | 'OnUpdateSpaceHeatMapStyleSuccess'
+  | 'OnAddSpaceHeatMapFailed'
+  | 'OnUpdateSpaceHeatMapCoordFailed'
+  | 'OnUpdateSpaceHeatMapStyleFailed'
+  | 'OnAddRoadHeatMapSuccess'
+  | 'OnUpdateRoadHeatMapCoordSuccess'
+  | 'OnUpdateRoadHeatMapStyleSuccess'
+  | 'OnAddRoadHeatMapFailed'
+  | 'OnUpdateRoadHeatMapCoordFailed'
+  | 'OnUpdateRoadHeatMapStyleFailed'
 
-export type CloudEventHandler = (...args: any[]) => void | Promise<void>
+/**
+ * 栅格图事件
+ */
+type RasterEvent =
+  | 'OnAddRasterSuccess'
+  | 'OnUpdateRasterStyleSuccess'
+  | 'OnAddRasterFailed'
+  | 'OnUpdateRasterStyleFailed'
+  
+type PathEvent =
+  | 'OnAddPathSuccess'
+  | 'OnUpdatePathCoordSuccess'
+  | 'OnUpdatePathStyleSuccess'
+  | 'OnAddPOIFailed'
+  | 'OnUpdatePathCoordFailed'
+  | 'OnUpdatePathStyleFailed'
+
+export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent | RasterEvent | PathEvent | HeatMapEvent | MigrationMapEvent
+
+export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
