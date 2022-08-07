@@ -31,6 +31,14 @@ type POIEvent =
   | 'OnPOIClick'
   | 'OnPOILabelClick'
 
+type MigrationMapEvent =
+  | 'OnAddMigrationMapSuccess'
+  | 'OnUpdateMigrationMapCoordSuccess'
+  | 'OnUpdateMigrationMapStyleSuccess'
+  | 'OnAddMigrationMapFailed'
+  | 'OnUpdateMigrationMapCoordFailed'
+  | 'OnUpdateMigrationMapStyleFailed'
+
 /**
  * 自定义 POI 事件
  */
@@ -48,6 +56,11 @@ type CustomPOIEvent =
   | 'OnUpdateCustomPOILabelFailed'
   | 'OnUpdateCustomPOIWindowFailed'
 
-export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent
+export type CloudEvent =
+  | RenderEvent
+  | SceneCameraEvent
+  | POIEvent
+  | MigrationMapEvent
+  | CustomPOIEvent
 
 export type CloudEventHandler = (...args: any[]) => void | Promise<void>
