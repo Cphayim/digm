@@ -50,6 +50,15 @@ type CustomPOIEvent =
   | 'OnUpdateCustomPOILabelFailed'
   | 'OnUpdateCustomPOIWindowFailed'
 
+/**
+ * 栅格图事件
+ */
+type RasterEvent =
+  | 'OnAddRasterSuccess'
+  | 'OnUpdateRasterStyleSuccess'
+  | 'OnAddRasterFailed'
+  | 'OnUpdateRasterStyleFailed'
+  
 type PathEvent =
   | 'OnAddPathSuccess'
   | 'OnUpdatePathCoordSuccess'
@@ -58,6 +67,6 @@ type PathEvent =
   | 'OnUpdatePathCoordFailed'
   | 'OnUpdatePathStyleFailed'
 
-export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent | PathEvent
+export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent | RasterEvent | PathEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
