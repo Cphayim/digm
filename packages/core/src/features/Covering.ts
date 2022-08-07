@@ -17,6 +17,9 @@ export type CoveringType =
   | 'highlight_area'
   | 'viewshed'
   | 'scene_effect'
+  | 'sectioning'
+  | 'light'
+  | '3d_text'
 
 export type ShowHideCoveringOptions = {
   /**
@@ -38,7 +41,7 @@ export type ShowHideAllCoveringOptions = {
   /**
    * 覆盖物类型
    */
-  covering_type: CoveringType[]
+  covering_type: CoveringType[] | CoveringType
   /**
    * true:显示; false:隐藏
    */
@@ -99,7 +102,7 @@ export type SimClickCoveringOptions = {
   /**
    * 覆盖物id
    */
-  id: string | string[]
+  id: string
   /**
    * 覆盖物类型
    */
@@ -179,6 +182,99 @@ export type clipCoveringByShpOptions = {
   shp_path: string
 }
 
+export type geojsonOptions = {
+  type: string
+  name: string
+  crs: {
+    type: string
+    properties: {
+      name: string
+    }
+  }
+  features: {
+    type: string
+    properties: {
+      id: string
+    }
+    geometry: {
+      type: string
+      coordinates: [string, string][][]
+    }
+  }[]
+}
+
+export type clipCoveringByGeoOptions = {
+  /**
+   * 被裁剪覆盖物id
+   */
+  id: string
+  /**
+   * 覆盖物类型
+   */
+  covering_type: CoveringType
+  /**
+   * CAD基准点Key值, 项目中约定
+   */
+  cad_mapkey: string
+  /**
+   * false: 保留裁剪区域; true: 不保留裁剪区域
+   */
+  invert: boolean
+  /**
+   * 指定geojson中的id字段
+   */
+  id_field_name?: number
+  /**
+   * 支持json或文件形式、二选一
+支持本地地址一: "file:///D:/xxx/shapData.shp", D: 云渲染所在盘符
+支持本地地址二: "path:/UserData/shapData.shp", 资源由云渲染后台管理, 云渲染4.3.1以上版
+   */
+  geojson: geojsonOptions | string
+}
+
+export type activeSuperApiGizmoOptions = {
+  /**
+   * 覆盖物id (sectioning: 剖切体, id选填)
+   */
+  id: string
+  /**
+   * 覆盖物类型(poi, viewshed, scene_effect, sectioning, aes_object)
+   */
+  covering_type: 'poi' | 'viewshed' | 'scene_effect' | 'sectioning' | 'aes_object'
+  /**
+   * Translation:移动; Rotation:旋转; Scale:缩放(注意gizmo_type异同)
+   */
+  gizmo_type: 'Translation' | 'Rotation' | ' Scale'
+}
+
+export type resultItem = {
+  id: string
+  apiName: string
+  name: string
+  outlineI: string
+}
+
+export type GetCustomizeApiResult = FeatureResult & {
+  result: resultItem[]
+  [key: string]: any
+}
+
+export type runCustomizeApiArgstem = {
+  status: string
+  funcName: string
+  func_name: string
+  guid: string
+  success: boolean
+  args: {
+    id: string
+    cost_time: string
+  }
+}
+
+export type RunCustomizeApiResult = FeatureResult & {
+  runCustomizeApiArgs: runCustomizeApiArgstem
+}
+
 export class Covering extends BaseFeature {
   /**
    * 显示/隐藏指定类型的覆盖物
@@ -222,7 +318,9 @@ export class Covering extends BaseFeature {
   /**
    * 删除全部指定类型覆盖物
    */
-  removeAllCovering(options: FocusAllCoveringOptions) {
+  removeAllCovering(
+    options: FocusAllCoveringOptions & { covering_type: CoveringType | CoveringType[] },
+  ) {
     return promiseWrapper(
       this._superAPI,
       'RemoveAllCovering',
@@ -272,5 +370,48 @@ export class Covering extends BaseFeature {
       'ClipCoveringByShp',
       options,
     ) as Promise<ShowHideCoveringResult>
+  }
+
+  /**
+   * GeoJson裁剪覆盖物
+   */
+  clipCoveringByGeo(options: clipCoveringByGeoOptions) {
+    return promiseWrapper(
+      this._superAPI,
+      'ClipCoveringByGeo',
+      options,
+    ) as Promise<ShowHideCoveringResult>
+  }
+
+  /**
+   * 获取自定义事件ID列表
+   */
+  getCustomizeApi() {
+    return promiseWrapper(this._superAPI, 'GetCustomizeApi') as Promise<GetCustomizeApiResult>
+  }
+
+  /**
+   * 运行自定义事件
+   */
+  runCustomizeApi(options: string[]) {
+    return promiseWrapper(
+      this._superAPI,
+      'RunCustomizeApi',
+      options,
+    ) as Promise<RunCustomizeApiResult>
+  }
+
+  /**
+   * 激活覆盖物Gizmo模式
+   */
+  activeSuperApiGizmo(options: activeSuperApiGizmoOptions) {
+    return promiseWrapper(this._superAPI, 'ActiveSuperApiGizmo', options) as Promise<FeatureResult>
+  }
+
+  /**
+   *退出覆盖物Gizmo模式
+   */
+  deactiveSuperApiGizmo() {
+    return promiseWrapper(this._superAPI, 'DeactiveSuperApiGizmo') as Promise<FeatureResult>
   }
 }
