@@ -2,7 +2,7 @@
   "name": "@cphayim/digm-vue",
   "version": "0.0.1",
   "author": "Cphayim <i@cphayim.me>",
-  "description": "digm vue package",
+  "description": "Encapsulation and enhancement of Digital Model renderer for Vue3, provide hooks and components",
   "license": "ISC",
   "files": [
     "dist"
@@ -21,7 +21,7 @@
   },
   "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "vite build --watch",
+    "dev": "vite build --mode=development --watch",
     "build": "vue-tsc --noEmit && vite build"
   },
   "dependencies": {
@@ -33,5 +33,13 @@
   },
   "peerDependencies": {
     "vue": "^3.2.25"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cphayim/digm.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/Cphayim/digm/issues"
   }
 }

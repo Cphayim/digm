@@ -3,8 +3,11 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import vue from '@vitejs/plugin-vue'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
+import { createBaseConfig } from '../vite.base.config'
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  ...createBaseConfig(mode),
+
   build: {
     outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,
@@ -26,7 +29,8 @@ export default defineConfig({
     vue(),
     cssInjectedByJsPlugin(),
     dts({
-      rollupTypes: true,
+      rollupTypes: mode === 'production',
+      copyDtsFiles: false,
       beforeWriteFile: (filePath, content) => {
         return { filePath, content }
       },
@@ -38,4 +42,4 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['@cphayim/digm-core'],
   },
-})
+}))
