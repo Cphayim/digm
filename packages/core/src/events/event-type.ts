@@ -48,6 +48,35 @@ type CustomPOIEvent =
   | 'OnUpdateCustomPOILabelFailed'
   | 'OnUpdateCustomPOIWindowFailed'
 
-export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent
+/**
+ * 热力图事件
+ */
+type HeatMapEvent =
+  | 'OnAddHeatMapSuccess'
+  | 'OnUpdateHeatMapCoordSuccess'
+  | 'OnUpdateHeatMapStyleSuccess'
+  | 'OnAddHeatMapFailed'
+  | 'OnUpdateHeatMapCoordFailed'
+  | 'OnUpdateHeatMapStyleFailed'
+  | 'OnAddColumnHeatMapSuccess'
+  | 'OnUpdateColumnHeatMapCoordSuccess'
+  | 'OnUpdateColumnHeatMapStyleSuccess'
+  | 'OnAddColumnHeatMapFailed'
+  | 'OnUpdateColumnHeatMapCoordFailed'
+  | 'OnUpdateColumnHeatMapStyleFailed'
+  | 'OnAddSpaceHeatMapSuccess'
+  | 'OnUpdateSpaceHeatMapCoordSuccess'
+  | 'OnUpdateSpaceHeatMapStyleSuccess'
+  | 'OnAddSpaceHeatMapFailed'
+  | 'OnUpdateSpaceHeatMapCoordFailed'
+  | 'OnUpdateSpaceHeatMapStyleFailed'
+  | 'OnAddRoadHeatMapSuccess'
+  | 'OnUpdateRoadHeatMapCoordSuccess'
+  | 'OnUpdateRoadHeatMapStyleSuccess'
+  | 'OnAddRoadHeatMapFailed'
+  | 'OnUpdateRoadHeatMapCoordFailed'
+  | 'OnUpdateRoadHeatMapStyleFailed'
+
+export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent | HeatMapEvent
 
 export type CloudEventHandler = (...args: any[]) => void | Promise<void>
