@@ -6,6 +6,7 @@ export * from './MigrationMap'
 export * from './HeatMap'
 export * from './Raster'
 export * from './Path'
+export * from './Light'
 
 /**
  * @enhance
