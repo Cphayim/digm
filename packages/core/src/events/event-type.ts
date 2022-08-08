@@ -33,6 +33,9 @@ type POIEvent =
   | 'OnPOIClick'
   | 'OnPOILabelClick'
 
+/**
+ * 迁徙图事件
+ */
 type MigrationMapEvent =
   | 'OnAddMigrationMapSuccess'
   | 'OnUpdateMigrationMapCoordSuccess'
@@ -95,7 +98,10 @@ type RasterEvent =
   | 'OnUpdateRasterStyleSuccess'
   | 'OnAddRasterFailed'
   | 'OnUpdateRasterStyleFailed'
-  
+
+/**
+ * 路径事件
+ */
 type PathEvent =
   | 'OnAddPathSuccess'
   | 'OnUpdatePathCoordSuccess'
@@ -104,6 +110,23 @@ type PathEvent =
   | 'OnUpdatePathCoordFailed'
   | 'OnUpdatePathStyleFailed'
 
-export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent | RasterEvent | PathEvent | HeatMapEvent | MigrationMapEvent
+type RangeType =
+  | 'OnAddRangeSuccess'
+  | 'OnUpdateRangeCoordSuccess'
+  | 'OnUpdateRangeStyleSuccess'
+  | 'OnAddRangeFailed'
+  | 'OnUpdateRangeCoordFailed'
+  | 'OnUpdateRangeStyleFailed'
+
+export type CloudEvent =
+  | RenderEvent
+  | SceneCameraEvent
+  | POIEvent
+  | CustomPOIEvent
+  | RasterEvent
+  | PathEvent
+  | HeatMapEvent
+  | MigrationMapEvent
+  | RangeType
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>

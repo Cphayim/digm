@@ -84,6 +84,28 @@ export type UpdateRangeCoordOptions = RangeIDOptions & RangeDataOptions
 
 export type UpdateRangeStyleOptions = RangeIDOptions & RangeStyleOptions
 
+export type AddShpRangeOptions = RangeIDOptions &
+  Omit<RangeDataOptions, 'points' | 'inner_points'> &
+  RangeStyleOptions & {
+    /**
+     * shp 文件路径
+     */
+    shp_path: string
+  }
+
+export type AddGeoRangeOptions = RangeIDOptions &
+  Omit<RangeDataOptions, 'points' | 'inner_points'> &
+  RangeStyleOptions & {
+    /**
+     * 指定geojson中的id字段
+     */
+    id_field_name: string
+    /**
+     * 支持json或文件形式、二选一
+     */
+    geojson: any
+  }
+
 /**
  * 区域轮廓
  */
@@ -129,5 +151,19 @@ export class Range extends BaseFeature {
    */
   updateRangeStyle(options: UpdateRangeStyleOptions) {
     return promiseWrapper(this._superAPI, 'UpdateRangeStyle', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * Shp高亮区域
+   */
+  addShpRange(options: AddShpRangeOptions) {
+    return promiseWrapper(this._superAPI, 'AddShpRange', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 添加GeoJSON区域轮廓
+   */
+  addGeoRange(options: AddGeoRangeOptions) {
+    return promiseWrapper(this._superAPI, 'AddGeoRange', options) as Promise<FeatureResult>
   }
 }
