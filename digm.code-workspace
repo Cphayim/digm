@@ -1,10 +1,6 @@
 {
   "folders": [
     {
-      "name": "playground",
-      "path": "playground"
-    },
-    {
       "name": "✨ digm-monorepo",
       "path": "."
     },
