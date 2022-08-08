@@ -1,23 +1,27 @@
 import './style.css'
-import typescriptLogo from './typescript.svg'
-import { setupCounter } from './counter'
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+import { createDigm, getStatusLabel, RenderStatus } from '@cphayim/digm-core'
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const digmViewEle = document.querySelector('.digm-view') as HTMLDivElement
+const digmMaskEle = document.querySelector('.digm-mask') as HTMLDivElement
+
+const digm = createDigm()
+
+updateMask(digm.status)
+digm.addStatusSubscriber(updateMask)
+
+digm.init(digmViewEle)
+digm.startEngine({
+  url: import.meta.env.VITE_APP_RENDER_SERVER,
+  order: import.meta.env.VITE_APP_RENDER_ORDER,
+  width: digmViewEle.clientWidth,
+  height: digmViewEle.clientHeight,
+  enableLog: false,
+})
+
+function updateMask(status: RenderStatus) {
+  digmMaskEle.innerHTML = getStatusLabel(status)
+  if (status === RenderStatus.RENDER_MODEL_FINISHED) {
+    digmMaskEle.style.display = 'none'
+  }
+}
