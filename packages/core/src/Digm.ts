@@ -60,10 +60,12 @@ export type StartEngineOptions = FetchRenderUrlOptions & RenderPrepareOptions
 
 export type StatusSubscriber = (status: RenderStatus) => void | Promise<void>
 
-export class Digm {
-  private _renderer: any
+export type CloudRendererType = typeof CloudRenderer
 
-  get renderer(): any {
+export class Digm {
+  private _renderer: CloudRendererType
+
+  get renderer(): CloudRendererType {
     this._verifyStatus()
     return this._renderer
   }
