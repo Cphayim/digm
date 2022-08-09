@@ -99,6 +99,10 @@ export type UpdateMigrationMapStyleOptions = Omit<
 >
 
 export class MigrationMap extends BaseFeature {
+  private get _covering() {
+    return this._digm.covering
+  }
+
   /**
    * 添加迁徙图
    *
@@ -131,5 +135,23 @@ export class MigrationMap extends BaseFeature {
       'UpdateMigrationMapStyle',
       options,
     ) as Promise<FeatureResult>
+  }
+
+  /**
+   * 删除迁徙图
+   *
+   * @enhance
+   */
+  removeMigrationMapById(id: string) {
+    return this._covering.removeCovering({ id, covering_type: 'migration_map' })
+  }
+
+  /**
+   * 删除所有迁徙图
+   *
+   * @enhance
+   */
+  removeAllMigrationMap() {
+    return this._covering.removeAllCovering({ covering_type: 'migration_map' })
   }
 }
