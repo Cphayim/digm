@@ -13,6 +13,7 @@ import {
   HeatMap,
   Raster,
   Path,
+  Light,
   Range,
 } from './features'
 
@@ -90,6 +91,7 @@ export class Digm {
   public readonly heatMap: HeatMap = new HeatMap(this)
   public readonly raster: Raster = new Raster(this)
   public readonly path: Path = new Path(this)
+  public readonly light: Light = new Light(this)
   public readonly range: Range = new Range(this)
 
   public readonly building: Building = new Building(this)
