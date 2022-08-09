@@ -7,6 +7,7 @@ export * from './HeatMap'
 export * from './Raster'
 export * from './Path'
 export * from './Light'
+export * from './Range'
 
 /**
  * @enhance
