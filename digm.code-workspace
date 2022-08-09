@@ -9,6 +9,10 @@
       "path": "packages/core"
     },
     {
+      "name": "📦 @cphayim/digm-react",
+      "path": "packages/react"
+    },
+    {
       "name": "📦 @cphayim/digm-shared",
       "path": "packages/shared"
     },
