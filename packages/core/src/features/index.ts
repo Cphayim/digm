@@ -7,6 +7,8 @@ export * from './HeatMap'
 export * from './Raster'
 export * from './Path'
 export * from './ParticleEffect'
+export * from './Light'
+export * from './Range'
 
 /**
  * @enhance

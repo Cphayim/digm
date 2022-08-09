@@ -14,6 +14,8 @@ import {
   Raster,
   Path,
   ParticleEffect,
+  Light,
+  Range,
 } from './features'
 
 export interface FetchRenderUrlOptions {
@@ -91,6 +93,8 @@ export class Digm {
   public readonly raster: Raster = new Raster(this)
   public readonly path: Path = new Path(this)
   public readonly particleEffect: ParticleEffect = new ParticleEffect(this)
+  public readonly light: Light = new Light(this)
+  public readonly range: Range = new Range(this)
 
   public readonly building: Building = new Building(this)
 
