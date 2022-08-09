@@ -9,6 +9,7 @@ export * from './Path'
 export * from './ParticleEffect'
 export * from './Light'
 export * from './Range'
+export * from './POI'
 
 /**
  * @enhance

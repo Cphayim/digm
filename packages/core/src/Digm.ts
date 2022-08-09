@@ -16,6 +16,7 @@ import {
   ParticleEffect,
   Light,
   Range,
+  POI,
 } from './features'
 
 export interface FetchRenderUrlOptions {
@@ -95,6 +96,7 @@ export class Digm {
   public readonly particleEffect: ParticleEffect = new ParticleEffect(this)
   public readonly light: Light = new Light(this)
   public readonly range: Range = new Range(this)
+  public readonly POI: POI = new POI(this)
 
   public readonly building: Building = new Building(this)
 
