@@ -17,6 +17,7 @@ import {
   Light,
   Range,
   StrategyMap,
+  Viewshed,
 } from './features'
 
 export interface FetchRenderUrlOptions {
@@ -99,6 +100,7 @@ export class Digm {
   public readonly light: Light = new Light(this)
   public readonly range: Range = new Range(this)
   public readonly strategyMap: StrategyMap = new StrategyMap(this)
+  public readonly viewshed: Viewshed = new Viewshed(this)
 
   public readonly building: Building = new Building(this)
 
