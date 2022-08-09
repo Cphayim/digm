@@ -20,6 +20,7 @@ export type CoveringType =
   | 'sectioning'
   | 'light'
   | '3d_text'
+  | 'floating_particles'
 
 export type ShowHideCoveringOptions = {
   /**

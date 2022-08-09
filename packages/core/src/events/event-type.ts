@@ -1,3 +1,5 @@
+import type { FeatureResult } from '../features/BaseFeature'
+
 /**
  * 渲染器事件
  */
@@ -32,6 +34,17 @@ type POIEvent =
   | 'OnPOILabelClick'
 
 /**
+ * 迁徙图事件
+ */
+type MigrationMapEvent =
+  | 'OnAddMigrationMapSuccess'
+  | 'OnUpdateMigrationMapCoordSuccess'
+  | 'OnUpdateMigrationMapStyleSuccess'
+  | 'OnAddMigrationMapFailed'
+  | 'OnUpdateMigrationMapCoordFailed'
+  | 'OnUpdateMigrationMapStyleFailed'
+
+/**
  * 自定义 POI 事件
  */
 type CustomPOIEvent =
@@ -48,6 +61,72 @@ type CustomPOIEvent =
   | 'OnUpdateCustomPOILabelFailed'
   | 'OnUpdateCustomPOIWindowFailed'
 
-export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent
+/**
+ * 热力图事件
+ */
+type HeatMapEvent =
+  | 'OnAddHeatMapSuccess'
+  | 'OnUpdateHeatMapCoordSuccess'
+  | 'OnUpdateHeatMapStyleSuccess'
+  | 'OnAddHeatMapFailed'
+  | 'OnUpdateHeatMapCoordFailed'
+  | 'OnUpdateHeatMapStyleFailed'
+  | 'OnAddColumnHeatMapSuccess'
+  | 'OnUpdateColumnHeatMapCoordSuccess'
+  | 'OnUpdateColumnHeatMapStyleSuccess'
+  | 'OnAddColumnHeatMapFailed'
+  | 'OnUpdateColumnHeatMapCoordFailed'
+  | 'OnUpdateColumnHeatMapStyleFailed'
+  | 'OnAddSpaceHeatMapSuccess'
+  | 'OnUpdateSpaceHeatMapCoordSuccess'
+  | 'OnUpdateSpaceHeatMapStyleSuccess'
+  | 'OnAddSpaceHeatMapFailed'
+  | 'OnUpdateSpaceHeatMapCoordFailed'
+  | 'OnUpdateSpaceHeatMapStyleFailed'
+  | 'OnAddRoadHeatMapSuccess'
+  | 'OnUpdateRoadHeatMapCoordSuccess'
+  | 'OnUpdateRoadHeatMapStyleSuccess'
+  | 'OnAddRoadHeatMapFailed'
+  | 'OnUpdateRoadHeatMapCoordFailed'
+  | 'OnUpdateRoadHeatMapStyleFailed'
 
-export type CloudEventHandler = (...args: any[]) => void | Promise<void>
+/**
+ * 栅格图事件
+ */
+type RasterEvent =
+  | 'OnAddRasterSuccess'
+  | 'OnUpdateRasterStyleSuccess'
+  | 'OnAddRasterFailed'
+  | 'OnUpdateRasterStyleFailed'
+
+/**
+ * 路径事件
+ */
+type PathEvent =
+  | 'OnAddPathSuccess'
+  | 'OnUpdatePathCoordSuccess'
+  | 'OnUpdatePathStyleSuccess'
+  | 'OnAddPOIFailed'
+  | 'OnUpdatePathCoordFailed'
+  | 'OnUpdatePathStyleFailed'
+
+type RangeType =
+  | 'OnAddRangeSuccess'
+  | 'OnUpdateRangeCoordSuccess'
+  | 'OnUpdateRangeStyleSuccess'
+  | 'OnAddRangeFailed'
+  | 'OnUpdateRangeCoordFailed'
+  | 'OnUpdateRangeStyleFailed'
+
+export type CloudEvent =
+  | RenderEvent
+  | SceneCameraEvent
+  | POIEvent
+  | CustomPOIEvent
+  | RasterEvent
+  | PathEvent
+  | HeatMapEvent
+  | MigrationMapEvent
+  | RangeType
+
+export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
