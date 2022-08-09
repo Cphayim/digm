@@ -17,6 +17,8 @@ import {
   Light,
   Range,
   POI,
+  StrategyMap,
+  Viewshed,
 } from './features'
 
 export interface FetchRenderUrlOptions {
@@ -60,10 +62,12 @@ export type StartEngineOptions = FetchRenderUrlOptions & RenderPrepareOptions
 
 export type StatusSubscriber = (status: RenderStatus) => void | Promise<void>
 
-export class Digm {
-  private _renderer: any
+export type CloudRendererType = typeof CloudRenderer
 
-  get renderer(): any {
+export class Digm {
+  private _renderer: CloudRendererType
+
+  get renderer(): CloudRendererType {
     this._verifyStatus()
     return this._renderer
   }
@@ -97,6 +101,8 @@ export class Digm {
   public readonly light: Light = new Light(this)
   public readonly range: Range = new Range(this)
   public readonly POI: POI = new POI(this)
+  public readonly strategyMap: StrategyMap = new StrategyMap(this)
+  public readonly viewshed: Viewshed = new Viewshed(this)
 
   public readonly building: Building = new Building(this)
 
