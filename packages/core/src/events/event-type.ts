@@ -44,6 +44,18 @@ type MigrationMapEvent =
   | 'OnUpdateMigrationMapCoordFailed'
   | 'OnUpdateMigrationMapStyleFailed'
 
+type StrategyMapEvent =
+  | 'OnAddStrategyMapSuccess'
+  | 'OnUpdateStrategyMapCoordSuccess'
+  | 'OnUpdateStrategyMapStyleSuccess'
+  | 'OnAddStrategyMapFailed'
+  | 'OnUpdateStrategyMapCoordFailed'
+  | 'OnUpdateStrategyMapStyleFailed'
+  | 'OnFocusStrategyMapStart'
+  | 'OnFocusStrategyMapEnd'
+  | 'OnFocusAllStrategyMapStart'
+  | 'OnFocusAllStrategyMapEnd'
+
 /**
  * 自定义 POI 事件
  */
@@ -127,6 +139,7 @@ export type CloudEvent =
   | PathEvent
   | HeatMapEvent
   | MigrationMapEvent
+  | StrategyMapEvent
   | RangeType
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
