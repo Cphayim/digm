@@ -17,6 +17,7 @@ export type CoveringType =
   | 'highlight_area'
   | 'viewshed'
   | 'scene_effect'
+  | 'floating_particles'
 
 export type ShowHideCoveringOptions = {
   /**
