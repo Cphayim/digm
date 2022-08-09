@@ -130,6 +130,21 @@ type RangeType =
   | 'OnUpdateRangeCoordFailed'
   | 'OnUpdateRangeStyleFailed'
 
+type ViewshedEvent =
+  | 'OnAddViewshedSuccess'
+  | 'OnUpdateViewshedCoordSuccess'
+  | 'OnUpdateViewshedStyleSuccess'
+  | 'OnAddViewshedFailed'
+  | 'OnUpdateViewshedCoordFailed'
+  | 'OnUpdateViewshedStyleFailed'
+  | 'OnFocusViewshedStart'
+  | 'OnFocusViewshedEnd'
+  | 'OnFocusAllViewshedStart'
+  | 'OnFocusAllViewshedEnd'
+  | 'OnViewshedHover'
+  | 'OnViewshedUnHover'
+  | 'OnViewshedClick'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -141,5 +156,6 @@ export type CloudEvent =
   | MigrationMapEvent
   | StrategyMapEvent
   | RangeType
+  | ViewshedEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>

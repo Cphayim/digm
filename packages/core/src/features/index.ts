@@ -10,7 +10,9 @@ export * from './ParticleEffect'
 export * from './Light'
 export * from './Range'
 export * from './Widget'
+export * from './POI'
 export * from './StrategyMap'
+export * from './Viewshed'
 
 /**
  * @enhance
