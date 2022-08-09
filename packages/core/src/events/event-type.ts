@@ -33,6 +33,9 @@ type POIEvent =
   | 'OnPOIClick'
   | 'OnPOILabelClick'
 
+/**
+ * 迁徙图事件
+ */
 type MigrationMapEvent =
   | 'OnAddMigrationMapSuccess'
   | 'OnUpdateMigrationMapCoordSuccess'
@@ -40,6 +43,18 @@ type MigrationMapEvent =
   | 'OnAddMigrationMapFailed'
   | 'OnUpdateMigrationMapCoordFailed'
   | 'OnUpdateMigrationMapStyleFailed'
+
+type StrategyMapEvent =
+  | 'OnAddStrategyMapSuccess'
+  | 'OnUpdateStrategyMapCoordSuccess'
+  | 'OnUpdateStrategyMapStyleSuccess'
+  | 'OnAddStrategyMapFailed'
+  | 'OnUpdateStrategyMapCoordFailed'
+  | 'OnUpdateStrategyMapStyleFailed'
+  | 'OnFocusStrategyMapStart'
+  | 'OnFocusStrategyMapEnd'
+  | 'OnFocusAllStrategyMapStart'
+  | 'OnFocusAllStrategyMapEnd'
 
 /**
  * 自定义 POI 事件
@@ -95,7 +110,10 @@ type RasterEvent =
   | 'OnUpdateRasterStyleSuccess'
   | 'OnAddRasterFailed'
   | 'OnUpdateRasterStyleFailed'
-  
+
+/**
+ * 路径事件
+ */
 type PathEvent =
   | 'OnAddPathSuccess'
   | 'OnUpdatePathCoordSuccess'
@@ -104,6 +122,40 @@ type PathEvent =
   | 'OnUpdatePathCoordFailed'
   | 'OnUpdatePathStyleFailed'
 
-export type CloudEvent = RenderEvent | SceneCameraEvent | POIEvent | CustomPOIEvent | RasterEvent | PathEvent | HeatMapEvent | MigrationMapEvent
+type RangeType =
+  | 'OnAddRangeSuccess'
+  | 'OnUpdateRangeCoordSuccess'
+  | 'OnUpdateRangeStyleSuccess'
+  | 'OnAddRangeFailed'
+  | 'OnUpdateRangeCoordFailed'
+  | 'OnUpdateRangeStyleFailed'
+
+type ViewshedEvent =
+  | 'OnAddViewshedSuccess'
+  | 'OnUpdateViewshedCoordSuccess'
+  | 'OnUpdateViewshedStyleSuccess'
+  | 'OnAddViewshedFailed'
+  | 'OnUpdateViewshedCoordFailed'
+  | 'OnUpdateViewshedStyleFailed'
+  | 'OnFocusViewshedStart'
+  | 'OnFocusViewshedEnd'
+  | 'OnFocusAllViewshedStart'
+  | 'OnFocusAllViewshedEnd'
+  | 'OnViewshedHover'
+  | 'OnViewshedUnHover'
+  | 'OnViewshedClick'
+
+export type CloudEvent =
+  | RenderEvent
+  | SceneCameraEvent
+  | POIEvent
+  | CustomPOIEvent
+  | RasterEvent
+  | PathEvent
+  | HeatMapEvent
+  | MigrationMapEvent
+  | StrategyMapEvent
+  | RangeType
+  | ViewshedEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>

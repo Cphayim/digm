@@ -3,7 +3,22 @@ import { sleep } from '@cphayim/digm-shared'
 
 import { RenderStatus } from './status'
 import { CloudEvent, CloudEventHandler, RenderEvent } from './events'
-import { SceneCamera, SceneEdit, Section, Building, Covering, MigrationMap, HeatMap, Raster, Path } from './features'
+import {
+  SceneCamera,
+  SceneEdit,
+  Section,
+  Building,
+  Covering,
+  MigrationMap,
+  HeatMap,
+  Raster,
+  Path,
+  ParticleEffect,
+  Light,
+  Range,
+  StrategyMap,
+  Viewshed,
+} from './features'
 
 export interface FetchRenderUrlOptions {
   /**
@@ -46,10 +61,12 @@ export type StartEngineOptions = FetchRenderUrlOptions & RenderPrepareOptions
 
 export type StatusSubscriber = (status: RenderStatus) => void | Promise<void>
 
-export class Digm {
-  private _renderer: any
+export type CloudRendererType = typeof CloudRenderer
 
-  get renderer(): any {
+export class Digm {
+  private _renderer: CloudRendererType
+
+  get renderer(): CloudRendererType {
     this._verifyStatus()
     return this._renderer
   }
@@ -79,6 +96,11 @@ export class Digm {
   public readonly heatMap: HeatMap = new HeatMap(this)
   public readonly raster: Raster = new Raster(this)
   public readonly path: Path = new Path(this)
+  public readonly particleEffect: ParticleEffect = new ParticleEffect(this)
+  public readonly light: Light = new Light(this)
+  public readonly range: Range = new Range(this)
+  public readonly strategyMap: StrategyMap = new StrategyMap(this)
+  public readonly viewshed: Viewshed = new Viewshed(this)
 
   public readonly building: Building = new Building(this)
 
