@@ -16,6 +16,7 @@ import {
   ParticleEffect,
   Light,
   Range,
+  POI,
   StrategyMap,
   Viewshed,
 } from './features'
@@ -99,6 +100,7 @@ export class Digm {
   public readonly particleEffect: ParticleEffect = new ParticleEffect(this)
   public readonly light: Light = new Light(this)
   public readonly range: Range = new Range(this)
+  public readonly POI: POI = new POI(this)
   public readonly strategyMap: StrategyMap = new StrategyMap(this)
   public readonly viewshed: Viewshed = new Viewshed(this)
 
