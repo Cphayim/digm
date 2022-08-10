@@ -145,6 +145,21 @@ type ViewshedEvent =
   | 'OnViewshedUnHover'
   | 'OnViewshedClick'
 
+type TDTextEvent =
+  | 'OnAdd3DtextSuccess'
+  | 'OnUpdate3DtextCoordSuccess'
+  | 'OnUpdate3DtextStyleSuccess'
+  | 'OnAdd3DtextFailed'
+  | 'OnUpdate3DtextCoordFailed'
+  | 'OnUpdate3DtextStyleFailed'
+  | 'OnFocus3DtextStart'
+  | 'OnFocus3DtextEnd'
+  | 'OnFocusAll3DtextStart'
+  | 'OnFocusAll3DtextEnd'
+  | 'On3DTextHover'
+  | 'On3DTextUnHover'
+  | 'On3DTextClick'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -157,5 +172,6 @@ export type CloudEvent =
   | StrategyMapEvent
   | RangeType
   | ViewshedEvent
+  | Event
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
