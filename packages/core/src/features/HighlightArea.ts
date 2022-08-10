@@ -1,7 +1,7 @@
 import { BaseFeature } from './BaseFeature'
 import type { FeatureResult } from './BaseFeature'
 import { promiseWrapper } from './utils'
-
+import type { geojsonOptions } from './Covering'
 export type addHighlightAreaOptions = updateHighlightAreaCoordOptions &
   updateHighlightAreaStyleOptions
 
@@ -58,6 +58,43 @@ export type updateHighlightAreaStyleOptions = {
   exterior_contrast: string
 }
 
+export type AddShpHighlightAreaOptions = updateHighlightAreaStyleOptions &
+  UpdateShpHighlightAreaCoordOptions
+
+export type UpdateShpHighlightAreaCoordOptions = {
+  /**
+   * 坐标类型(0:经纬度坐标, 1:cad坐标)
+   */
+  coord_type: 0 | 1
+  /**
+   * CAD基准点Key值, 项目中约定
+   */
+  cad_mapkey: string
+  /**
+   * 本地地址一: "file:///D:/xxx/shapData.shp", D: 云渲染所在盘符
+   * 本地地址二: "path:/UserData/shapData.shp", 资源由云渲染后台管理, 云渲染4.3.1以上版本
+   */
+  shp_path: string
+}
+
+export type addGeoHighlightAreaOptions = updateHighlightAreaStyleOptions &
+  updateGeoHighlightAreaCoordOptions
+
+export type updateGeoHighlightAreaCoordOptions = {
+  /**
+   * 坐标类型(0:经纬度坐标, 1:cad坐标)
+   */
+  coord_type: 0 | 1
+  /**
+   * CAD基准点Key值, 项目中约定
+   */
+  cad_mapkey: string
+  /**
+   * 支持json或文件形式、二选一
+   */
+  geojson: geojsonOptions | geojsonOptions[]
+}
+
 /**
  * 高亮区域
  */
@@ -87,6 +124,42 @@ export class HighlightArea extends BaseFeature {
     return promiseWrapper(
       this._superAPI,
       'UpdateHighlightAreaStyle',
+      options,
+    ) as Promise<FeatureResult>
+  }
+
+  /**
+   * 添加Shp高亮区域
+   */
+  addShpHighlightArea(options: AddShpHighlightAreaOptions) {
+    return promiseWrapper(this._superAPI, 'AddShpHighlightArea', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 更新Shp高亮区域数据点
+   */
+  updateShpHighlightAreaCoord(options: UpdateShpHighlightAreaCoordOptions) {
+    return promiseWrapper(
+      this._superAPI,
+      'UpdateShpHighlightAreaCoord',
+      options,
+    ) as Promise<FeatureResult>
+  }
+
+  /**
+   * 添加GeoJSON高亮区域
+   */
+  addGeoHighlightArea(options: addGeoHighlightAreaOptions) {
+    return promiseWrapper(this._superAPI, 'AddGeoHighlightArea', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 更新GeoJSON高亮区域数据点
+   */
+  updateGeoHighlightAreaCoord(options: updateGeoHighlightAreaCoordOptions) {
+    return promiseWrapper(
+      this._superAPI,
+      'UpdateGeoHighlightAreaCoord',
       options,
     ) as Promise<FeatureResult>
   }

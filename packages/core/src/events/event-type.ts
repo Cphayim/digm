@@ -145,6 +145,12 @@ type ViewshedEvent =
   | 'OnViewshedUnHover'
   | 'OnViewshedClick'
 
+type HighlightAreaEvent =
+  | 'OnAddHighlightAreaSuccess'
+  | 'OnUpdateHighlightAreaCoordSuccess'
+  | 'OnUpdateHighlightAreaStyleSuccess'
+  | 'OnAddHighlightAreaFailed'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -157,5 +163,6 @@ export type CloudEvent =
   | StrategyMapEvent
   | RangeType
   | ViewshedEvent
+  | HighlightAreaEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
