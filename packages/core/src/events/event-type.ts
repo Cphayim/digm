@@ -151,6 +151,25 @@ type HighlightAreaEvent =
   | 'OnUpdateHighlightAreaStyleSuccess'
   | 'OnAddHighlightAreaFailed'
 
+type SceneGeoConverterEvent =
+  | 'OnAddGeoCoordToScreenPostionSuccess'
+  | 'OnAddGeoCoordToScreenPostionFailed'
+  
+type ChinaMapEvent =
+  | 'OnSwitchChinaMapSuccess'
+  | 'OnSwitchChinaMapFailed'
+  | 'OnHighlightProvinceSuccess'
+  | 'OnHighlightProvinceFailed'
+  | 'OnVisibleProvinceNameSuccess'
+  | 'OnVisibleProvinceNameFailed'
+  | 'OnFocusMigrationMapStart'
+  | 'OnFocusMigrationMapEnd'
+  | 'OnFocusAllMigrationMapStart'
+  | 'OnFocusAllMigrationMapEnd'
+  | 'OnMigrationMapHover'
+  | 'OnMigrationMapUnHover'
+  | 'OnMigrationMapClick'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -164,5 +183,7 @@ export type CloudEvent =
   | RangeType
   | ViewshedEvent
   | HighlightAreaEvent
+  | SceneGeoConverterEvent
+  | ChinaMapEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
