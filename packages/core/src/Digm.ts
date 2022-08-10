@@ -19,6 +19,7 @@ import {
   POI,
   StrategyMap,
   Viewshed,
+  SceneEffect,
 } from './features'
 
 export interface FetchRenderUrlOptions {
@@ -109,6 +110,7 @@ export class Digm {
   public readonly POI: POI = new POI(this)
   public readonly strategyMap: StrategyMap = new StrategyMap(this)
   public readonly viewshed: Viewshed = new Viewshed(this)
+  public readonly sceneEffect: SceneEffect = new SceneEffect(this)
 
   public readonly building: Building = new Building(this)
 

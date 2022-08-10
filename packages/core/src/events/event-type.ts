@@ -145,6 +145,21 @@ type ViewshedEvent =
   | 'OnViewshedUnHover'
   | 'OnViewshedClick'
 
+type SceneEffectEvent =
+  | 'OnAddEffectSuccess'
+  | 'OnUpdateEffectCoordSuccess'
+  | 'OnUpdateEffectStyleSuccess'
+  | 'OnAddEffectFailed'
+  | 'OnUpdateEffectCoordFailed'
+  | 'OnUpdateEffectStyleFailed'
+  | 'OnFocusEffectStart'
+  | 'OnFocusEffectEnd'
+  | 'OnFocusAllEffectStart'
+  | 'OnFocusAllEffectEnd'
+  | 'OnSceneEffectHover'
+  | 'OnSceneEffectUnHover'
+  | 'OnSceneEffectClick'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -157,5 +172,6 @@ export type CloudEvent =
   | StrategyMapEvent
   | RangeType
   | ViewshedEvent
+  | SceneEffectEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
