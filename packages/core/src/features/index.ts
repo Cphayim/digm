@@ -12,6 +12,7 @@ export * from './Range'
 export * from './POI'
 export * from './StrategyMap'
 export * from './Viewshed'
+export * from './SceneGeoConverter'
 
 /**
  * @enhance

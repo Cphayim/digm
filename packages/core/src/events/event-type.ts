@@ -145,6 +145,10 @@ type ViewshedEvent =
   | 'OnViewshedUnHover'
   | 'OnViewshedClick'
 
+type SceneGeoConverterEvent =
+  | 'OnAddGeoCoordToScreenPostionSuccess'
+  | 'OnAddGeoCoordToScreenPostionFailed'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -157,5 +161,6 @@ export type CloudEvent =
   | StrategyMapEvent
   | RangeType
   | ViewshedEvent
+  | SceneGeoConverterEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
