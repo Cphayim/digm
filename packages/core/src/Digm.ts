@@ -35,11 +35,15 @@ export interface FetchRenderUrlOptions {
 
   /**
    * 输出像素宽度
+   *
+   * 可选，默认为容器宽度
    */
   width?: number
 
   /**
    * 输出像素高度
+   *
+   * 可选，默认为容器高度
    */
   height?: number
 }
@@ -66,6 +70,8 @@ export type StatusSubscriber = (status: RenderStatus) => void | Promise<void>
 export type CloudRendererType = typeof CloudRenderer
 
 export class Digm {
+  private _el: Element
+
   private _renderer: CloudRendererType
 
   get renderer(): CloudRendererType {
@@ -130,14 +136,19 @@ export class Digm {
    */
   init(idOrElement: string | Element) {
     this.status = RenderStatus.INIT_RENDER
+
+    // init render required a string id
+    // we also need to record the element
     let id: string
     if (idOrElement instanceof Element) {
       const existId = !!idOrElement.id
-      id = existId ? idOrElement.id : (idOrElement.id = Math.random().toString().slice(2))
+      id = existId ? idOrElement.id : (idOrElement.id = `digm-${Math.random().toString().slice(2)}`)
+      this._el = idOrElement
     } else {
-      if (!document.querySelector(`#${idOrElement}`))
-        throw new Error(`[Error] Element #${idOrElement}} is not exists.`)
+      const el = document.getElementById(idOrElement)
+      if (!el) throw new Error(`[Error] Element #${idOrElement}} is not exists.`)
       id = idOrElement
+      this._el = el
     }
 
     try {
@@ -155,10 +166,13 @@ export class Digm {
   async startEngine(options: StartEngineOptions) {
     if (!options.url) throw new Error(`[Error] options.url is required`)
     if (!options.order) throw new Error(`[Error] options.order is required`)
-    if (!options.width) throw new Error(`[Error] options.width is required`)
-    if (!options.height) throw new Error(`[Error] options.height is required`)
 
     this._verifyStatus()
+
+    // If the user does not specify a width and height,
+    // use the width and height of the container element
+    options = Object.assign(getElementWidthAndHeight(this._el), options)
+
     /**
      * - fetch renderUrl
      * - set renderer log, bind global event handler
@@ -247,4 +261,8 @@ export class Digm {
 
 export function createDigm(...args: ConstructorParameters<typeof Digm>) {
   return new Digm(...args)
+}
+
+function getElementWidthAndHeight(el: Element) {
+  return { width: el.clientWidth, height: el.clientHeight }
 }

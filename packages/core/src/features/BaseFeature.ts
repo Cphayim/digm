@@ -1,5 +1,6 @@
-import { Digm } from '../Digm'
+import type { Digm } from '../Digm'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type FeatureResult<T = any> = {
   func_name: string
   success: boolean

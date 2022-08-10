@@ -1,9 +1,11 @@
 import { ensureObject } from '@cphayim/digm-shared'
 
+export type SuperAPI = (...args: unknown[]) => void
+
 /**
  * 适用于仅调用一次回调函数的 superAPI，返回 promise
  */
-export function promiseWrapper(superAPI: any, name: string, params?: unknown) {
+export function promiseWrapper(superAPI: SuperAPI, name: string, params?: unknown) {
   if (__DEV__) {
     console.log(`calling method named ${name}`, params)
   }
@@ -20,9 +22,9 @@ export function promiseWrapper(superAPI: any, name: string, params?: unknown) {
  * 适用于调用多次回调函数的 superAPI，例如：取点工具
  */
 export function callbackWrapper(
-  superAPI: any,
+  superAPI: SuperAPI,
   name: string,
-  callback: (...args: any[]) => unknown,
+  callback: (...args: unknown[]) => unknown,
   params?: unknown,
 ) {
   if (__DEV__) {

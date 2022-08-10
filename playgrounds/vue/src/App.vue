@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { DigmV } from '@cphayim/digm-vue'
-
-const url = 'https://vizservice-paas.51aes.com'
-const order = 'bB9e028b'
+const url = import.meta.env.VITE_APP_RENDER_SERVER
+const order = import.meta.env.VITE_APP_RENDER_ORDER
 </script>
 
 <template>
