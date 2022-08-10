@@ -145,6 +145,11 @@ type ViewshedEvent =
   | 'OnViewshedUnHover'
   | 'OnViewshedClick'
 
+
+type SceneGeoConverterEvent =
+  | 'OnAddGeoCoordToScreenPostionSuccess'
+  | 'OnAddGeoCoordToScreenPostionFailed'
+  
 type ChinaMapEvent =
   | 'OnSwitchChinaMapSuccess'
   | 'OnSwitchChinaMapFailed'
@@ -172,6 +177,7 @@ export type CloudEvent =
   | StrategyMapEvent
   | RangeType
   | ViewshedEvent
+  | SceneGeoConverterEvent
   | ChinaMapEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
