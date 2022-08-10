@@ -83,6 +83,7 @@ export type GetAESObjectDataWithEidsResultItem = {
   location: Location
   rotation: Rotation
   scale: Scale
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any
 }
 

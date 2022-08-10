@@ -19,7 +19,7 @@
     "build": "pnpm -r --filter !playground build",
     "build:pg": "pnpm --filter playground build",
     "test": "exit 0;",
-    "lint": "eslint packages/*/src/**.ts",
+    "lint": "eslint packages/*/src/**/*.ts",
     "format": "prettier --write --parser typescript \"packages/**/*.ts\"",
     "commit": "git-cz"
   },
