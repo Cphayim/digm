@@ -13,6 +13,7 @@ export * from './POI'
 export * from './StrategyMap'
 export * from './Viewshed'
 export * from './SceneGeoConverter'
+export * from './ChinaMap'
 
 /**
  * @enhance
