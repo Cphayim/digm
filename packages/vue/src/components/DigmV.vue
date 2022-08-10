@@ -7,15 +7,6 @@ import DigmMask from './DigmMask.vue'
 
 type Props = {
   /**
-   * 填充大小
-   *
-   * - `viewport`: 撑满视口，即 100vw,100vh
-   * - `container`: 撑满父容器，即 100%,100%
-   *
-   * 默认值: `viewport`
-   */
-  fill?: 'viewport' | 'container'
-  /**
    * 渲染服务器 baseUrl
    */
   url: string
@@ -41,11 +32,27 @@ type Props = {
    * 默认值: `false`
    */
   debugPanel?: boolean
+  /**
+   * 组件显示大小
+   *
+   * - `viewport`: 撑满视口，即 100vw,100vh
+   * - `container`: 撑满父容器，即 100%,100%
+   *
+   * 默认值: `viewport`
+   */
+  size?: 'viewport' | 'container'
+  /**
+   * 是否使用默认的等待遮罩层
+   *
+   * 默认值: true
+   */
+  mask?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
-  size: 'viewport',
   enableLog: false,
   sleepTime: 5000,
+  size: 'viewport',
+  mask: true,
 })
 
 const emit = defineEmits<{
@@ -55,13 +62,12 @@ const emit = defineEmits<{
 
 const digmRef = ref<Element>()
 
+// Renderer width and height are auto calc based on the container size
 const { status, isReady } = useDigm({
   autoStart: true,
   target: digmRef as Ref<Element>,
   url: props.url,
   order: props.order,
-  width: window.innerWidth,
-  height: window.innerHeight,
   enableLog: props.enableLog,
   sleepTime: props.sleepTime,
 })
@@ -72,7 +78,7 @@ watchEffect(() => isReady.value && emit('ready'))
 
 <template>
   <div :class="['digm-v', `digm-v__${props.size}`]" ref="digmRef"></div>
-  <DigmMask></DigmMask>
+  <DigmMask v-if="props.mask" />
 </template>
 
 <style>
