@@ -121,6 +121,9 @@ export type EffectType =
  * 场景特效
  */
 export class SceneEffect extends BaseFeature {
+  private get _covering() {
+    return this._digm.covering
+  }
   /**
    * 添加场景特效
    */
@@ -140,5 +143,23 @@ export class SceneEffect extends BaseFeature {
    */
   updateEffectStyle(options: UpdateEffectStyleOptions) {
     return promiseWrapper(this._superAPI, 'UpdateEffectStyle', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 删除场景特效
+   *
+   * @enhance
+   */
+  removeSceneEffect(options: { id: string }) {
+    return this._covering.removeCovering({ id: options.id, covering_type: 'scene_effect' })
+  }
+
+  /**
+   * 删除所有场景特效
+   *
+   * @enhance
+   */
+  removeAllSceneEffect() {
+    return this._covering.removeAllCovering({ covering_type: 'scene_effect' })
   }
 }
