@@ -99,6 +99,9 @@ export type updateGeoHighlightAreaCoordOptions = {
  * 高亮区域
  */
 export class HighlightArea extends BaseFeature {
+  private get _covering() {
+    return this._digm.covering
+  }
   /**
    * 添加高亮区域
    */
@@ -162,5 +165,23 @@ export class HighlightArea extends BaseFeature {
       'UpdateGeoHighlightAreaCoord',
       options,
     ) as Promise<FeatureResult>
+  }
+
+  /**
+   * 删除高亮区域
+   *
+   * @enhance
+   */
+  removeHighlightArea(options: { id: string }) {
+    return this._covering.removeCovering({ id: options.id, covering_type: 'highlight_area' })
+  }
+
+  /**
+   * 删除所有高亮区域
+   *
+   * @enhance
+   */
+  removeAllHighlightArea() {
+    return this._covering.removeAllCovering({ covering_type: 'highlight_area' })
   }
 }
