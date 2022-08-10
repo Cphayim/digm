@@ -103,6 +103,7 @@ export type AddGeoRangeOptions = RangeIDOptions &
     /**
      * 支持json或文件形式、二选一
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     geojson: any
   }
 

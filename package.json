@@ -21,7 +21,7 @@
     "dev:pg-vue": "pnpm --filter playground-vue dev",
     "build:pg-vue": "pnpm --filter playground-vue build",
     "test": "exit 0;",
-    "lint": "eslint packages/*/src/**.ts",
+    "lint": "eslint packages/*/src/**/*.ts",
     "format": "prettier --write --parser typescript \"packages/**/*.ts\"",
     "commit": "git-cz"
   },
