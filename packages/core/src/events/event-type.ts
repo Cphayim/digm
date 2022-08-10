@@ -145,6 +145,21 @@ type ViewshedEvent =
   | 'OnViewshedUnHover'
   | 'OnViewshedClick'
 
+type ChinaMapEvent =
+  | 'OnSwitchChinaMapSuccess'
+  | 'OnSwitchChinaMapFailed'
+  | 'OnHighlightProvinceSuccess'
+  | 'OnHighlightProvinceFailed'
+  | 'OnVisibleProvinceNameSuccess'
+  | 'OnVisibleProvinceNameFailed'
+  | 'OnFocusMigrationMapStart'
+  | 'OnFocusMigrationMapEnd'
+  | 'OnFocusAllMigrationMapStart'
+  | 'OnFocusAllMigrationMapEnd'
+  | 'OnMigrationMapHover'
+  | 'OnMigrationMapUnHover'
+  | 'OnMigrationMapClick'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -157,5 +172,6 @@ export type CloudEvent =
   | StrategyMapEvent
   | RangeType
   | ViewshedEvent
+  | ChinaMapEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
