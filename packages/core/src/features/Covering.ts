@@ -359,6 +359,27 @@ export type PlayCoverMoveStateOptions = {
   play: boolean
 }
 
+export type CoverSelectionOptions = {
+  /**
+   * 选择框选的覆盖物类型
+   */
+  selection_type: CoveringType
+  /**
+   * default:矩形框选，polygon:多边形框选
+   */
+  shape: 'default' | 'polygon'
+}
+
+export type CoverSelectionResult = FeatureResult<{
+  /**
+   * 选择框选的覆盖物类型
+   */
+  selection_type: CoveringType
+  ids: {
+    id: string
+  }[]
+}>
+
 export class Covering extends BaseFeature {
   /**
    * 显示/隐藏指定类型的覆盖物
@@ -532,5 +553,34 @@ export class Covering extends BaseFeature {
    */
   playCoverMoveState(options: PlayCoverMoveStateOptions) {
     return promiseWrapper(this._superAPI, 'PlayCoverMoveState', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 开启覆盖物框选
+   */
+  coverSelection(options: CoverSelectionOptions) {
+    return promiseWrapper(
+      this._superAPI,
+      'CoverSelection',
+      options,
+    ) as Promise<CoverSelectionResult>
+  }
+
+  /**
+   * 结束polygon多边形覆盖物框选
+   */
+  endCoverSelection() {
+    return promiseWrapper(this._superAPI, 'EndCoverSelection') as Promise<FeatureResult>
+  }
+
+  /**
+   * 结束polygon多边形覆盖物框选
+   */
+  GetFullSceenCoveringId(options: { covering_type: CoveringType }) {
+    return promiseWrapper(
+      this._superAPI,
+      'GetFullSceenCoveringId',
+      options,
+    ) as Promise<CoverSelectionResult>
   }
 }

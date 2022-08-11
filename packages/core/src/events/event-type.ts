@@ -179,6 +179,12 @@ type CoverToMoveEvent =
   | 'OnPlayCoverMoveStateSuccess'
   | 'OnPlayCoverMoveStateFailed'
 
+type CoverSelectionEvent =
+  | 'OnCoverSelectionSuccess'
+  | 'OnCoverSelectionFailed'
+  | 'OnCoversSelectionResult'
+  | 'OnPolygonCoversSelectionResult'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -195,5 +201,6 @@ export type CloudEvent =
   | ChinaMapEvent
   | CoverWindowEvent
   | CoverToMoveEvent
+  | CoverSelectionEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
