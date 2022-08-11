@@ -164,6 +164,14 @@ type ChinaMapEvent =
   | 'OnMigrationMapUnHover'
   | 'OnMigrationMapClick'
 
+type CoverWindowEvent =
+  | 'OnAddCoverWindowSuccess'
+  | 'OnAddCoverWindowFailded'
+  | 'OnUpdateCoverWindowSuccess'
+  | 'OnUpdateCoverWindowFailded'
+  | 'OnRemoveCoverWindowSuccess'
+  | 'OnRemoveCoverWindowFailed'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -178,5 +186,6 @@ export type CloudEvent =
   | ViewshedEvent
   | SceneGeoConverterEvent
   | ChinaMapEvent
+  | CoverWindowEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>

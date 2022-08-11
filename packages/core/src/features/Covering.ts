@@ -1,6 +1,7 @@
 import { promiseWrapper } from './utils'
 import type { FeatureResult } from './BaseFeature'
 import { BaseFeature } from './BaseFeature'
+import type { WindowItem } from './POI'
 
 export type CoveringType =
   | 'poi'
@@ -277,6 +278,39 @@ export type RunCustomizeApiResult = FeatureResult & {
   runCustomizeApiArgs: runCustomizeApiArgstem
 }
 
+export type AddCoverWindowOptions = UpdateCoverWindowOptions & {
+  /**
+   * 要关联Window的覆盖物id (此覆盖物应提前完成创建)
+   */
+  coverings_id: string
+}
+
+export type POIDataOptions = {
+  /**
+   * 不可和其他poi的id重复
+   */
+  id: string
+  window: WindowItem
+}
+
+export type UpdateCoverWindowOptions = {
+  /**
+   * 覆盖物类型
+   */
+  covering_type: CoveringType
+
+  POIData: POIDataOptions
+}
+
+export type RemoveCoverWindowOptions = {
+  /**
+   * 覆盖物类型
+   */
+  covering_type: CoveringType | CoveringType[]
+
+  POIData: POIDataOptions
+}
+
 export class Covering extends BaseFeature {
   /**
    * 显示/隐藏指定类型的覆盖物
@@ -415,5 +449,26 @@ export class Covering extends BaseFeature {
    */
   deactiveSuperApiGizmo() {
     return promiseWrapper(this._superAPI, 'DeactiveSuperApiGizmo') as Promise<FeatureResult>
+  }
+
+  /**
+   * 添加覆盖物关联Window
+   */
+  addCoverWindow(options: AddCoverWindowOptions) {
+    return promiseWrapper(this._superAPI, 'AddCoverWindow', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 更新覆盖物关联Window
+   */
+  updateCoverWindow(options: UpdateCoverWindowOptions) {
+    return promiseWrapper(this._superAPI, 'UpdateCoverWindow', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 删除覆盖物关联Window
+   */
+  RemoveCoverWindow(options: RemoveCoverWindowOptions) {
+    return promiseWrapper(this._superAPI, 'RemoveCoverWindow', options) as Promise<FeatureResult>
   }
 }
