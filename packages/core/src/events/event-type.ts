@@ -44,6 +44,18 @@ type MigrationMapEvent =
   | 'OnUpdateMigrationMapCoordFailed'
   | 'OnUpdateMigrationMapStyleFailed'
 
+type StrategyMapEvent =
+  | 'OnAddStrategyMapSuccess'
+  | 'OnUpdateStrategyMapCoordSuccess'
+  | 'OnUpdateStrategyMapStyleSuccess'
+  | 'OnAddStrategyMapFailed'
+  | 'OnUpdateStrategyMapCoordFailed'
+  | 'OnUpdateStrategyMapStyleFailed'
+  | 'OnFocusStrategyMapStart'
+  | 'OnFocusStrategyMapEnd'
+  | 'OnFocusAllStrategyMapStart'
+  | 'OnFocusAllStrategyMapEnd'
+
 /**
  * 自定义 POI 事件
  */
@@ -118,6 +130,40 @@ type RangeType =
   | 'OnUpdateRangeCoordFailed'
   | 'OnUpdateRangeStyleFailed'
 
+type ViewshedEvent =
+  | 'OnAddViewshedSuccess'
+  | 'OnUpdateViewshedCoordSuccess'
+  | 'OnUpdateViewshedStyleSuccess'
+  | 'OnAddViewshedFailed'
+  | 'OnUpdateViewshedCoordFailed'
+  | 'OnUpdateViewshedStyleFailed'
+  | 'OnFocusViewshedStart'
+  | 'OnFocusViewshedEnd'
+  | 'OnFocusAllViewshedStart'
+  | 'OnFocusAllViewshedEnd'
+  | 'OnViewshedHover'
+  | 'OnViewshedUnHover'
+  | 'OnViewshedClick'
+
+type SceneGeoConverterEvent =
+  | 'OnAddGeoCoordToScreenPostionSuccess'
+  | 'OnAddGeoCoordToScreenPostionFailed'
+
+type ChinaMapEvent =
+  | 'OnSwitchChinaMapSuccess'
+  | 'OnSwitchChinaMapFailed'
+  | 'OnHighlightProvinceSuccess'
+  | 'OnHighlightProvinceFailed'
+  | 'OnVisibleProvinceNameSuccess'
+  | 'OnVisibleProvinceNameFailed'
+  | 'OnFocusMigrationMapStart'
+  | 'OnFocusMigrationMapEnd'
+  | 'OnFocusAllMigrationMapStart'
+  | 'OnFocusAllMigrationMapEnd'
+  | 'OnMigrationMapHover'
+  | 'OnMigrationMapUnHover'
+  | 'OnMigrationMapClick'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -127,6 +173,10 @@ export type CloudEvent =
   | PathEvent
   | HeatMapEvent
   | MigrationMapEvent
+  | StrategyMapEvent
   | RangeType
+  | ViewshedEvent
+  | SceneGeoConverterEvent
+  | ChinaMapEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
