@@ -154,7 +154,7 @@ type HighlightAreaEvent =
 type SceneGeoConverterEvent =
   | 'OnAddGeoCoordToScreenPostionSuccess'
   | 'OnAddGeoCoordToScreenPostionFailed'
-  
+
 type ChinaMapEvent =
   | 'OnSwitchChinaMapSuccess'
   | 'OnSwitchChinaMapFailed'
@@ -169,6 +169,21 @@ type ChinaMapEvent =
   | 'OnMigrationMapHover'
   | 'OnMigrationMapUnHover'
   | 'OnMigrationMapClick'
+
+type SceneEffectEvent =
+  | 'OnAddEffectSuccess'
+  | 'OnUpdateEffectCoordSuccess'
+  | 'OnUpdateEffectStyleSuccess'
+  | 'OnAddEffectFailed'
+  | 'OnUpdateEffectCoordFailed'
+  | 'OnUpdateEffectStyleFailed'
+  | 'OnFocusEffectStart'
+  | 'OnFocusEffectEnd'
+  | 'OnFocusAllEffectStart'
+  | 'OnFocusAllEffectEnd'
+  | 'OnSceneEffectHover'
+  | 'OnSceneEffectUnHover'
+  | 'OnSceneEffectClick'
 
 export type CloudEvent =
   | RenderEvent
@@ -185,5 +200,6 @@ export type CloudEvent =
   | HighlightAreaEvent
   | SceneGeoConverterEvent
   | ChinaMapEvent
+  | SceneEffectEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
