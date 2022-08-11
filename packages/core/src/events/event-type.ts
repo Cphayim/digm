@@ -145,6 +145,11 @@ type ViewshedEvent =
   | 'OnViewshedUnHover'
   | 'OnViewshedClick'
 
+type HighlightAreaEvent =
+  | 'OnAddHighlightAreaSuccess'
+  | 'OnUpdateHighlightAreaCoordSuccess'
+  | 'OnUpdateHighlightAreaStyleSuccess'
+  | 'OnAddHighlightAreaFailed'
 
 type SceneGeoConverterEvent =
   | 'OnAddGeoCoordToScreenPostionSuccess'
@@ -177,6 +182,7 @@ export type CloudEvent =
   | StrategyMapEvent
   | RangeType
   | ViewshedEvent
+  | HighlightAreaEvent
   | SceneGeoConverterEvent
   | ChinaMapEvent
 

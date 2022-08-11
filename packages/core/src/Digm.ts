@@ -19,6 +19,7 @@ import {
   POI,
   StrategyMap,
   Viewshed,
+  HighlightArea,
   SceneGeoConverter,
   ChinaMap,
 } from './features'
@@ -111,9 +112,9 @@ export class Digm {
   public readonly POI: POI = new POI(this)
   public readonly strategyMap: StrategyMap = new StrategyMap(this)
   public readonly viewshed: Viewshed = new Viewshed(this)
+  public readonly highlightArea: HighlightArea = new HighlightArea(this)
   public readonly sceneGeoConverter: SceneGeoConverter = new SceneGeoConverter(this)
   public readonly chinaMap: ChinaMap = new ChinaMap(this)
-
 
   public readonly building: Building = new Building(this)
 
