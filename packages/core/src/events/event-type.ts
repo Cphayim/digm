@@ -172,6 +172,13 @@ type CoverWindowEvent =
   | 'OnRemoveCoverWindowSuccess'
   | 'OnRemoveCoverWindowFailed'
 
+type CoverToMoveEvent =
+  | 'OnCoverToMoveSuccess'
+  | 'OnCoverToMoveFailed'
+  | 'OnCoverToMoveEnd'
+  | 'OnPlayCoverMoveStateSuccess'
+  | 'OnPlayCoverMoveStateFailed'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -187,5 +194,6 @@ export type CloudEvent =
   | SceneGeoConverterEvent
   | ChinaMapEvent
   | CoverWindowEvent
+  | CoverToMoveEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>

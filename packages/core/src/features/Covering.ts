@@ -311,6 +311,54 @@ export type RemoveCoverWindowOptions = {
   POIData: POIDataOptions
 }
 
+export type attachType = 'poi' | 'scene_effect' | 'viewshed' | ' light' | 'aes_object'
+
+export type CoverToMoveOptions = {
+  /**
+   * 要移动的覆盖物id
+   */
+  attach_id: string | string[]
+  /**
+   * 要移动的覆盖物类型(aes_object 类型的attach_id通过StartGetEID API获取)
+   */
+  attach_type: attachType
+  /**
+   * 依附的覆盖物id
+   */
+  be_attach_id: string
+  /**
+   * 依附的覆盖物类型
+   */
+  be_attach_type: 'path' | 'range' | 'circular_range'
+  /**
+   * 移动速度 (单位:米/秒)
+   */
+  speed: number
+  /**
+   * 是否循环
+   */
+  loop: boolean
+  /**
+   * 是否反向移动
+   */
+  reverse: boolean
+}
+
+export type PlayCoverMoveStateOptions = {
+  /**
+   * 移动的覆盖物id
+   */
+  id: string
+  /**
+   * 要移动的覆盖物类型(aes_object 类型的attach_id通过StartGetEID API获取)
+   */
+  attach_type: attachType
+  /**
+   * true:继续移动; false:暂停移动;
+   */
+  play: boolean
+}
+
 export class Covering extends BaseFeature {
   /**
    * 显示/隐藏指定类型的覆盖物
@@ -470,5 +518,19 @@ export class Covering extends BaseFeature {
    */
   RemoveCoverWindow(options: RemoveCoverWindowOptions) {
     return promiseWrapper(this._superAPI, 'RemoveCoverWindow', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 覆盖物移动
+   */
+  coverToMove(options: CoverToMoveOptions) {
+    return promiseWrapper(this._superAPI, 'CoverToMove', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 覆盖物移动
+   */
+  playCoverMoveState(options: PlayCoverMoveStateOptions) {
+    return promiseWrapper(this._superAPI, 'PlayCoverMoveState', options) as Promise<FeatureResult>
   }
 }
