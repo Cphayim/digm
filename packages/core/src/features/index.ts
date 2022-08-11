@@ -13,6 +13,9 @@ export * from './POI'
 export * from './StrategyMap'
 export * from './Viewshed'
 export * from './CoordCalc'
+export * from './HighlightArea'
+export * from './SceneGeoConverter'
+export * from './ChinaMap'
 
 /**
  * @enhance

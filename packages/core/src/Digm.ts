@@ -20,6 +20,9 @@ import {
   StrategyMap,
   Viewshed,
   CoordCalc,
+  HighlightArea,
+  SceneGeoConverter,
+  ChinaMap,
 } from './features'
 
 export interface FetchRenderUrlOptions {
@@ -111,6 +114,9 @@ export class Digm {
   public readonly strategyMap: StrategyMap = new StrategyMap(this)
   public readonly viewshed: Viewshed = new Viewshed(this)
   public readonly coordCalc: CoordCalc = new CoordCalc(this)
+  public readonly highlightArea: HighlightArea = new HighlightArea(this)
+  public readonly sceneGeoConverter: SceneGeoConverter = new SceneGeoConverter(this)
+  public readonly chinaMap: ChinaMap = new ChinaMap(this)
 
   public readonly building: Building = new Building(this)
 
