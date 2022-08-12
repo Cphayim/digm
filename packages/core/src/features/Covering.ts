@@ -1,6 +1,7 @@
 import { promiseWrapper } from './utils'
 import type { FeatureResult } from './BaseFeature'
 import { BaseFeature } from './BaseFeature'
+import type { WindowItem } from './POI'
 
 export type CoveringType =
   | 'poi'
@@ -277,6 +278,108 @@ export type RunCustomizeApiResult = FeatureResult & {
   runCustomizeApiArgs: runCustomizeApiArgstem
 }
 
+export type AddCoverWindowOptions = UpdateCoverWindowOptions & {
+  /**
+   * 要关联Window的覆盖物id (此覆盖物应提前完成创建)
+   */
+  coverings_id: string
+}
+
+export type POIDataOptions = {
+  /**
+   * 不可和其他poi的id重复
+   */
+  id: string
+  window: WindowItem
+}
+
+export type UpdateCoverWindowOptions = {
+  /**
+   * 覆盖物类型
+   */
+  covering_type: CoveringType
+
+  POIData: POIDataOptions
+}
+
+export type RemoveCoverWindowOptions = {
+  /**
+   * 覆盖物类型
+   */
+  covering_type: CoveringType | CoveringType[]
+
+  POIData: POIDataOptions
+}
+
+export type attachType = 'poi' | 'scene_effect' | 'viewshed' | ' light' | 'aes_object'
+
+export type CoverToMoveOptions = {
+  /**
+   * 要移动的覆盖物id
+   */
+  attach_id: string | string[]
+  /**
+   * 要移动的覆盖物类型(aes_object 类型的attach_id通过StartGetEID API获取)
+   */
+  attach_type: attachType
+  /**
+   * 依附的覆盖物id
+   */
+  be_attach_id: string
+  /**
+   * 依附的覆盖物类型
+   */
+  be_attach_type: 'path' | 'range' | 'circular_range'
+  /**
+   * 移动速度 (单位:米/秒)
+   */
+  speed: number
+  /**
+   * 是否循环
+   */
+  loop: boolean
+  /**
+   * 是否反向移动
+   */
+  reverse: boolean
+}
+
+export type PlayCoverMoveStateOptions = {
+  /**
+   * 移动的覆盖物id
+   */
+  id: string
+  /**
+   * 要移动的覆盖物类型(aes_object 类型的attach_id通过StartGetEID API获取)
+   */
+  attach_type: attachType
+  /**
+   * true:继续移动; false:暂停移动;
+   */
+  play: boolean
+}
+
+export type CoverSelectionOptions = {
+  /**
+   * 选择框选的覆盖物类型
+   */
+  selection_type: CoveringType
+  /**
+   * default:矩形框选，polygon:多边形框选
+   */
+  shape: 'default' | 'polygon'
+}
+
+export type CoverSelectionResult = FeatureResult<{
+  /**
+   * 选择框选的覆盖物类型
+   */
+  selection_type: CoveringType
+  ids: {
+    id: string
+  }[]
+}>
+
 export class Covering extends BaseFeature {
   /**
    * 显示/隐藏指定类型的覆盖物
@@ -415,5 +518,69 @@ export class Covering extends BaseFeature {
    */
   deactiveSuperApiGizmo() {
     return promiseWrapper(this._superAPI, 'DeactiveSuperApiGizmo') as Promise<FeatureResult>
+  }
+
+  /**
+   * 添加覆盖物关联Window
+   */
+  addCoverWindow(options: AddCoverWindowOptions) {
+    return promiseWrapper(this._superAPI, 'AddCoverWindow', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 更新覆盖物关联Window
+   */
+  updateCoverWindow(options: UpdateCoverWindowOptions) {
+    return promiseWrapper(this._superAPI, 'UpdateCoverWindow', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 删除覆盖物关联Window
+   */
+  removeCoverWindow(options: RemoveCoverWindowOptions) {
+    return promiseWrapper(this._superAPI, 'RemoveCoverWindow', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 覆盖物移动
+   */
+  coverToMove(options: CoverToMoveOptions) {
+    return promiseWrapper(this._superAPI, 'CoverToMove', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 覆盖物移动状态
+   */
+  playCoverMoveState(options: PlayCoverMoveStateOptions) {
+    return promiseWrapper(this._superAPI, 'PlayCoverMoveState', options) as Promise<FeatureResult>
+  }
+
+  /**
+   * 开启覆盖物框选
+   */
+  coverSelection(options: CoverSelectionOptions) {
+    return promiseWrapper(
+      this._superAPI,
+      'CoverSelection',
+      options,
+    ) as Promise<CoverSelectionResult>
+  }
+
+  /**
+   * 结束polygon多边形覆盖物框选
+   */
+  endCoverSelection() {
+    return promiseWrapper(this._superAPI, 'EndCoverSelection') as Promise<FeatureResult>
+  }
+
+  /**
+   * 获取屏幕内覆盖物ID
+   */
+  getFullSceenCoveringId(options: { covering_type: CoveringType }) {
+    return promiseWrapper(
+      this._superAPI,
+      'GetFullSceenCoveringId',
+      options,
+    ) as Promise<CoverSelectionResult>
   }
 }

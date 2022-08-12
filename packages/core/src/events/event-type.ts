@@ -150,7 +150,6 @@ type HighlightAreaEvent =
   | 'OnUpdateHighlightAreaCoordSuccess'
   | 'OnUpdateHighlightAreaStyleSuccess'
   | 'OnAddHighlightAreaFailed'
-
 type SceneGeoConverterEvent =
   | 'OnAddGeoCoordToScreenPostionSuccess'
   | 'OnAddGeoCoordToScreenPostionFailed'
@@ -185,6 +184,27 @@ type SceneEffectEvent =
   | 'OnSceneEffectUnHover'
   | 'OnSceneEffectClick'
 
+type CoverWindowEvent =
+  | 'OnAddCoverWindowSuccess'
+  | 'OnAddCoverWindowFailded'
+  | 'OnUpdateCoverWindowSuccess'
+  | 'OnUpdateCoverWindowFailded'
+  | 'OnRemoveCoverWindowSuccess'
+  | 'OnRemoveCoverWindowFailed'
+
+type CoverToMoveEvent =
+  | 'OnCoverToMoveSuccess'
+  | 'OnCoverToMoveFailed'
+  | 'OnCoverToMoveEnd'
+  | 'OnPlayCoverMoveStateSuccess'
+  | 'OnPlayCoverMoveStateFailed'
+
+type CoverSelectionEvent =
+  | 'OnCoverSelectionSuccess'
+  | 'OnCoverSelectionFailed'
+  | 'OnCoversSelectionResult'
+  | 'OnPolygonCoversSelectionResult'
+
 type TDTextEvent =
   | 'OnAdd3DtextSuccess'
   | 'OnUpdate3DtextCoordSuccess'
@@ -216,6 +236,9 @@ export type CloudEvent =
   | SceneGeoConverterEvent
   | ChinaMapEvent
   | SceneEffectEvent
+  | CoverWindowEvent
+  | CoverToMoveEvent
+  | CoverSelectionEvent
   | TDTextEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
