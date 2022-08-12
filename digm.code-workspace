@@ -9,6 +9,10 @@
       "path": "packages/core"
     },
     {
+      "name": "📦 @cphayim/digm-react",
+      "path": "packages/react"
+    },
+    {
       "name": "📦 @cphayim/digm-shared",
       "path": "packages/shared"
     },
@@ -17,11 +21,15 @@
       "path": "packages/vue"
     },
     {
-      "name": "🎠 playground-vanilla",
+      "name": "playground-react",
+      "path": "playgrounds/react"
+    },
+    {
+      "name": "playground-vanilla",
       "path": "playgrounds/vanilla"
     },
     {
-      "name": "🎠 playground-vue",
+      "name": "playground-vue",
       "path": "playgrounds/vue"
     }
   ],
