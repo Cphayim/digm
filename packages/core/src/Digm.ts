@@ -24,6 +24,7 @@ import {
   SceneGeoConverter,
   ChinaMap,
   SceneEffect,
+  TDText,
 } from './features'
 
 export interface FetchRenderUrlOptions {
@@ -119,6 +120,7 @@ export class Digm {
   public readonly sceneGeoConverter: SceneGeoConverter = new SceneGeoConverter(this)
   public readonly chinaMap: ChinaMap = new ChinaMap(this)
   public readonly sceneEffect: SceneEffect = new SceneEffect(this)
+  public readonly TDText: TDText = new TDText(this)
 
   public readonly building: Building = new Building(this)
 
