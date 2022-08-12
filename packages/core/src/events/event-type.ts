@@ -145,6 +145,46 @@ type ViewshedEvent =
   | 'OnViewshedUnHover'
   | 'OnViewshedClick'
 
+type HighlightAreaEvent =
+  | 'OnAddHighlightAreaSuccess'
+  | 'OnUpdateHighlightAreaCoordSuccess'
+  | 'OnUpdateHighlightAreaStyleSuccess'
+  | 'OnAddHighlightAreaFailed'
+
+type SceneGeoConverterEvent =
+  | 'OnAddGeoCoordToScreenPostionSuccess'
+  | 'OnAddGeoCoordToScreenPostionFailed'
+
+type ChinaMapEvent =
+  | 'OnSwitchChinaMapSuccess'
+  | 'OnSwitchChinaMapFailed'
+  | 'OnHighlightProvinceSuccess'
+  | 'OnHighlightProvinceFailed'
+  | 'OnVisibleProvinceNameSuccess'
+  | 'OnVisibleProvinceNameFailed'
+  | 'OnFocusMigrationMapStart'
+  | 'OnFocusMigrationMapEnd'
+  | 'OnFocusAllMigrationMapStart'
+  | 'OnFocusAllMigrationMapEnd'
+  | 'OnMigrationMapHover'
+  | 'OnMigrationMapUnHover'
+  | 'OnMigrationMapClick'
+
+type SceneEffectEvent =
+  | 'OnAddEffectSuccess'
+  | 'OnUpdateEffectCoordSuccess'
+  | 'OnUpdateEffectStyleSuccess'
+  | 'OnAddEffectFailed'
+  | 'OnUpdateEffectCoordFailed'
+  | 'OnUpdateEffectStyleFailed'
+  | 'OnFocusEffectStart'
+  | 'OnFocusEffectEnd'
+  | 'OnFocusAllEffectStart'
+  | 'OnFocusAllEffectEnd'
+  | 'OnSceneEffectHover'
+  | 'OnSceneEffectUnHover'
+  | 'OnSceneEffectClick'
+
 type TDTextEvent =
   | 'OnAdd3DtextSuccess'
   | 'OnUpdate3DtextCoordSuccess'
@@ -172,6 +212,10 @@ export type CloudEvent =
   | StrategyMapEvent
   | RangeType
   | ViewshedEvent
-  | Event
+  | HighlightAreaEvent
+  | SceneGeoConverterEvent
+  | ChinaMapEvent
+  | SceneEffectEvent
+  | TDTextEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
