@@ -20,6 +20,8 @@
     "build:pg-vanilla": "pnpm --filter playground-vanilla build",
     "dev:pg-vue": "pnpm --filter playground-vue dev",
     "build:pg-vue": "pnpm --filter playground-vue build",
+    "dev:pg-react": "pnpm --filter playground-react dev",
+    "build:pg-react": "pnpm --filter playground-react build",
     "test": "exit 0;",
     "lint": "eslint packages/*/src/**/*.ts",
     "format": "prettier --write --parser typescript \"packages/**/*.ts\"",

@@ -21,11 +21,15 @@
       "path": "packages/vue"
     },
     {
-      "name": "🎠 playground-vanilla",
+      "name": "playground-react",
+      "path": "playgrounds/react"
+    },
+    {
+      "name": "playground-vanilla",
       "path": "playgrounds/vanilla"
     },
     {
-      "name": "🎠 playground-vue",
+      "name": "playground-vue",
       "path": "playgrounds/vue"
     }
   ],
