@@ -112,7 +112,7 @@ export class TDText extends BaseFeature {
   }
 
   /**
-   * 移除指定战略图
+   * 移除指定3D文字样式
    *
    * @enhance
    */
@@ -121,7 +121,7 @@ export class TDText extends BaseFeature {
   }
 
   /**
-   * 移除所有战略图
+   * 移除所有3D文字样式
    *
    * @enhance
    */
