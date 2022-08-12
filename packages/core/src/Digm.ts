@@ -16,8 +16,14 @@ import {
   ParticleEffect,
   Light,
   Range,
+  POI,
   StrategyMap,
   Viewshed,
+  CoordCalc,
+  HighlightArea,
+  SceneGeoConverter,
+  ChinaMap,
+  SceneEffect,
 } from './features'
 
 export interface FetchRenderUrlOptions {
@@ -33,11 +39,15 @@ export interface FetchRenderUrlOptions {
 
   /**
    * 输出像素宽度
+   *
+   * 可选，默认为容器宽度
    */
   width?: number
 
   /**
    * 输出像素高度
+   *
+   * 可选，默认为容器高度
    */
   height?: number
 }
@@ -64,6 +74,8 @@ export type StatusSubscriber = (status: RenderStatus) => void | Promise<void>
 export type CloudRendererType = typeof CloudRenderer
 
 export class Digm {
+  private _el: Element
+
   private _renderer: CloudRendererType
 
   get renderer(): CloudRendererType {
@@ -99,8 +111,14 @@ export class Digm {
   public readonly particleEffect: ParticleEffect = new ParticleEffect(this)
   public readonly light: Light = new Light(this)
   public readonly range: Range = new Range(this)
+  public readonly POI: POI = new POI(this)
   public readonly strategyMap: StrategyMap = new StrategyMap(this)
   public readonly viewshed: Viewshed = new Viewshed(this)
+  public readonly coordCalc: CoordCalc = new CoordCalc(this)
+  public readonly highlightArea: HighlightArea = new HighlightArea(this)
+  public readonly sceneGeoConverter: SceneGeoConverter = new SceneGeoConverter(this)
+  public readonly chinaMap: ChinaMap = new ChinaMap(this)
+  public readonly sceneEffect: SceneEffect = new SceneEffect(this)
 
   public readonly building: Building = new Building(this)
 
@@ -126,14 +144,19 @@ export class Digm {
    */
   init(idOrElement: string | Element) {
     this.status = RenderStatus.INIT_RENDER
+
+    // init render required a string id
+    // we also need to record the element
     let id: string
     if (idOrElement instanceof Element) {
       const existId = !!idOrElement.id
-      id = existId ? idOrElement.id : (idOrElement.id = Math.random().toString().slice(2))
+      id = existId ? idOrElement.id : (idOrElement.id = `digm-${Math.random().toString().slice(2)}`)
+      this._el = idOrElement
     } else {
-      if (!document.querySelector(`#${idOrElement}`))
-        throw new Error(`[Error] Element #${idOrElement}} is not exists.`)
+      const el = document.getElementById(idOrElement)
+      if (!el) throw new Error(`[Error] Element #${idOrElement}} is not exists.`)
       id = idOrElement
+      this._el = el
     }
 
     try {
@@ -151,10 +174,13 @@ export class Digm {
   async startEngine(options: StartEngineOptions) {
     if (!options.url) throw new Error(`[Error] options.url is required`)
     if (!options.order) throw new Error(`[Error] options.order is required`)
-    if (!options.width) throw new Error(`[Error] options.width is required`)
-    if (!options.height) throw new Error(`[Error] options.height is required`)
 
     this._verifyStatus()
+
+    // If the user does not specify a width and height,
+    // use the width and height of the container element
+    options = Object.assign(getElementWidthAndHeight(this._el), options)
+
     /**
      * - fetch renderUrl
      * - set renderer log, bind global event handler
@@ -243,4 +269,8 @@ export class Digm {
 
 export function createDigm(...args: ConstructorParameters<typeof Digm>) {
   return new Digm(...args)
+}
+
+function getElementWidthAndHeight(el: Element) {
+  return { width: el.clientWidth, height: el.clientHeight }
 }

@@ -95,13 +95,17 @@ importers:
     devDependencies:
       vue: 3.2.37
 
-  playground:
+  playgrounds/vanilla:
     specifiers:
       '@cphayim/digm-core': workspace:*
+    dependencies:
+      '@cphayim/digm-core': link:../../packages/core
+
+  playgrounds/vue:
+    specifiers:
       '@cphayim/digm-vue': workspace:*
     dependencies:
-      '@cphayim/digm-core': link:../packages/core
-      '@cphayim/digm-vue': link:../packages/vue
+      '@cphayim/digm-vue': link:../../packages/vue
 
 packages:
 

@@ -257,6 +257,7 @@ export type resultItem = {
 
 export type GetCustomizeApiResult = FeatureResult & {
   result: resultItem[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any
 }
 

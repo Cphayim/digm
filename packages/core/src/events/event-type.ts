@@ -145,6 +145,46 @@ type ViewshedEvent =
   | 'OnViewshedUnHover'
   | 'OnViewshedClick'
 
+type HighlightAreaEvent =
+  | 'OnAddHighlightAreaSuccess'
+  | 'OnUpdateHighlightAreaCoordSuccess'
+  | 'OnUpdateHighlightAreaStyleSuccess'
+  | 'OnAddHighlightAreaFailed'
+
+type SceneGeoConverterEvent =
+  | 'OnAddGeoCoordToScreenPostionSuccess'
+  | 'OnAddGeoCoordToScreenPostionFailed'
+
+type ChinaMapEvent =
+  | 'OnSwitchChinaMapSuccess'
+  | 'OnSwitchChinaMapFailed'
+  | 'OnHighlightProvinceSuccess'
+  | 'OnHighlightProvinceFailed'
+  | 'OnVisibleProvinceNameSuccess'
+  | 'OnVisibleProvinceNameFailed'
+  | 'OnFocusMigrationMapStart'
+  | 'OnFocusMigrationMapEnd'
+  | 'OnFocusAllMigrationMapStart'
+  | 'OnFocusAllMigrationMapEnd'
+  | 'OnMigrationMapHover'
+  | 'OnMigrationMapUnHover'
+  | 'OnMigrationMapClick'
+
+type SceneEffectEvent =
+  | 'OnAddEffectSuccess'
+  | 'OnUpdateEffectCoordSuccess'
+  | 'OnUpdateEffectStyleSuccess'
+  | 'OnAddEffectFailed'
+  | 'OnUpdateEffectCoordFailed'
+  | 'OnUpdateEffectStyleFailed'
+  | 'OnFocusEffectStart'
+  | 'OnFocusEffectEnd'
+  | 'OnFocusAllEffectStart'
+  | 'OnFocusAllEffectEnd'
+  | 'OnSceneEffectHover'
+  | 'OnSceneEffectUnHover'
+  | 'OnSceneEffectClick'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -157,5 +197,9 @@ export type CloudEvent =
   | StrategyMapEvent
   | RangeType
   | ViewshedEvent
+  | HighlightAreaEvent
+  | SceneGeoConverterEvent
+  | ChinaMapEvent
+  | SceneEffectEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
