@@ -9,8 +9,15 @@ export * from './Path'
 export * from './ParticleEffect'
 export * from './Light'
 export * from './Range'
+export * from './POI'
 export * from './StrategyMap'
 export * from './Viewshed'
+export * from './CoordCalc'
+export * from './HighlightArea'
+export * from './SceneGeoConverter'
+export * from './ChinaMap'
+export * from './SceneEffect'
+export * from './TDText'
 
 /**
  * @enhance

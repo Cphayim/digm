@@ -145,6 +145,81 @@ type ViewshedEvent =
   | 'OnViewshedUnHover'
   | 'OnViewshedClick'
 
+type HighlightAreaEvent =
+  | 'OnAddHighlightAreaSuccess'
+  | 'OnUpdateHighlightAreaCoordSuccess'
+  | 'OnUpdateHighlightAreaStyleSuccess'
+  | 'OnAddHighlightAreaFailed'
+type SceneGeoConverterEvent =
+  | 'OnAddGeoCoordToScreenPostionSuccess'
+  | 'OnAddGeoCoordToScreenPostionFailed'
+
+type ChinaMapEvent =
+  | 'OnSwitchChinaMapSuccess'
+  | 'OnSwitchChinaMapFailed'
+  | 'OnHighlightProvinceSuccess'
+  | 'OnHighlightProvinceFailed'
+  | 'OnVisibleProvinceNameSuccess'
+  | 'OnVisibleProvinceNameFailed'
+  | 'OnFocusMigrationMapStart'
+  | 'OnFocusMigrationMapEnd'
+  | 'OnFocusAllMigrationMapStart'
+  | 'OnFocusAllMigrationMapEnd'
+  | 'OnMigrationMapHover'
+  | 'OnMigrationMapUnHover'
+  | 'OnMigrationMapClick'
+
+type SceneEffectEvent =
+  | 'OnAddEffectSuccess'
+  | 'OnUpdateEffectCoordSuccess'
+  | 'OnUpdateEffectStyleSuccess'
+  | 'OnAddEffectFailed'
+  | 'OnUpdateEffectCoordFailed'
+  | 'OnUpdateEffectStyleFailed'
+  | 'OnFocusEffectStart'
+  | 'OnFocusEffectEnd'
+  | 'OnFocusAllEffectStart'
+  | 'OnFocusAllEffectEnd'
+  | 'OnSceneEffectHover'
+  | 'OnSceneEffectUnHover'
+  | 'OnSceneEffectClick'
+
+type CoverWindowEvent =
+  | 'OnAddCoverWindowSuccess'
+  | 'OnAddCoverWindowFailded'
+  | 'OnUpdateCoverWindowSuccess'
+  | 'OnUpdateCoverWindowFailded'
+  | 'OnRemoveCoverWindowSuccess'
+  | 'OnRemoveCoverWindowFailed'
+
+type CoverToMoveEvent =
+  | 'OnCoverToMoveSuccess'
+  | 'OnCoverToMoveFailed'
+  | 'OnCoverToMoveEnd'
+  | 'OnPlayCoverMoveStateSuccess'
+  | 'OnPlayCoverMoveStateFailed'
+
+type CoverSelectionEvent =
+  | 'OnCoverSelectionSuccess'
+  | 'OnCoverSelectionFailed'
+  | 'OnCoversSelectionResult'
+  | 'OnPolygonCoversSelectionResult'
+
+type TDTextEvent =
+  | 'OnAdd3DtextSuccess'
+  | 'OnUpdate3DtextCoordSuccess'
+  | 'OnUpdate3DtextStyleSuccess'
+  | 'OnAdd3DtextFailed'
+  | 'OnUpdate3DtextCoordFailed'
+  | 'OnUpdate3DtextStyleFailed'
+  | 'OnFocus3DtextStart'
+  | 'OnFocus3DtextEnd'
+  | 'OnFocusAll3DtextStart'
+  | 'OnFocusAll3DtextEnd'
+  | 'On3DTextHover'
+  | 'On3DTextUnHover'
+  | 'On3DTextClick'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -157,5 +232,13 @@ export type CloudEvent =
   | StrategyMapEvent
   | RangeType
   | ViewshedEvent
+  | HighlightAreaEvent
+  | SceneGeoConverterEvent
+  | ChinaMapEvent
+  | SceneEffectEvent
+  | CoverWindowEvent
+  | CoverToMoveEvent
+  | CoverSelectionEvent
+  | TDTextEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>

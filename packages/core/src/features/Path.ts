@@ -124,6 +124,7 @@ export type AddGeoPathOptions = Omit<AddPathOptions, 'points'> & {
   /**
    * geojson 文件路径 或 对象
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   geojson: any
 }
 

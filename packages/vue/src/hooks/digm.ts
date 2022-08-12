@@ -83,7 +83,7 @@ export const useDigm = (options: UseDigmOptions = {}) => {
   onUnmounted(() => digm.removeStatusSubscriber(updateStatus))
 
   // 是否已初始化
-  const isInitd = computed(() => status.value >= RenderStatus.INIT_RENDER)
+  const isInit = computed(() => status.value >= RenderStatus.INIT_RENDER)
   // 是否准备就绪（模型完成渲染）
   const isReady = computed(() => status.value === RenderStatus.RENDER_MODEL_FINISHED)
   // 是否已停止渲染
@@ -129,7 +129,7 @@ export const useDigm = (options: UseDigmOptions = {}) => {
   return {
     digm: proxyDigm,
     status,
-    isInitd,
+    isInit,
     isReady,
     isStop,
     isError,
