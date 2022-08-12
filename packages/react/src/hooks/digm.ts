@@ -107,7 +107,8 @@ export function useDigm(options: UseDigmOptions = {}) {
         digm.stopEngine()
       }
     }
-  }, [digm, options])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // 收集当前组件范围内添加过的事件处理器的元组数组
   const [tuples, setTuples] = useState<CloudEventTuple[]>([])

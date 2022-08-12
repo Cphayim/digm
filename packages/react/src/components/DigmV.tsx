@@ -4,7 +4,7 @@ import { noop } from '@cphayim/digm-shared'
 import type { RenderStatus } from '@cphayim/digm-core'
 import { useDigm } from '../hooks/digm'
 import DigmMask from './DigmMask'
-import './DigmMask.css'
+import './DigmV.css'
 
 type Props = {
   /**
@@ -52,7 +52,7 @@ type Props = {
   /**
    * 状态改变时，执行的回调函数
    */
-   onStatusChange?: (status: RenderStatus) => void
+  onStatusChange?: (status: RenderStatus) => void
 
   /**
    * 当准备就绪时，执行的回调函数
@@ -70,7 +70,7 @@ export const DigmV = (props: Props) => {
     size = 'viewport',
     mask = true,
     onStatusChange = noop,
-    onReady = noop
+    onReady = noop,
   } = props
 
   const { status, isReady } = useDigm({
