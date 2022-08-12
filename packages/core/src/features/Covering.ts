@@ -537,7 +537,7 @@ export class Covering extends BaseFeature {
   /**
    * 删除覆盖物关联Window
    */
-  RemoveCoverWindow(options: RemoveCoverWindowOptions) {
+  removeCoverWindow(options: RemoveCoverWindowOptions) {
     return promiseWrapper(this._superAPI, 'RemoveCoverWindow', options) as Promise<FeatureResult>
   }
 
@@ -549,7 +549,7 @@ export class Covering extends BaseFeature {
   }
 
   /**
-   * 覆盖物移动
+   * 覆盖物移动状态
    */
   playCoverMoveState(options: PlayCoverMoveStateOptions) {
     return promiseWrapper(this._superAPI, 'PlayCoverMoveState', options) as Promise<FeatureResult>
@@ -574,9 +574,9 @@ export class Covering extends BaseFeature {
   }
 
   /**
-   * 结束polygon多边形覆盖物框选
+   * 获取屏幕内覆盖物ID
    */
-  GetFullSceenCoveringId(options: { covering_type: CoveringType }) {
+  getFullSceenCoveringId(options: { covering_type: CoveringType }) {
     return promiseWrapper(
       this._superAPI,
       'GetFullSceenCoveringId',
