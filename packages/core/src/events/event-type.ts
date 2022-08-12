@@ -145,6 +145,11 @@ type ViewshedEvent =
   | 'OnViewshedUnHover'
   | 'OnViewshedClick'
 
+type HighlightAreaEvent =
+  | 'OnAddHighlightAreaSuccess'
+  | 'OnUpdateHighlightAreaCoordSuccess'
+  | 'OnUpdateHighlightAreaStyleSuccess'
+  | 'OnAddHighlightAreaFailed'
 type SceneGeoConverterEvent =
   | 'OnAddGeoCoordToScreenPostionSuccess'
   | 'OnAddGeoCoordToScreenPostionFailed'
@@ -163,6 +168,21 @@ type ChinaMapEvent =
   | 'OnMigrationMapHover'
   | 'OnMigrationMapUnHover'
   | 'OnMigrationMapClick'
+
+type SceneEffectEvent =
+  | 'OnAddEffectSuccess'
+  | 'OnUpdateEffectCoordSuccess'
+  | 'OnUpdateEffectStyleSuccess'
+  | 'OnAddEffectFailed'
+  | 'OnUpdateEffectCoordFailed'
+  | 'OnUpdateEffectStyleFailed'
+  | 'OnFocusEffectStart'
+  | 'OnFocusEffectEnd'
+  | 'OnFocusAllEffectStart'
+  | 'OnFocusAllEffectEnd'
+  | 'OnSceneEffectHover'
+  | 'OnSceneEffectUnHover'
+  | 'OnSceneEffectClick'
 
 type CoverWindowEvent =
   | 'OnAddCoverWindowSuccess'
@@ -197,8 +217,10 @@ export type CloudEvent =
   | StrategyMapEvent
   | RangeType
   | ViewshedEvent
+  | HighlightAreaEvent
   | SceneGeoConverterEvent
   | ChinaMapEvent
+  | SceneEffectEvent
   | CoverWindowEvent
   | CoverToMoveEvent
   | CoverSelectionEvent
