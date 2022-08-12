@@ -17,6 +17,7 @@ export * from './HighlightArea'
 export * from './SceneGeoConverter'
 export * from './ChinaMap'
 export * from './SceneEffect'
+export * from './TDText'
 
 /**
  * @enhance
