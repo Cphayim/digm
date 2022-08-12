@@ -1,5 +1,4 @@
-import { computed, onMounted, onUnmounted, Ref, ref, unref } from 'vue'
-
+import { MutableRefObject, useEffect, useMemo, useState } from 'react'
 import {
   CloudEvent,
   CloudEventHandler,
@@ -54,70 +53,77 @@ type AutoStartOptions =
        *
        * 对应 `digm.init()` 方法的参数 `idOrElement`，额外支持了 `Ref<Element>` 类型
        */
-      target: string | Element | Ref<Element>
+      target: string | Element | MutableRefObject<Element>
     } /* `digm.startEngine() 方法所需要的所有字段` */ & StartEngineOptions)
 
 const DEFAULT_KEY = 'DEFAULT'
 const instanceMap: Record<string, Digm> = {}
 
-/**
- * 通常情况下，整个项目中只会存在一个 Digm 实例（即只存在一个模型渲染器）
- */
-export const useDigm = (options: UseDigmOptions = {}) => {
+export function useDigm(options: UseDigmOptions = {}) {
   const key = options.key ?? DEFAULT_KEY
+
   /**
    * 优先使用存在的实例
    */
   const digm = (instanceMap[key] ??= createDigm())
 
-  /**
-   * 响应式 digm.status
-   */
-  const status = ref(digm.status)
-  const updateStatus = (s: RenderStatus) => {
-    status.value = s
-  }
-  // 订阅状态更新响应值
-  digm.addStatusSubscriber(updateStatus)
-  // 卸载时移除订阅
-  onUnmounted(() => digm.removeStatusSubscriber(updateStatus))
+  const [status, setStatus] = useState(digm.status)
 
   // 是否已初始化
-  const isInit = computed(() => status.value >= RenderStatus.INIT_RENDER)
-  // 是否准备就绪（模型完成渲染）
-  const isReady = computed(() => status.value === RenderStatus.RENDER_MODEL_FINISHED)
-  // 是否已停止渲染
-  const isStop = computed(() => status.value === RenderStatus.STOP)
+  const isInit = useMemo(() => status >= RenderStatus.INIT_RENDER, [status])
+  // 是否准备就绪
+  const isReady = useMemo(() => status === RenderStatus.RENDER_MODEL_FINISHED, [status])
   // 是否出现错误
-  const isError = computed(() => status.value % 2 === 0)
+  const isStop = useMemo(() => status === RenderStatus.STOP, [status])
+  // 是否出现错误
+  const isError = useMemo(() => status % 2 === 0, [status])
   // status 对应文本
-  const statusLabel = computed(() => getStatusLabel(status.value))
+  const statusLabel = useMemo(() => getStatusLabel(status), [status])
+
+  // 状态订阅
+  useEffect(() => {
+    digm.addStatusSubscriber(setStatus)
+    return () => {
+      digm.removeStatusSubscriber(setStatus)
+    }
+  }, [digm])
 
   /**
    * 自动启动
    * 作为挂载点组件使用时自动执行 `digm.init()` 和 `digm.startEngine()`
    * 组件卸载时执行 `digm.stopEngine()`
    */
-  if (options.autoStart) {
-    onMounted(() => {
+  useEffect(() => {
+    if (options.autoStart) {
+      if (!options.target) {
+        return
+      }
       const idOrElement = unref(options.target)
       digm.init(idOrElement)
       digm.startEngine(options)
-    })
-    onUnmounted(() => digm.stopEngine())
-  }
+    }
+    return () => {
+      if (options.autoStart) {
+        digm.stopEngine()
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // 收集当前组件范围内添加过的事件处理器的元组数组
-  const tuples: CloudEventTuple[] = []
+  const [tuples, setTuples] = useState<CloudEventTuple[]>([])
+
   // 添加事件的包装函数，用于收集组件范围内添加的事件处理器，移除事件不需要额外处理
   const addEventListener = (name: CloudEvent, handler: CloudEventHandler) => {
     digm.addEventListener(name, handler)
-    tuples.push([name, handler])
+    setTuples((prev) => [...prev, [name, handler]])
   }
-  // 当组件卸载时，移除组件范围内添加的事件处理器
-  onUnmounted(() => {
-    tuples.forEach(([event, handler]) => digm.removeEventListener(event, handler))
-  })
+
+  useEffect(() => {
+    return () => {
+      tuples.forEach(([event, handler]) => digm.removeEventListener(event, handler))
+    }
+  }, [tuples, digm])
 
   const proxyDigm = new Proxy(digm, {
     get(target, key, receiver) {
@@ -135,4 +141,8 @@ export const useDigm = (options: UseDigmOptions = {}) => {
     isError,
     statusLabel,
   }
+}
+
+function unref(target: any): string | Element {
+  return target.current ?? target
 }

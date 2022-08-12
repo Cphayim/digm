@@ -1,0 +1,31 @@
+.digm-mask {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(55, 65, 81);
+}
+.digm-mask-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+.digm-mask-loading {
+  margin: auto;
+}
+.digm-mask-status-label {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: white;
+}
+.digm-mask-status-label__error {
+  color: rgb(248, 113, 113);
+}
+.digm-mask-status-tip {
+  font-size: 14px;
+  color: rgb(209, 213, 219);
+}
