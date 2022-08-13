@@ -1,6 +1,6 @@
 {
   "name": "@cphayim/digm-vue",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "author": "Cphayim <i@cphayim.me>",
   "description": "Encapsulation and enhancement of Digital Model renderer for Vue3, provide hooks and components",
   "license": "ISC",
@@ -37,7 +37,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Cphayim/digm.git",
-    "directory": "packages/core"
+    "directory": "packages/vue"
   },
   "bugs": {
     "url": "https://github.com/Cphayim/digm/issues"
