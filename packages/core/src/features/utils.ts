@@ -24,7 +24,8 @@ export function promiseWrapper(superAPI: SuperAPI, name: string, params?: unknow
 export function callbackWrapper(
   superAPI: SuperAPI,
   name: string,
-  callback: (...args: unknown[]) => unknown,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  callback: (...args: any[]) => unknown,
   params?: unknown,
 ) {
   if (__DEV__) {

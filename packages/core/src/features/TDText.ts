@@ -1,7 +1,7 @@
 import { BaseFeature } from './BaseFeature'
 import { promiseWrapper } from './utils'
 import type { FeatureResult } from './BaseFeature'
-import type { CoordType, CoordZType, StyleType } from './MigrationMap'
+import type { CoordType, CoordZType } from './MigrationMap'
 
 export type Add3DTextOptions = Update3DTextCoordOptions & StyleOptions
 
