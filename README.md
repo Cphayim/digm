@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./.github/docs/digm-logo.png" width="200" alt="logo" />
+<img src="./docs/digm-logo.png" width="200" alt="logo" />
 
 ![GitHub Actions Status](https://github.com/Cphayim/digm/actions/workflows/build.yml/badge.svg)
 [![npm package](https://badgen.net/npm/v/@cphayim/digm-core)](https://www.npmjs.com/package/@cphayim/digm-core)
