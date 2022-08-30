@@ -1,6 +1,6 @@
 {
   // If you plan to output ESM, use `tsconfig.esm.json`
-  "extends": "@ombro/ts-config/tsconfig.esm.json",
+  "extends": "@ombro/tsconfig/tsconfig.esm.json",
   "compilerOptions": {
     "composite": true,
     "removeComments": false
