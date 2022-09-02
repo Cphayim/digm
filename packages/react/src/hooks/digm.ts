@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useMemo, useState } from 'react'
+import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react'
 import {
   CloudEvent,
   CloudEventHandler,
@@ -23,6 +23,8 @@ type CommonOptions = {
    */
   key?: string
 }
+
+type ReadyCallback = (...args: []) => any
 
 // 根据 autoStart 的不同值的两组配置项
 type AutoStartOptions =
@@ -132,6 +134,32 @@ export function useDigm(options: UseDigmOptions = {}) {
     },
   })
 
+  // const [readyCallbacks, setReadyCallbacks] = useState<ReadyCallback[]>([])
+
+  const readyCallbacks = useRef<ReadyCallback[]>([])
+
+  const onDigmReady = (cb: ReadyCallback) => {
+    if (typeof cb !== 'function') {
+      throw new Error('onDigmReady: cb must be a function')
+    }
+
+    if (isReady) {
+      executeReadyCallback(cb)
+    }
+
+    // setReadyCallbacks(prev => [...prev, cb])
+
+    readyCallbacks.current = [...readyCallbacks.current, cb]
+  }
+
+  useEffect(() => {
+    if (isReady) {
+      console.log(readyCallbacks)
+      executeReadyCallbacks(readyCallbacks.current)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isReady])
+
   return {
     digm: proxyDigm,
     status,
@@ -140,9 +168,22 @@ export function useDigm(options: UseDigmOptions = {}) {
     isStop,
     isError,
     statusLabel,
+    onDigmReady,
   }
 }
 
 function unref(target: any): string | Element {
   return target.current ?? target
+}
+
+function executeReadyCallbacks(cbs: ReadyCallback[]) {
+  cbs.forEach(executeReadyCallback)
+}
+
+async function executeReadyCallback(cb: ReadyCallback) {
+  try {
+    await cb()
+  } catch (error) {
+    console.error(error)
+  }
 }
