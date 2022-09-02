@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react'
+import { MutableRefObject, useEffect, useMemo, useState } from 'react'
 import {
   CloudEvent,
   CloudEventHandler,
@@ -23,8 +23,6 @@ type CommonOptions = {
    */
   key?: string
 }
-
-type ReadyCallback = (...args: []) => any
 
 // 根据 autoStart 的不同值的两组配置项
 type AutoStartOptions =
@@ -84,8 +82,10 @@ export function useDigm(options: UseDigmOptions = {}) {
 
   // 状态订阅
   useEffect(() => {
+    console.log('添加订阅')
     digm.addStatusSubscriber(setStatus)
     return () => {
+      console.log('移除订阅')
       digm.removeStatusSubscriber(setStatus)
     }
   }, [digm])
@@ -134,32 +134,6 @@ export function useDigm(options: UseDigmOptions = {}) {
     },
   })
 
-  // const [readyCallbacks, setReadyCallbacks] = useState<ReadyCallback[]>([])
-
-  const readyCallbacks = useRef<ReadyCallback[]>([])
-
-  const onDigmReady = (cb: ReadyCallback) => {
-    if (typeof cb !== 'function') {
-      throw new Error('onDigmReady: cb must be a function')
-    }
-
-    if (isReady) {
-      executeReadyCallback(cb)
-    }
-
-    // setReadyCallbacks(prev => [...prev, cb])
-
-    readyCallbacks.current = [...readyCallbacks.current, cb]
-  }
-
-  useEffect(() => {
-    if (isReady) {
-      console.log(readyCallbacks)
-      executeReadyCallbacks(readyCallbacks.current)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isReady])
-
   return {
     digm: proxyDigm,
     status,
@@ -168,21 +142,32 @@ export function useDigm(options: UseDigmOptions = {}) {
     isStop,
     isError,
     statusLabel,
-    onDigmReady,
   }
+}
+
+export type UseReadyCallback = (digm: Digm) => any | Promise<any>
+
+export function useDigmReady(cb: UseReadyCallback, options?: Pick<UseDigmOptions, 'key'>) {
+  if (typeof cb !== 'function') {
+    throw new Error('useDigmReady: cb must be a function')
+  }
+
+  const { digm, isReady } = useDigm(options)
+
+  useEffect(() => {
+    if (isReady) {
+      executeReadyCallback(digm, cb)
+    }
+  }, [isReady, digm, cb])
 }
 
 function unref(target: any): string | Element {
   return target.current ?? target
 }
 
-function executeReadyCallbacks(cbs: ReadyCallback[]) {
-  cbs.forEach(executeReadyCallback)
-}
-
-async function executeReadyCallback(cb: ReadyCallback) {
+async function executeReadyCallback(digm: Digm, cb: UseReadyCallback) {
   try {
-    await cb()
+    await cb(digm)
   } catch (error) {
     console.error(error)
   }
