@@ -1,4 +1,4 @@
-import { computed, onMounted, onUnmounted, Ref, ref, unref } from 'vue'
+import { computed, onMounted, onUnmounted, Ref, ref, unref, watch } from 'vue'
 
 import {
   CloudEvent,
@@ -56,6 +56,8 @@ type AutoStartOptions =
        */
       target: string | Element | Ref<Element>
     } /* `digm.startEngine() 方法所需要的所有字段` */ & StartEngineOptions)
+
+type ReadyCallback = (...args: []) => any
 
 const DEFAULT_KEY = 'DEFAULT'
 const instanceMap: Record<string, Digm> = {}
@@ -126,6 +128,24 @@ export const useDigm = (options: UseDigmOptions = {}) => {
     },
   })
 
+  const digmReadyCallbacks: ReadyCallback[] = []
+  const onDigmReady = (cb: ReadyCallback) => {
+    if (typeof cb !== 'function') {
+      throw new Error('onDigmReady: cb must be a function')
+    }
+
+    if (isReady.value) {
+      executeReadyCallback(cb)
+    }
+    digmReadyCallbacks.push(cb)
+  }
+
+  watch(isReady, (ready) => {
+    if (ready) {
+      executeReadyCallbacks(digmReadyCallbacks)
+    }
+  })
+
   return {
     digm: proxyDigm,
     status,
@@ -134,5 +154,18 @@ export const useDigm = (options: UseDigmOptions = {}) => {
     isStop,
     isError,
     statusLabel,
+    onDigmReady,
+  }
+}
+
+function executeReadyCallbacks(cbs: ReadyCallback[]) {
+  cbs.forEach(executeReadyCallback)
+}
+
+async function executeReadyCallback(cb: ReadyCallback) {
+  try {
+    await cb()
+  } catch (error) {
+    console.error(error)
   }
 }
