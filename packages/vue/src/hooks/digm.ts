@@ -128,7 +128,7 @@ export const useDigm = (options: UseDigmOptions = {}) => {
     },
   })
 
-  const digmReadyCallbacks: ReadyCallback[] = []
+  const readyCallbacks: ReadyCallback[] = []
   const onDigmReady = (cb: ReadyCallback) => {
     if (typeof cb !== 'function') {
       throw new Error('onDigmReady: cb must be a function')
@@ -137,12 +137,12 @@ export const useDigm = (options: UseDigmOptions = {}) => {
     if (isReady.value) {
       executeReadyCallback(cb)
     }
-    digmReadyCallbacks.push(cb)
+    readyCallbacks.push(cb)
   }
 
   watch(isReady, (ready) => {
     if (ready) {
-      executeReadyCallbacks(digmReadyCallbacks)
+      executeReadyCallbacks(readyCallbacks)
     }
   })
 
