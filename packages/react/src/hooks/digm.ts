@@ -82,10 +82,8 @@ export function useDigm(options: UseDigmOptions = {}) {
 
   // 状态订阅
   useEffect(() => {
-    console.log('添加订阅')
     digm.addStatusSubscriber(setStatus)
     return () => {
-      console.log('移除订阅')
       digm.removeStatusSubscriber(setStatus)
     }
   }, [digm])
