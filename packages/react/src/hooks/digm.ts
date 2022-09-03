@@ -153,20 +153,10 @@ export function useDigmReady(cb: UseReadyCallback, options?: Pick<UseDigmOptions
   const { digm, isReady } = useDigm(options)
 
   useEffect(() => {
-    if (isReady) {
-      executeReadyCallback(digm, cb)
-    }
+    if (isReady) cb(digm)
   }, [isReady, digm, cb])
 }
 
 function unref(target: any): string | Element {
   return target.current ?? target
-}
-
-async function executeReadyCallback(digm: Digm, cb: UseReadyCallback) {
-  try {
-    await cb(digm)
-  } catch (error) {
-    console.error(error)
-  }
 }

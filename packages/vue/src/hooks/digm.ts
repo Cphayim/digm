@@ -150,16 +150,8 @@ export function useDigmReady(cb: UseReadyCallback, options?: Pick<UseDigmOptions
   watch(
     isReady,
     (ready) => {
-      if (ready) executeReadyCallback(digm, cb)
+      if (ready) cb(digm)
     },
     { immediate: true },
   )
-}
-
-async function executeReadyCallback(digm: Digm, cb: UseReadyCallback) {
-  try {
-    await cb(digm)
-  } catch (error) {
-    console.error(error)
-  }
 }
