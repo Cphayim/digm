@@ -57,8 +57,6 @@ type AutoStartOptions =
       target: string | Element | Ref<Element>
     } /* `digm.startEngine() 方法所需要的所有字段` */ & StartEngineOptions)
 
-type ReadyCallback = (...args: []) => any
-
 const DEFAULT_KEY = 'DEFAULT'
 const instanceMap: Record<string, Digm> = {}
 
@@ -128,24 +126,6 @@ export const useDigm = (options: UseDigmOptions = {}) => {
     },
   })
 
-  const readyCallbacks: ReadyCallback[] = []
-  const onDigmReady = (cb: ReadyCallback) => {
-    if (typeof cb !== 'function') {
-      throw new Error('onDigmReady: cb must be a function')
-    }
-
-    if (isReady.value) {
-      executeReadyCallback(cb)
-    }
-    readyCallbacks.push(cb)
-  }
-
-  watch(isReady, (ready) => {
-    if (ready) {
-      executeReadyCallbacks(readyCallbacks)
-    }
-  })
-
   return {
     digm: proxyDigm,
     status,
@@ -154,17 +134,31 @@ export const useDigm = (options: UseDigmOptions = {}) => {
     isStop,
     isError,
     statusLabel,
-    onDigmReady,
   }
 }
 
-function executeReadyCallbacks(cbs: ReadyCallback[]) {
-  cbs.forEach(executeReadyCallback)
+export type UseReadyCallback = (digm: Digm) => any | Promise<any>
+
+export function useDigmReady(cb: UseReadyCallback, options?: Pick<UseDigmOptions, 'key'>) {
+  if (typeof cb !== 'function') {
+    throw new Error('useDigmReady: cb must be a function')
+  }
+
+  const { digm, isReady } = useDigm(options)
+
+  // 使用 watch 而不是 watchEffect，防止用户传入的回调中包含其它 get 被依赖收集导致重复触发
+  watch(
+    isReady,
+    (ready) => {
+      if (ready) executeReadyCallback(digm, cb)
+    },
+    { immediate: true },
+  )
 }
 
-async function executeReadyCallback(cb: ReadyCallback) {
+async function executeReadyCallback(digm: Digm, cb: UseReadyCallback) {
   try {
-    await cb()
+    await cb(digm)
   } catch (error) {
     console.error(error)
   }
