@@ -8,4 +8,9 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'react/react-in-jsx-scope': 'off',
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 }

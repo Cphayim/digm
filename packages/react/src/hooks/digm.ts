@@ -143,6 +143,20 @@ export function useDigm(options: UseDigmOptions = {}) {
   }
 }
 
+export type UseReadyCallback = (digm: Digm) => any | Promise<any>
+
+export function useDigmReady(cb: UseReadyCallback, options?: Pick<UseDigmOptions, 'key'>) {
+  if (typeof cb !== 'function') {
+    throw new Error('useDigmReady: cb must be a function')
+  }
+
+  const { digm, isReady } = useDigm(options)
+
+  useEffect(() => {
+    if (isReady) cb(digm)
+  }, [isReady, digm, cb])
+}
+
 function unref(target: any): string | Element {
   return target.current ?? target
 }

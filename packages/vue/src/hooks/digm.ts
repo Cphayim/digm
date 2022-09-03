@@ -169,3 +169,22 @@ async function executeReadyCallback(cb: ReadyCallback) {
     console.error(error)
   }
 }
+
+export type UseReadyCallback = (digm: Digm) => any | Promise<any>
+
+export function useDigmReady(cb: UseReadyCallback, options?: Pick<UseDigmOptions, 'key'>) {
+  if (typeof cb !== 'function') {
+    throw new Error('useDigmReady: cb must be a function')
+  }
+
+  const { digm, isReady } = useDigm(options)
+
+  // 使用 watch 而不是 watchEffect，防止用户传入的回调中包含其它 get 被依赖收集导致重复触发
+  watch(
+    isReady,
+    (ready) => {
+      if (ready) cb(digm)
+    },
+    { immediate: true },
+  )
+}
