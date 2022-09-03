@@ -19,7 +19,7 @@ importers:
       commitizen: ^4.2.5
       cz-conventional-changelog: ^3.3.0
       eslint: ^8.23.0
-      husky: ^6.0.0
+      husky: ^8.0.1
       lint-staged: ^11.2.6
       prettier: ^2.7.1
       rimraf: ^3.0.2
@@ -46,7 +46,7 @@ importers:
       commitizen: 4.2.5
       cz-conventional-changelog: 3.3.0
       eslint: 8.23.0
-      husky: 6.0.0
+      husky: 8.0.1
       lint-staged: 11.2.6
       prettier: 2.7.1
       rimraf: 3.0.2
@@ -2762,8 +2762,9 @@ packages:
     engines: {node: '>=10.17.0'}
     dev: true
 
-  /husky/6.0.0:
-    resolution: {integrity: sha512-SQS2gDTB7tBN486QSoKPKQItZw97BMOd+Kdb6ghfpBc0yXyzrddI0oDV5MkDAbuB4X2mO3/nj60TRMcYxwzZeQ==}
+  /husky/8.0.1:
+    resolution: {integrity: sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==}
+    engines: {node: '>=14'}
     hasBin: true
     dev: true
 
