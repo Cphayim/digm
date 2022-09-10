@@ -29,7 +29,7 @@
     "@cphayim/digm-shared": "workspace:*"
   },
   "devDependencies": {
-    "vue": "^3.2.38"
+    "vue": "^3.2.39"
   },
   "peerDependencies": {
     "vue": "^3.2.25"
