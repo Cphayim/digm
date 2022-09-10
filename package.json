@@ -41,8 +41,8 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "@ombro/eslint-config-react-typescript": "^0.1.1",
     "@ombro/eslint-config-typescript": "^0.1.1",
     "@ombro/eslint-config-vue3-typescript": "^0.1.1",
