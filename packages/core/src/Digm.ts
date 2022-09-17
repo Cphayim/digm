@@ -28,6 +28,9 @@ import {
   TDText,
 } from './features'
 
+// 渲染地址转换器
+export type RenderUrlTransformer = (renderUrl: string, baseUrl: string) => string
+
 export interface FetchRenderUrlOptions {
   /**
    * 渲染服务器 baseUrl
@@ -52,6 +55,21 @@ export interface FetchRenderUrlOptions {
    * 可选，默认为容器高度
    */
   height?: number
+
+  /**
+   * 转换渲染地址
+   *
+   * 如果传入 `true` 或 `RenderUrlTransformer`，将会对渲染服务器返回的渲染地址进行转换
+   *
+   * 例如前端通过请求网关进行转发的场景 10.1.1.1 (nginx) -> 192.168.0.100 (渲染服务器)，
+   * 此时渲染服务器将返回例如 http://192.168.0.100:8891/{render-token} 的渲染地址，这会导致后续的渲染流程失败
+   *
+   * 当传入 `true` 时：
+   * 该选项解析 `url` 并使用其 `protocol` 和 `hostname` 将渲染地址转换为 `http://10.1.1.1:8891/{render-token}`
+   *
+   * 也可以传入 `RenderUrlTransformer` 来自定义转换逻辑
+   */
+  transformer?: boolean | RenderUrlTransformer
 }
 
 export interface RenderPrepareOptions {
@@ -76,7 +94,7 @@ export type StatusSubscriber = (status: RenderStatus) => void | Promise<void>
 export type CloudRendererType = typeof CloudRenderer
 
 export class Digm {
-  private _el: Element
+  private _el!: Element
 
   private _renderer: CloudRendererType
 
@@ -220,7 +238,10 @@ export class Digm {
       })
       const data = await res.json()
       if (!data.success) throw new Error('[Error] request renderer url failed')
-      return data.url as string
+
+      return options.transformer
+        ? transformRenderUrl(data.url, options.url, options.transformer)
+        : data.url
     } catch (e) {
       this.status = RenderStatus.REQUEST_RENDER_URL_FAILED
       throw e
@@ -277,4 +298,24 @@ export function createDigm(...args: ConstructorParameters<typeof Digm>) {
 
 function getElementWidthAndHeight(el: Element) {
   return { width: el.clientWidth, height: el.clientHeight }
+}
+
+/**
+ * Transform render url
+ */
+export function transformRenderUrl(
+  resRenderUrl: string,
+  reqUrl: string,
+  transformer: boolean | RenderUrlTransformer,
+) {
+  if (typeof transformer !== 'function') {
+    transformer = defaultTransformer
+  }
+  return transformer(resRenderUrl, reqUrl)
+}
+
+export function defaultTransformer(renderUrl: string, baseUrl: string) {
+  const { protocol, hostname } = new URL(baseUrl)
+  const { port, pathname } = new URL(renderUrl)
+  return `${protocol}//${hostname}:${port}${pathname}`
 }

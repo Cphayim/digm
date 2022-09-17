@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Ref, ref, watchEffect } from 'vue'
 
-import type { RenderStatus } from '@cphayim/digm-core'
+import type { RenderStatus, RenderUrlTransformer } from '@cphayim/digm-core'
 import { useDigm } from '../hooks/digm.js'
 import DigmMask from './DigmMask.vue'
 
@@ -14,6 +14,20 @@ type Props = {
    * 渲染口令
    */
   order: string
+  /**
+   * 转换渲染地址
+   *
+   * 如果传入 `true` 或 `RenderUrlTransformer`，将会对渲染服务器返回的渲染地址进行转换
+   *
+   * 例如前端通过请求网关进行转发的场景 10.1.1.1 (nginx) -> 192.168.0.100 (渲染服务器)，
+   * 此时渲染服务器将返回例如 http://192.168.0.100:8891/{render-token} 的渲染地址，这会导致后续的渲染流程失败
+   *
+   * 当传入 `true` 时：
+   * 该选项解析 `url` 并使用其 `protocol` 和 `hostname` 将渲染地址转换为 `http://10.1.1.1:8891/{render-token}`
+   *
+   * 也可以传入 `RenderUrlTransformer` 来自定义转换逻辑
+   */
+  transformer?: boolean | RenderUrlTransformer
   /**
    * 是否启用渲染器日志
    *
@@ -68,6 +82,7 @@ const { status, isReady } = useDigm({
   target: digmRef as Ref<Element>,
   url: props.url,
   order: props.order,
+  transformer: props.transformer,
   enableLog: props.enableLog,
   sleepTime: props.sleepTime,
 })
