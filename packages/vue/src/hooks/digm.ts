@@ -57,8 +57,6 @@ type AutoStartOptions =
       target: string | Element | Ref<Element>
     } /* `digm.startEngine() 方法所需要的所有字段` */ & StartEngineOptions)
 
-type ReadyCallback = (...args: []) => any
-
 const DEFAULT_KEY = 'DEFAULT'
 const instanceMap: Record<string, Digm> = {}
 
@@ -128,24 +126,6 @@ export const useDigm = (options: UseDigmOptions = {}) => {
     },
   })
 
-  const readyCallbacks: ReadyCallback[] = []
-  const onDigmReady = (cb: ReadyCallback) => {
-    if (typeof cb !== 'function') {
-      throw new Error('onDigmReady: cb must be a function')
-    }
-
-    if (isReady.value) {
-      executeReadyCallback(cb)
-    }
-    readyCallbacks.push(cb)
-  }
-
-  watch(isReady, (ready) => {
-    if (ready) {
-      executeReadyCallbacks(readyCallbacks)
-    }
-  })
-
   return {
     digm: proxyDigm,
     status,
@@ -154,19 +134,6 @@ export const useDigm = (options: UseDigmOptions = {}) => {
     isStop,
     isError,
     statusLabel,
-    onDigmReady,
-  }
-}
-
-function executeReadyCallbacks(cbs: ReadyCallback[]) {
-  cbs.forEach(executeReadyCallback)
-}
-
-async function executeReadyCallback(cb: ReadyCallback) {
-  try {
-    await cb()
-  } catch (error) {
-    console.error(error)
   }
 }
 
