@@ -10,3 +10,7 @@
 </div>
 
 Digm means Digital Model, it is an upper encapsulation based on `51superapi`, provides an easier-to-use and more powerful API to help you interact with the rendering engine.
+
+## Change Log
+
+[CHANGELOG.md](./CHANGELOG.md)
