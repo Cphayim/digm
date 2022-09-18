@@ -46,7 +46,7 @@
     "@ombro/eslint-config-react-typescript": "^0.1.2",
     "@ombro/eslint-config-typescript": "^0.1.2",
     "@ombro/eslint-config-vue3-typescript": "^0.1.2",
-    "@ombro/logger": "^1.5.5",
+    "@ombro/logger": "^2.0.0",
     "@ombro/tsconfig": "^1.4.2",
     "@types/node": "^17.0.45",
     "@vitejs/plugin-react": "^2.1.0",
