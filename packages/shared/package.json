@@ -1,6 +1,6 @@
 {
   "name": "@cphayim/digm-shared",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Cphayim <i@cphayim.me>",
   "description": "Encapsulation and enhancement of Digital Model renderer, shared toolkit",
   "license": "ISC",

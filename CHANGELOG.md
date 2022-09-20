@@ -1,5 +1,15 @@
 # Digm
 
+## 0.2.1
+
+### Affected Packages
+
+- `@cphayim/digm-core`
+
+### Fixes:
+
+Fill in the missing event types
+
 ## 0.2.0
 
 ### Affected packages:
