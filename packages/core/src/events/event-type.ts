@@ -60,6 +60,13 @@ type MigrationMapEvent =
   | 'OnAddMigrationMapFailed'
   | 'OnUpdateMigrationMapCoordFailed'
   | 'OnUpdateMigrationMapStyleFailed'
+  | 'OnFocusMigrationMapStart'
+  | 'OnFocusMigrationMapEnd'
+  | 'OnFocusAllMigrationMapStart'
+  | 'OnFocusAllMigrationMapEnd'
+  | 'OnMigrationMapHover'
+  | 'OnMigrationMapUnHover'
+  | 'OnMigrationMapClick'
 
 /**
  * 战略图事件
@@ -113,6 +120,13 @@ type RasterEvent =
   | 'OnUpdateRasterStyleSuccess'
   | 'OnAddRasterFailed'
   | 'OnUpdateRasterStyleFailed'
+  | 'OnFocusRasterStart'
+  | 'OnFocusRasterEnd'
+  | 'OnFocusAllRasterStart'
+  | 'OnFocusAllRasterEnd'
+  | 'OnRasterHover'
+  | 'OnRasterUnHover'
+  | 'OnRasterClick'
 
 /**
  * 路径事件
@@ -124,6 +138,13 @@ type PathEvent =
   | 'OnAddPOIFailed'
   | 'OnUpdatePathCoordFailed'
   | 'OnUpdatePathStyleFailed'
+  | 'OnFocusPathStart'
+  | 'OnFocusPathEnd'
+  | 'OnFocusAllPathStart'
+  | 'OnFocusAllPathEnd'
+  | 'OnPathHover'
+  | 'OnPathUnHover'
+  | 'OnPathClick'
 
 /**
  * 轮廓图事件
@@ -135,6 +156,13 @@ type RangeEvent =
   | 'OnAddRangeFailed'
   | 'OnUpdateRangeCoordFailed'
   | 'OnUpdateRangeStyleFailed'
+  | 'OnFocusRangeStart'
+  | 'OnFocusRangeEnd'
+  | 'OnFocusAllRangeStart'
+  | 'OnFocusAllRangeEnd'
+  | 'OnRangeHover'
+  | 'OnRangeUnHover'
+  | 'OnRangeClick'
 
 /**
  * 可视域事件
@@ -162,6 +190,8 @@ type HighlightAreaEvent =
   | 'OnUpdateHighlightAreaCoordSuccess'
   | 'OnUpdateHighlightAreaStyleSuccess'
   | 'OnAddHighlightAreaFailed'
+  | 'OnFocusHighLightAreaStart'
+  | 'OnFocusHighLightAreaEnd'
 
 /**
  * 场景坐标转换事件
@@ -188,6 +218,9 @@ type ChinaMapEvent =
   | 'OnMigrationMapUnHover'
   | 'OnMigrationMapClick'
 
+/**
+ * 场景特效事件
+ */
 type SceneEffectEvent =
   | 'OnAddEffectSuccess'
   | 'OnUpdateEffectCoordSuccess'
