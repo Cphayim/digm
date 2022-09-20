@@ -120,28 +120,96 @@ export class Digm {
   private _statusSubscribers: Set<StatusSubscriber> = new Set()
 
   // features...
+  /**
+   * 场景镜头
+   */
   public readonly sceneCamera: SceneCamera = new SceneCamera(this)
+  /**
+   * 场景编辑
+   */
   public readonly sceneEdit: SceneEdit = new SceneEdit(this)
+  /**
+   * 剖切体
+   */
   public readonly section: Section = new Section(this)
+  /**
+   * 覆盖物
+   */
   public readonly covering: Covering = new Covering(this)
+  /**
+   * 迁徙图
+   */
   public readonly migrationMap: MigrationMap = new MigrationMap(this)
+  /**
+   * 热力图
+   */
   public readonly heatMap: HeatMap = new HeatMap(this)
+  /**
+   * 栅格图
+   */
   public readonly raster: Raster = new Raster(this)
+  /**
+   * 路径
+   */
   public readonly path: Path = new Path(this)
+  /**
+   * 粒子效果
+   */
   public readonly particleEffect: ParticleEffect = new ParticleEffect(this)
+  /**
+   * 灯光行为
+   */
   public readonly light: Light = new Light(this)
+  /**
+   * 区域轮廓
+   */
   public readonly range: Range = new Range(this)
+  /**
+   * 工具控件
+   */
   public readonly widget: Widget = new Widget(this)
+  /**
+   * POI 点
+   */
   public readonly POI: POI = new POI(this)
+  /**
+   * 战略图
+   */
   public readonly strategyMap: StrategyMap = new StrategyMap(this)
+  /**
+   * 可视域
+   */
   public readonly viewshed: Viewshed = new Viewshed(this)
+  /**
+   * 二维坐标计算
+   */
   public readonly coordCalc: CoordCalc = new CoordCalc(this)
+  /**
+   * 高亮区域
+   */
   public readonly highlightArea: HighlightArea = new HighlightArea(this)
+  /**
+   * 场景坐标转换
+   */
   public readonly sceneGeoConverter: SceneGeoConverter = new SceneGeoConverter(this)
+  /**
+   * 中国地图
+   */
   public readonly chinaMap: ChinaMap = new ChinaMap(this)
+  /**
+   * 场景特效
+   */
   public readonly sceneEffect: SceneEffect = new SceneEffect(this)
+  /**
+   * 3D 文字
+   */
   public readonly TDText: TDText = new TDText(this)
 
+  // enhance features...
+  /**
+   * 建筑物编辑
+   * @enhance
+   */
   public readonly building: Building = new Building(this)
 
   addStatusSubscriber(statusSubscriber: StatusSubscriber) {
