@@ -284,6 +284,11 @@ type TDTextEvent =
   | 'On3DTextUnHover'
   | 'On3DTextClick'
 
+/**
+ * 自定义 WebJS 事件
+ */
+type CustomWebJsEvent = 'OnCustomWebJsEvent'
+
 export type CloudEvent =
   | RenderEvent
   | SceneCameraEvent
@@ -304,5 +309,6 @@ export type CloudEvent =
   | CoverToMoveEvent
   | CoverSelectionEvent
   | TDTextEvent
+  | CustomWebJsEvent
 
 export type CloudEventHandler = (res: FeatureResult) => void | Promise<void>
