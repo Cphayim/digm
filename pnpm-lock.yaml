@@ -11,7 +11,7 @@ importers:
       '@ombro/eslint-config-vue3-typescript': ^0.1.2
       '@ombro/logger': ^2.0.0
       '@ombro/tsconfig': ^1.4.2
-      '@types/node': ^18.11.18
+      '@types/node': ^18.13.0
       '@vitejs/plugin-react': ^3.1.0
       '@vitejs/plugin-vue': ^4.0.0
       '@vue/tsconfig': ^0.1.3
@@ -20,8 +20,8 @@ importers:
       cz-conventional-changelog: ^3.3.0
       eslint: ^8.33.0
       husky: ^8.0.3
-      lint-staged: ^13.1.0
-      prettier: ^2.8.3
+      lint-staged: ^13.1.1
+      prettier: ^2.8.4
       rimraf: ^4.1.2
       typescript: ^4.8.2
       vite: ^4.1.1
@@ -33,25 +33,25 @@ importers:
     devDependencies:
       '@commitlint/cli': 17.4.2
       '@commitlint/config-conventional': 17.4.2
-      '@ombro/eslint-config-react-typescript': 0.1.2_pbqcwnpqaoju4ffdngvsju76q4
-      '@ombro/eslint-config-typescript': 0.1.2_pbqcwnpqaoju4ffdngvsju76q4
-      '@ombro/eslint-config-vue3-typescript': 0.1.2_pbqcwnpqaoju4ffdngvsju76q4
+      '@ombro/eslint-config-react-typescript': 0.1.2_ulkktukrgbnsa2gatlxqn52fsu
+      '@ombro/eslint-config-typescript': 0.1.2_ulkktukrgbnsa2gatlxqn52fsu
+      '@ombro/eslint-config-vue3-typescript': 0.1.2_ulkktukrgbnsa2gatlxqn52fsu
       '@ombro/logger': 2.0.0
       '@ombro/tsconfig': 1.4.2
-      '@types/node': 18.11.18
+      '@types/node': 18.13.0
       '@vitejs/plugin-react': 3.1.0_vite@4.1.1
       '@vitejs/plugin-vue': 4.0.0_vite@4.1.1+vue@3.2.47
-      '@vue/tsconfig': 0.1.3_@types+node@18.11.18
+      '@vue/tsconfig': 0.1.3_@types+node@18.13.0
       classnames: 2.3.2
       commitizen: 4.3.0
       cz-conventional-changelog: 3.3.0
       eslint: 8.33.0
       husky: 8.0.3
-      lint-staged: 13.1.0
-      prettier: 2.8.3
+      lint-staged: 13.1.1
+      prettier: 2.8.4
       rimraf: 4.1.2
       typescript: 4.8.2
-      vite: 4.1.1_@types+node@18.11.18
+      vite: 4.1.1_@types+node@18.13.0
       vite-plugin-css-injected-by-js: 2.4.0_vite@4.1.1
       vite-plugin-dts: 1.7.2_vite@4.1.1
       vue: 3.2.47
@@ -445,15 +445,15 @@ packages:
       '@commitlint/execute-rule': 17.4.0
       '@commitlint/resolve-extends': 17.4.0
       '@commitlint/types': 17.4.0
-      '@types/node': 18.11.18
+      '@types/node': 18.13.0
       chalk: 4.1.2
       cosmiconfig: 8.0.0
-      cosmiconfig-typescript-loader: 4.0.0_6sfouzbgts5tru63mrjox7x6qq
+      cosmiconfig-typescript-loader: 4.0.0_a6mwy6w6aafz7gtjdvgwbphyie
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.1_vqcafhj4xvr2nzknlrdklk55zm
+      ts-node: 10.9.1_54u4tphudisr2z46etlt7y7xge
       typescript: 4.8.4
     transitivePeerDependencies:
       - '@swc/core'
@@ -874,7 +874,7 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@ombro/eslint-config-react-typescript/0.1.2_pbqcwnpqaoju4ffdngvsju76q4:
+  /@ombro/eslint-config-react-typescript/0.1.2_ulkktukrgbnsa2gatlxqn52fsu:
     resolution: {integrity: sha512-iB9h6VboR4K2eeIAL5wmfcBWh915q+4xfdaciuSl3RYSdC+xRcTFOdw/onCzcQSUoxmUOMhXFI1NEpygjZ95zg==}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
@@ -887,13 +887,13 @@ packages:
       eslint-config-prettier: 8.5.0_eslint@8.33.0
       eslint-plugin-react: 7.31.8_eslint@8.33.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.33.0
-      prettier: 2.8.3
+      prettier: 2.8.4
       typescript: 4.8.2
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@ombro/eslint-config-typescript/0.1.2_pbqcwnpqaoju4ffdngvsju76q4:
+  /@ombro/eslint-config-typescript/0.1.2_ulkktukrgbnsa2gatlxqn52fsu:
     resolution: {integrity: sha512-hABv6TyffIqN1ig5fFoIWecXvPa9ZcJ1NfGpvJhPLZuJ7WjmIvCGldusAX1WY8yXN9xlGWOCbFr7YUt9F9Kc8w==}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
@@ -904,13 +904,13 @@ packages:
       '@typescript-eslint/parser': 5.37.0_eu75t7jhmohuqnvpxysgmsdns4
       eslint: 8.33.0
       eslint-config-prettier: 8.5.0_eslint@8.33.0
-      prettier: 2.8.3
+      prettier: 2.8.4
       typescript: 4.8.2
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@ombro/eslint-config-vue3-typescript/0.1.2_pbqcwnpqaoju4ffdngvsju76q4:
+  /@ombro/eslint-config-vue3-typescript/0.1.2_ulkktukrgbnsa2gatlxqn52fsu:
     resolution: {integrity: sha512-+dAd2xZoYx+Nr216R/sOVtjE5K5N7zb4uyDh064qtSxfJWOV1kqZpKduqfua8qn1OAc/wweNZF+e2dlqxpnApQ==}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
@@ -922,7 +922,7 @@ packages:
       eslint: 8.33.0
       eslint-config-prettier: 8.5.0_eslint@8.33.0
       eslint-plugin-vue: 8.7.1_eslint@8.33.0
-      prettier: 2.8.3
+      prettier: 2.8.4
       typescript: 4.8.2
     transitivePeerDependencies:
       - supports-color
@@ -1043,8 +1043,8 @@ packages:
     resolution: {integrity: sha512-yxDeaQIAJlMav7fH5AQqPH1u8YIuhYJXYBzxaQ4PifsU0GDO38MSdmEDeRlIxrKbC6NbEaaEHDanWb+y30U8SQ==}
     dev: true
 
-  /@types/node/18.11.18:
-    resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
+  /@types/node/18.13.0:
+    resolution: {integrity: sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -1211,7 +1211,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6_@babel+core@7.20.12
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.1.1_@types+node@18.11.18
+      vite: 4.1.1_@types+node@18.13.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1223,7 +1223,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.1.1_@types+node@18.11.18
+      vite: 4.1.1_@types+node@18.13.0
       vue: 3.2.47
     dev: true
 
@@ -1363,7 +1363,7 @@ packages:
     resolution: {integrity: sha512-BHGyyGN3Q97EZx0taMQ+OLNuZcW3d37ZEVmEAyeoA9ERdGvm9Irc/0Fua8SNyOtV1w6BS4q25wbMzJujO9HIfQ==}
     dev: true
 
-  /@vue/tsconfig/0.1.3_@types+node@18.11.18:
+  /@vue/tsconfig/0.1.3_@types+node@18.13.0:
     resolution: {integrity: sha512-kQVsh8yyWPvHpb8gIc9l/HIDiiVUy1amynLNpCy8p+FoCiZXCo6fQos5/097MmnNZc9AtseDsCrfkhqCrJ8Olg==}
     peerDependencies:
       '@types/node': '*'
@@ -1371,7 +1371,7 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@types/node': 18.11.18
+      '@types/node': 18.13.0
     dev: true
 
   /JSONStream/1.3.5:
@@ -1868,7 +1868,7 @@ packages:
       safe-buffer: 5.1.2
     dev: true
 
-  /cosmiconfig-typescript-loader/4.0.0_6sfouzbgts5tru63mrjox7x6qq:
+  /cosmiconfig-typescript-loader/4.0.0_a6mwy6w6aafz7gtjdvgwbphyie:
     resolution: {integrity: sha512-cVpucSc2Tf+VPwCCR7SZzmQTQkPbkk4O01yXsYqXBIbjE1bhwqSyAgYQkRK1un4i0OPziTleqFhdkmOc4RQ/9g==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
@@ -1877,9 +1877,9 @@ packages:
       ts-node: '>=10'
       typescript: '>=3'
     dependencies:
-      '@types/node': 18.11.18
+      '@types/node': 18.13.0
       cosmiconfig: 8.0.0
-      ts-node: 10.9.1_vqcafhj4xvr2nzknlrdklk55zm
+      ts-node: 10.9.1_54u4tphudisr2z46etlt7y7xge
       typescript: 4.8.4
     dev: true
 
@@ -3130,8 +3130,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged/13.1.0:
-    resolution: {integrity: sha512-pn/sR8IrcF/T0vpWLilih8jmVouMlxqXxKuAojmbiGX5n/gDnz+abdPptlj0vYnbfE0SQNl3CY/HwtM0+yfOVQ==}
+  /lint-staged/13.1.1:
+    resolution: {integrity: sha512-LLJLO0Kdbcv2a+CvSF4p1M7jBZOajKSMpBUvyR8+bXccsqPER0/NxTFQSpNHjqwV9kM3tkHczYerTB5wI+bksQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -3731,8 +3731,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier/2.8.3:
-    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
+  /prettier/2.8.4:
+    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
@@ -4284,7 +4284,7 @@ packages:
       code-block-writer: 11.0.3
     dev: true
 
-  /ts-node/10.9.1_vqcafhj4xvr2nzknlrdklk55zm:
+  /ts-node/10.9.1_54u4tphudisr2z46etlt7y7xge:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -4303,7 +4303,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
-      '@types/node': 18.11.18
+      '@types/node': 18.13.0
       acorn: 8.8.0
       acorn-walk: 8.2.0
       arg: 4.1.3
@@ -4438,7 +4438,7 @@ packages:
     peerDependencies:
       vite: '>2.0.0-0'
     dependencies:
-      vite: 4.1.1_@types+node@18.11.18
+      vite: 4.1.1_@types+node@18.13.0
     dev: true
 
   /vite-plugin-dts/1.7.2_vite@4.1.1:
@@ -4455,13 +4455,13 @@ packages:
       fs-extra: 10.1.0
       kolorist: 1.6.0
       ts-morph: 17.0.1
-      vite: 4.1.1_@types+node@18.11.18
+      vite: 4.1.1_@types+node@18.13.0
     transitivePeerDependencies:
       - rollup
       - supports-color
     dev: true
 
-  /vite/4.1.1_@types+node@18.11.18:
+  /vite/4.1.1_@types+node@18.13.0:
     resolution: {integrity: sha512-LM9WWea8vsxhr782r9ntg+bhSFS06FJgCvvB0+8hf8UWtvaiDagKYWXndjfX6kGl74keHJUcpzrQliDXZlF5yg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -4486,7 +4486,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.11.18
+      '@types/node': 18.13.0
       esbuild: 0.16.17
       postcss: 8.4.21
       resolve: 1.22.1
