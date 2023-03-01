@@ -139,18 +139,30 @@ export const useDigm = (options: UseDigmOptions = {}) => {
 
 export type UseReadyCallback = (digm: Digm) => any | Promise<any>
 
-export function useDigmReady(cb: UseReadyCallback, options?: Pick<UseDigmOptions, 'key'>) {
+export type UseDigmReadyOptions = Pick<UseDigmOptions, 'key'> & {
+  /**
+   * 是否在 `digm.status` 为 `RenderStatus.RENDER_MODEL` 时就触发回调
+   */
+  pressing: boolean
+}
+
+export function useDigmReady(cb: UseReadyCallback, options?: UseDigmReadyOptions) {
   if (typeof cb !== 'function') {
     throw new Error('useDigmReady: cb must be a function')
   }
 
-  const { digm, isReady } = useDigm(options)
+  const { digm, status } = useDigm(options)
 
   // 使用 watch 而不是 watchEffect，防止用户传入的回调中包含其它 get 被依赖收集导致重复触发
   watch(
-    isReady,
-    (ready) => {
-      if (ready) cb(digm)
+    status,
+    (status) => {
+      if (
+        (options?.pressing && status === RenderStatus.RENDER_MODEL) ||
+        status === RenderStatus.RENDER_MODEL_FINISHED
+      ) {
+        cb(digm)
+      }
     },
     { immediate: true },
   )

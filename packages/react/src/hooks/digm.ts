@@ -145,16 +145,28 @@ export function useDigm(options: UseDigmOptions = {}) {
 
 export type UseReadyCallback = (digm: Digm) => any | Promise<any>
 
-export function useDigmReady(cb: UseReadyCallback, options?: Pick<UseDigmOptions, 'key'>) {
+export type UseDigmReadyOptions = Pick<UseDigmOptions, 'key'> & {
+  /**
+   * 是否在 `digm.status` 为 `RenderStatus.RENDER_MODEL` 时就触发回调
+   */
+  pressing: boolean
+}
+
+export function useDigmReady(cb: UseReadyCallback, options?: UseDigmReadyOptions) {
   if (typeof cb !== 'function') {
     throw new Error('useDigmReady: cb must be a function')
   }
 
-  const { digm, isReady } = useDigm(options)
+  const { digm, status } = useDigm(options)
 
   useEffect(() => {
-    if (isReady) cb(digm)
-  }, [isReady, digm, cb])
+    if (
+      (options?.pressing && status === RenderStatus.RENDER_MODEL) ||
+      status === RenderStatus.RENDER_MODEL_FINISHED
+    ) {
+      cb(digm)
+    }
+  }, [digm, cb, status, options])
 }
 
 function unref(target: any): string | Element {
