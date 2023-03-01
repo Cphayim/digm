@@ -1,6 +1,6 @@
 {
   "name": "@cphayim/digm-core",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "Cphayim <i@cphayim.me>",
   "description": "Encapsulation and enhancement of Digital Model renderer",
   "license": "ISC",
@@ -25,7 +25,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "51superapi": "^6.6.1",
+    "51superapi": "^6.6.4",
     "@cphayim/digm-shared": "workspace:*"
   },
   "repository": {
