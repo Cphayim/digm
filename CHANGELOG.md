@@ -1,5 +1,11 @@
 # Digm
 
+## 0.2.3
+
+### Dependencies:
+
+Update dependencies
+
 ## 0.2.2
 
 ### Dependencies:

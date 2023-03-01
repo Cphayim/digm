@@ -1,6 +1,6 @@
 {
   "name": "@cphayim/digm-react",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "Cphayim <i@cphayim.me>",
   "description": "Encapsulation and enhancement of Digital Model renderer for React, provide hooks and components",
   "license": "ISC",

@@ -60,10 +60,10 @@ importers:
 
   packages/core:
     specifiers:
-      51superapi: ^6.6.1
+      51superapi: ^6.6.4
       '@cphayim/digm-shared': workspace:*
     dependencies:
-      51superapi: 6.6.1
+      51superapi: 6.6.4
       '@cphayim/digm-shared': link:../shared
 
   packages/react:
@@ -128,8 +128,8 @@ importers:
 
 packages:
 
-  /51superapi/6.6.1:
-    resolution: {integrity: sha512-jSZ0SDwBFHfxurBuuKicaWqiizvGO93I8bkangNEaiobez0Erv/JWouRVFxKcRfwnOTwKfEzCyrXENG74bZ49g==}
+  /51superapi/6.6.4:
+    resolution: {integrity: sha512-ppZ/dZAKd+AbUl5yjFTAmILypOkJ0ntnweJomnI0E+ga7wvoRbf5D5qVU/GOKxKUd5nr5qbaKCKHvcmc4PXhDg==}
     dev: false
 
   /@ampproject/remapping/2.2.0:
