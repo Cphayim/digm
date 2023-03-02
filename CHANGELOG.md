@@ -1,5 +1,16 @@
 # Digm
 
+## 0.2.4
+
+### Affected Packages
+
+- `@cphayim/digm-vue`
+- `@cphayim/digm-react`
+
+### Features:
+
+- `useDigmReady` add `pressing` option, when `pressing: true`, the callback will be triggered earlier in the `RenderStatus.RENDER_MODEL` stage ([#84](https://github.com/Cphayim/digm/pull/84))
+
 ## 0.2.3
 
 ### Dependencies:
