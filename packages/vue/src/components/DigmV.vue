@@ -3,7 +3,8 @@ import { Ref, ref, watchEffect } from 'vue'
 
 import type { RenderStatus, RenderUrlTransformer } from '@cphayim-digm/core'
 import { useDigm } from '../hooks/digm.js'
-import DigmMask from './DigmMask.vue'
+import DigmMask, { DigmMaskProps } from './DigmMask.vue'
+import DigmBarrier, { DigmBarrierProps } from './DigmBarrier.vue'
 
 type Props = {
   /**
@@ -61,6 +62,15 @@ type Props = {
    * 默认值: true
    */
   mask?: boolean
+  /**
+   * 传递给 `DigmMask` 的 props
+   */
+  maskProps?: DigmMaskProps
+
+  /**
+   * 传递给 `DigmBarrier` 的 props
+   */
+  barrierProps?: DigmBarrierProps
 }
 const props = withDefaults(defineProps<Props>(), {
   enableLog: false,
@@ -93,7 +103,9 @@ watchEffect(() => isReady.value && emit('ready'))
 
 <template>
   <div :class="['digm-v', `digm-v__${props.size}`]" ref="digmRef"></div>
-  <DigmMask v-if="props.mask" />
+
+  <DigmMask v-if="props.mask" v-bind="props.maskProps" />
+  <DigmBarrier v-bind="props.barrierProps" />
 </template>
 
 <style>
