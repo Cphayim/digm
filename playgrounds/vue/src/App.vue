@@ -16,6 +16,10 @@ useDigmReady((digm) => {
 useDigmReady((digm) => {
   console.log('DIGM is ready2')
 })
+
+const onBarrierClick = () => {
+  alert(123)
+}
 </script>
 
 <template>
@@ -23,6 +27,10 @@ useDigmReady((digm) => {
     :url="url"
     :order="order"
     :mask-props="{ backgroundImage: 'http://pic.bizhi360.com/bpic/95/9995_1.jpg' }"
+    :barrier-props="{
+      enabled: false,
+      onBarrierClick,
+    }"
   ></DigmV>
   <!-- <router-view /> -->
 </template>

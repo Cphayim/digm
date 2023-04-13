@@ -25,6 +25,12 @@ export default function App() {
         url={url}
         order={order}
         maskProps={{ backgroundImage: 'http://pic.bizhi360.com/bpic/95/9995_1.jpg' }}
+        barrierProps={{
+          enabled: false,
+          onBarrierClick: () => {
+            alert(123)
+          },
+        }}
       />
     </div>
   )

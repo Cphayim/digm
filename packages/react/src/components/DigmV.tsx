@@ -4,6 +4,8 @@ import { noop } from '@cphayim-digm/shared'
 import type { RenderStatus, RenderUrlTransformer } from '@cphayim-digm/core'
 import { useDigm } from '../hooks/digm'
 import DigmMask, { DigmMaskProps } from './DigmMask'
+import DigmBarrier, { DigmBarrierProps } from './DigmBarrier'
+
 import './DigmV.css'
 
 type Props = {
@@ -68,6 +70,11 @@ type Props = {
   maskProps?: DigmMaskProps
 
   /**
+   * 传递给 `DigmBarrier` 的 props
+   */
+  barrierProps?: DigmBarrierProps
+
+  /**
    * 状态改变时，执行的回调函数
    */
   onStatusChange?: (status: RenderStatus) => void
@@ -114,7 +121,9 @@ export const DigmV = (props: Props) => {
   return (
     <>
       <div className={classNames(['digm-v', `digm-v__${size}`])} ref={digmRef}></div>
+
       {mask && <DigmMask {...props.maskProps} />}
+      <DigmBarrier {...props.barrierProps} />
     </>
   )
 }
