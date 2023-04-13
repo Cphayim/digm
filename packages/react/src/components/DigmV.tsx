@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { noop } from '@cphayim-digm/shared'
 import type { RenderStatus, RenderUrlTransformer } from '@cphayim-digm/core'
 import { useDigm } from '../hooks/digm'
-import DigmMask from './DigmMask'
+import DigmMask, { DigmMaskProps } from './DigmMask'
 import './DigmV.css'
 
 type Props = {
@@ -62,6 +62,10 @@ type Props = {
    * 默认值: true
    */
   mask?: boolean
+  /**
+   * 传递给 `DigmMask` 的 props
+   */
+  maskProps?: DigmMaskProps
 
   /**
    * 状态改变时，执行的回调函数
@@ -110,7 +114,7 @@ export const DigmV = (props: Props) => {
   return (
     <>
       <div className={classNames(['digm-v', `digm-v__${size}`])} ref={digmRef}></div>
-      {mask && <DigmMask />}
+      {mask && <DigmMask {...props.maskProps} />}
     </>
   )
 }

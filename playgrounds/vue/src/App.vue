@@ -19,7 +19,11 @@ useDigmReady((digm) => {
 </script>
 
 <template>
-  <DigmV :url="url" :order="order"></DigmV>
+  <DigmV
+    :url="url"
+    :order="order"
+    :mask-props="{ backgroundImage: 'http://pic.bizhi360.com/bpic/95/9995_1.jpg' }"
+  ></DigmV>
   <!-- <router-view /> -->
 </template>
 

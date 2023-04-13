@@ -1,8 +1,23 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 
 import { sleep } from '@cphayim-digm/shared'
 import { useDigm } from '../hooks/digm'
+
+export type DigmMaskProps = {
+  /**
+   * 是否显示加载中的图标
+   * @default true
+   */
+  loading?: boolean
+  /**
+   * 背景图片
+   */
+  backgroundImage?: string
+}
+
+const props = withDefaults(defineProps<DigmMaskProps>(), { loading: true })
+const backgroundImage = computed(() => props.backgroundImage && `url(${props.backgroundImage})`)
 
 const { isReady, isError, statusLabel } = useDigm()
 const showMask = ref(true)
@@ -16,9 +31,9 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <div v-show="showMask" class="digm-mask">
+  <div v-show="showMask" class="digm-mask" :style="{ backgroundImage }">
     <div class="digm-mask-center">
-      <img class="digm-mask-loading" src="../assets/loading.svg" />
+      <img v-if="props.loading" class="digm-mask-loading" src="../assets/loading.svg" />
       <div class="digm-mask-status-label" :class="{ ['digm-mask-status-label__error']: isError }">
         {{ statusLabel }}
       </div>
@@ -37,11 +52,24 @@ watchEffect(async () => {
   left: 0;
   right: 0;
   background-color: rgb(55, 65, 81);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.digm-mask::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(55, 65, 81, 0.5);
 }
 .digm-mask-center {
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index: 5;
   transform: translate(-50%, -50%);
   text-align: center;
   pointer-events: none;
