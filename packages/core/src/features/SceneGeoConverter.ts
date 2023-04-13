@@ -27,9 +27,9 @@ export type AddGeoCoordToScreenPostionResult = {
 }
 
 export class SceneGeoConverter extends BaseFeature {
-  private get _covering() {
-    return this._superAPI.covering
-  }
+  // private get _covering() {
+  //   return this._superAPI.covering
+  // }
 
   /**
    * 场景坐标转换至屏幕位置信息

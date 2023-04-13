@@ -7,7 +7,7 @@ import {
   getStatusLabel,
   RenderStatus,
   StartEngineOptions,
-} from '@cphayim/digm-core'
+} from '@cphayim-digm/core'
 
 type CloudEventTuple = [CloudEvent, CloudEventHandler]
 

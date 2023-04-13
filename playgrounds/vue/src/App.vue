@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DigmV, useDigm, useDigmReady } from '@cphayim/digm-vue'
+import { DigmV, useDigm, useDigmReady } from '@cphayim-digm/vue'
 import { watchEffect } from 'vue'
 const url = import.meta.env.VITE_APP_RENDER_SERVER
 const order = import.meta.env.VITE_APP_RENDER_ORDER

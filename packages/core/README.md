@@ -1,11 +1,11 @@
-# @cphayim/digm-core
+# @cphayim-digm/core
 
 > TODO: description
 
 ## Install
 
 ```sh
-npm i @cphayim/digm-core
+npm i @cphayim-digm/core
 ```
 
 ## Usage

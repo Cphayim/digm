@@ -4,8 +4,8 @@
 
 ### Affected Packages
 
-- `@cphayim/digm-vue`
-- `@cphayim/digm-react`
+- `@cphayim-digm/vue`
+- `@cphayim-digm/react`
 
 ### Features:
 
@@ -27,7 +27,7 @@ Update dependencies
 
 ### Affected Packages
 
-- `@cphayim/digm-core`
+- `@cphayim-digm/core`
 
 ### Fixes:
 
@@ -37,9 +37,9 @@ Fill in the missing event types
 
 ### Affected packages:
 
-- `@cphayim/digm-core`
-- `@cphayim/digm-vue`
-- `@cphayim/digm-react`
+- `@cphayim-digm/core`
+- `@cphayim-digm/vue`
+- `@cphayim-digm/react`
 
 ### Features:
 
@@ -71,11 +71,11 @@ Fill in the missing event types
 
 ### Breaking Changes:
 
-Deprecated `onDigmReady` life cycle function from `@cphayim/digm-vue`
+Deprecated `onDigmReady` life cycle function from `@cphayim-digm/vue`
 
 Now the `useDigm()` hook will no longer return the `onDigmReady()` lifecycle function, Please replace it with `useDigmReady()` hook, see ([#52](https://github.com/Cphayim/digm/pull/52))
 
-This will maintain consistency with the `@cphayim/digm-react` package
+This will maintain consistency with the `@cphayim-digm/react` package
 
 ### Dependencies:
 
@@ -85,8 +85,8 @@ Update dependencies ([#55](https://github.com/Cphayim/digm/pull/55),[#56](https:
 
 ### Affected packages:
 
-- `@cphayim/digm-vue`
-- `@cphayim/digm-react`
+- `@cphayim-digm/vue`
+- `@cphayim-digm/react`
 
 ### Features:
 
@@ -103,13 +103,13 @@ useDigmReady((digm) => {
 
 ### Affected packages:
 
-- `@cphayim/digm-core`
-- `@cphayim/digm-react`
-- `@cphayim/digm-vue`
+- `@cphayim-digm/core`
+- `@cphayim-digm/react`
+- `@cphayim-digm/vue`
 
 ### Features:
 
-- `@cphayim/digm-core` add some features
+- `@cphayim-digm/core` add some features
   - auto calc `width` and `height` of renderer ([#35](https://github.com/Cphayim/digm/pull/35))
   - implement Widget features ([#47](https://github.com/Cphayim/digm/pull/47))
   - implements CoverSelec and CoverMove and CoverWindow methods and events ([#44](https://github.com/Cphayim/digm/pull/44))
@@ -126,7 +126,7 @@ useDigmReady((digm) => {
   - implement particle-effect features ([#26](https://github.com/Cphayim/digm/pull/26))
   - implement light features ([#25](https://github.com/Cphayim/digm/pull/25))
   - implement range features and events ([#24](https://github.com/Cphayim/digm/pull/24))
-- add `@cphayim/digm-react` package, provides hooks and components that are consistent with `@cphayim/digm-vue` ([#46](https://github.com/Cphayim/digm/pull/46))
+- add `@cphayim-digm/react` package, provides hooks and components that are consistent with `@cphayim-digm/vue` ([#46](https://github.com/Cphayim/digm/pull/46))
 
 ### Fixes:
 

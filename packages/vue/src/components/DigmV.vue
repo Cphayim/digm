@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Ref, ref, watchEffect } from 'vue'
 
-import type { RenderStatus, RenderUrlTransformer } from '@cphayim/digm-core'
+import type { RenderStatus, RenderUrlTransformer } from '@cphayim-digm/core'
 import { useDigm } from '../hooks/digm.js'
 import DigmMask from './DigmMask.vue'
 

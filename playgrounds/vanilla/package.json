@@ -1,17 +1,17 @@
 {
   "name": "playground-vanilla",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 15701",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cphayim/digm-core": "workspace:*"
+    "@cphayim-digm/core": "workspace:*"
   }
 }

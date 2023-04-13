@@ -1,5 +1,5 @@
 import CloudRenderer from '51superapi'
-import { sleep } from '@cphayim/digm-shared'
+import { sleep } from '@cphayim-digm/shared'
 
 import { RenderStatus } from './status'
 import { CloudEvent, CloudEventHandler, RenderEvent } from './events'
@@ -252,7 +252,6 @@ export class Digm {
     try {
       this._renderer = new CloudRenderer(id, 0)
     } catch (e) {
-      if (__DEV__) console.error(e)
       this.status = RenderStatus.INIT_RENDER_FAILED
       throw e
     }
@@ -289,7 +288,6 @@ export class Digm {
     try {
       this._renderer.SuperAPI('StopRenderCloud')
     } catch (e) {
-      if (__DEV__) console.warn(e)
       this._status = RenderStatus.STOP
       throw e
     }

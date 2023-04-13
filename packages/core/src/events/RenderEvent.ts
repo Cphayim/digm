@@ -1,4 +1,4 @@
-import { ensureObject } from '@cphayim/digm-shared'
+import { ensureObject } from '@cphayim-digm/shared'
 import type { FeatureResult } from '../features/BaseFeature'
 import type { CloudEvent, CloudEventHandler } from './event-type'
 

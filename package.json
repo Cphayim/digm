@@ -1,12 +1,11 @@
 {
   "name": "digm-monorepo",
   "private": true,
-  "version": "0.0.1",
   "author": "Cphayim <i@cphayim.me>",
   "repository": "git@github.com:Cphayim/digm.git",
   "license": "ISC",
   "engines": {
-    "node": "^14.13.1 || >=16.0.0"
+    "node": ">=16.0.0"
   },
   "packageManager": "pnpm@7.30.5",
   "scripts": {
@@ -15,12 +14,8 @@
     "clean": "pnpm -r exec rimraf dist *.tsbuildinfo",
     "dev": "pnpm --filter !playground-* -r --parallel dev",
     "build": "pnpm --filter !playground-* -r build",
-    "dev:pg-vanilla": "pnpm --filter playground-vanilla dev",
-    "build:pg-vanilla": "pnpm --filter playground-vanilla build",
-    "dev:pg-vue": "pnpm --filter playground-vue dev",
-    "build:pg-vue": "pnpm --filter playground-vue build",
-    "dev:pg-react": "pnpm --filter playground-react dev",
-    "build:pg-react": "pnpm --filter playground-react build",
+    "dev:pg": "pnpm --filter playground-* -r --parallel dev",
+    "build:pg": "pnpm --filter playground-* -r build",
     "test": "exit 0;",
     "lint": "eslint packages/*/src/**/*.ts",
     "format": "prettier --write --parser typescript \"packages/**/*.ts\"",
@@ -40,6 +35,11 @@
       "prettier --write --parser typescript"
     ]
   },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vue": "^3.2.47"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
@@ -49,23 +49,24 @@
     "@ombro/logger": "^2.0.1",
     "@ombro/tsconfig": "^1.4.3",
     "@types/node": "^18.15.11",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
     "@vitejs/plugin-vue": "^4.1.0",
-    "@vue/tsconfig": "^0.1.3",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
     "classnames": "^2.3.2",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.37.0",
+    "eslint": "^8.38.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.0",
+    "lint-staged": "^13.2.1",
     "prettier": "^2.8.7",
     "rimraf": "^4.4.1",
-    "typescript": "^4.8.2",
+    "typescript": "^4.9.5",
+    "unplugin-vue-define-options": "^1.3.3",
     "vite": "^4.2.1",
     "vite-plugin-css-injected-by-js": "^3.1.0",
     "vite-plugin-dts": "2.1.0",
-    "vue": "^3.2.47",
-    "vue-router": "^4.1.6",
     "vue-tsc": "^1.2.0"
   }
 }

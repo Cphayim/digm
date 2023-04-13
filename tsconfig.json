@@ -1,8 +1,11 @@
 {
-  // If you plan to output ESM, use `tsconfig.esm.json`
-  "extends": "@ombro/tsconfig/tsconfig.esm.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "composite": true,
-    "removeComments": false
-  }
+    "baseUrl": ".",
+    "declaration": false,
+    "paths": {
+      "@cphayim-digm/*": ["packages/*/src"]
+    }
+  },
+  "include": ["packages/*/src", "playgrounds/*/src"]
 }
