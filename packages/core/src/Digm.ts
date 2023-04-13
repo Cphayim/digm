@@ -27,6 +27,7 @@ import {
   SceneEffect,
   TDText,
 } from './features'
+import { CLOUD_RENDERER_MAX_CONNECTION_ERR_CODE } from './constants'
 
 // 渲染地址转换器
 export type RenderUrlTransformer = (renderUrl: string, baseUrl: string) => string
@@ -295,23 +296,26 @@ export class Digm {
 
   private async _fetchRenderUrl(options: FetchRenderUrlOptions) {
     this.status = RenderStatus.REQUEST_RENDER_URL
-    try {
-      const { url, order, width, height } = options
-      const res = await fetch(`${url}/Renderers/Any/order`, {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({ order, width, height }),
-      })
-      const data = await res.json()
-      if (!data.success) throw new Error('[Error] request renderer url failed')
+    const { url, order, width, height } = options
+    const res = await fetch(`${url}/Renderers/Any/order`, {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ order, width, height }),
+    })
 
-      return options.transformer
-        ? transformRenderUrl(data.url, options.url, options.transformer)
-        : data.url
-    } catch (e) {
-      this.status = RenderStatus.REQUEST_RENDER_URL_FAILED
-      throw e
+    const data = await res.json()
+
+    if (!data.success) {
+      this.status =
+        data.errCode === CLOUD_RENDERER_MAX_CONNECTION_ERR_CODE
+          ? RenderStatus.REQUEST_RENDER_URL_FAILED_MAX_CONNECTION
+          : RenderStatus.REQUEST_RENDER_URL_FAILED
+      throw new Error('[Error] request renderer url failed')
     }
+
+    return options.transformer
+      ? transformRenderUrl(data.url, options.url, options.transformer)
+      : data.url
   }
 
   private _renderPrepare({ enableLog = false, sleepTime = 5000 }: RenderPrepareOptions) {
