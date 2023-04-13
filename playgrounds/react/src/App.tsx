@@ -1,4 +1,4 @@
-import { DigmV, useDigm, useDigmReady } from '@cphayim/digm-react'
+import { DigmV, useDigm, useDigmReady } from '@cphayim-digm/react'
 import { useEffect } from 'react'
 
 import './App.css'

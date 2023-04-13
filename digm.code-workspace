@@ -5,25 +5,22 @@
       "path": "."
     },
     {
-      "name": "📦 @cphayim/digm-core",
-      "path": "packages/core"
-    },
-    {
-      "name": "📦 @cphayim/digm-react",
-      "path": "packages/react"
-    },
-    {
-      "name": "📦 @cphayim/digm-shared",
+      "name": "📦 @cphayim-digm/shared",
       "path": "packages/shared"
     },
     {
-      "name": "📦 @cphayim/digm-vue",
+      "name": "📦 @cphayim-digm/core",
+      "path": "packages/core"
+    },
+    {
+      "name": "📦 @cphayim-digm/vue",
       "path": "packages/vue"
     },
     {
-      "name": "playground-react",
-      "path": "playgrounds/react"
+      "name": "📦 @cphayim-digm/react",
+      "path": "packages/react"
     },
+
     {
       "name": "playground-vanilla",
       "path": "playgrounds/vanilla"
@@ -31,6 +28,10 @@
     {
       "name": "playground-vue",
       "path": "playgrounds/vue"
+    },
+    {
+      "name": "playground-react",
+      "path": "playgrounds/react"
     }
   ],
   "settings": {

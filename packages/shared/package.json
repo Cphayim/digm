@@ -1,5 +1,5 @@
 {
-  "name": "@cphayim/digm-shared",
+  "name": "@cphayim-digm/shared",
   "version": "0.2.4",
   "author": "Cphayim <i@cphayim.me>",
   "description": "Encapsulation and enhancement of Digital Model renderer, shared toolkit",
@@ -12,11 +12,12 @@
     "registry": "https://registry.npmjs.org/"
   },
   "sideEffects": false,
-  "main": "./dist/index.cjs",
+  "type": "module",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     }

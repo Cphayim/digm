@@ -1,17 +1,17 @@
 {
   "name": "playground-vue",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 15702",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cphayim/digm-vue": "workspace:*"
+    "@cphayim-digm/vue": "workspace:*"
   }
 }

@@ -1,6 +1,6 @@
 import './style.css'
 
-import { createDigm, getStatusLabel, RenderStatus } from '@cphayim/digm-core'
+import { createDigm, getStatusLabel, RenderStatus } from '@cphayim-digm/core'
 
 const digmViewEle = document.querySelector('.digm-view') as HTMLDivElement
 const digmMaskEle = document.querySelector('.digm-mask') as HTMLDivElement
