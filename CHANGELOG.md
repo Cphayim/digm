@@ -12,14 +12,14 @@
 
 **`@cphayim-digm/core`**
 
-- Add `REQUEST_RENDER_URL_FAILED_MAX_CONNECTION` status, all downstream components are able to display exception information because the maximum number of connections is exceeded
+- Add `REQUEST_RENDER_URL_FAILED_MAX_CONNECTION` status, all downstream components are able to display exception information because the maximum number of connections is exceeded ([#92](https://github.com/Cphayim/digm/pull/92))
 
 **`@cphayim-digm/vue`**
 
 **`@cphayim-digm/react`**
 
-- Some props have been added to DigmMask
-- In some scenarios, we want to limit the interaction between the user and the model (such as during model navigation, where user interaction can cause camera issues). Therefore, the `DigmBarrier` component has been added, and you can also enable it by passing `barrierProps` to `DigmV`.
+- Some props have been added to DigmMask ([#93](https://github.com/Cphayim/digm/pull/93))
+- In some scenarios, we want to limit the interaction between the user and the model (such as during model navigation, where user interaction can cause camera issues). Therefore, the `DigmBarrier` component has been added, and you can also enable it by passing `barrierProps` to `DigmV`. ([#93](https://github.com/Cphayim/digm/pull/93))
 
 For Vue:
 
@@ -50,6 +50,10 @@ For React:
   }}
 />
 ```
+
+### Dependencies:
+
+Update dependencies ([#88](https://github.com/Cphayim/digm/pull/88))
 
 ## 0.2.4
 
