@@ -1,4 +1,55 @@
-# Digm
+# Changelog
+
+## 0.2.5
+
+### Affected Packages
+
+- `@cphayim-digm/core`
+- `@cphayim-digm/vue`
+- `@cphayim-digm/react`
+
+### Features:
+
+**`@cphayim-digm/core`**
+
+- Add `REQUEST_RENDER_URL_FAILED_MAX_CONNECTION` status, all downstream components are able to display exception information because the maximum number of connections is exceeded
+
+**`@cphayim-digm/vue`**
+
+**`@cphayim-digm/react`**
+
+- Some props have been added to DigmMask
+- In some scenarios, we want to limit the interaction between the user and the model (such as during model navigation, where user interaction can cause camera issues). Therefore, the `DigmBarrier` component has been added, and you can also enable it by passing `barrierProps` to `DigmV`.
+
+For Vue:
+
+```html
+<DigmV
+  :url="url"
+  :order="order"
+  :maskProps="{ loading: true, backgroundImage: 'http://pic.bizhi360.com/bpic/95/9995_1.jpg' }"
+  :barrierProps="{
+      enabled: false,
+      onBarrierClick,
+    }"
+/>
+```
+
+For React:
+
+```tsx
+<DigmV
+  url={url}
+  order={order}
+  maskProps={{ backgroundImage: 'http://pic.bizhi360.com/bpic/95/9995_1.jpg' }}
+  barrierProps={{
+    enabled: false,
+    onBarrierClick: () => {
+      alert(123)
+    },
+  }}
+/>
+```
 
 ## 0.2.4
 
