@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.2.6
+
+### Affected Packages
+
+- `@cphayim-digm/core`
+
+### Features:
+
+**`@cphayim-digm/core`**
+
+- Ability to save current lens type when setting lens mode, via `digm.sceneCamera.getCurrentCameraType()` ([#98](https://github.com/Cphayim/digm/pull/98))
+
+### Dependencies:
+
+Update dependencies ([#89](https://github.com/Cphayim/digm/pull/89))
+
 ## 0.2.5
 
 ### Affected Packages
