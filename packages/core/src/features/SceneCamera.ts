@@ -499,14 +499,18 @@ export type SetSandtablesModeOptions = {
   speed_ratio: number
 }
 
+export type CameraType = 'Fly' | 'Walk' | 'Sandtable'
+
 export type SetModeResult = FeatureResult<{
-  camera_type: 'Fly' | 'Walk' | 'Sandtable'
+  camera_type: CameraType
 }>
 
 /**
  * 场景镜头功能
  */
 export class SceneCamera extends BaseFeature {
+  private _cameraType: CameraType = 'Sandtable'
+
   /**
    * 获取当前的场景镜头信息
    */
@@ -621,21 +625,38 @@ export class SceneCamera extends BaseFeature {
   /**
    * 设置镜头飞行模式
    */
-  setFlyMode(options: SetFlyModeOptions) {
-    return promiseWrapper(this._superAPI, 'SetFlyMode', options) as Promise<SetModeResult>
+  async setFlyMode(options: SetFlyModeOptions) {
+    const res = (await promiseWrapper(this._superAPI, 'SetFlyMode', options)) as SetModeResult
+    if (res.success) this._cameraType = 'Fly'
+    return res
   }
 
   /**
    * 设置镜头行走模式
    */
-  setWalkMode(options: SetWalkModeOptions) {
-    return promiseWrapper(this._superAPI, 'SetWalkMode', options) as Promise<SetModeResult>
+  async setWalkMode(options: SetWalkModeOptions) {
+    const res = (await promiseWrapper(this._superAPI, 'SetWalkMode', options)) as SetModeResult
+    if (res.success) this._cameraType = 'Walk'
+    return res
   }
 
   /**
    * 设置镜头沙盘模式
    */
-  setSandtablesMode(options: SetSandtablesModeOptions) {
-    return promiseWrapper(this._superAPI, 'SetSandtablesMode', options) as Promise<SetModeResult>
+  async setSandtablesMode(options: SetSandtablesModeOptions) {
+    const res = (await promiseWrapper(
+      this._superAPI,
+      'SetSandtablesMode',
+      options,
+    )) as SetModeResult
+    if (res.success) this._cameraType = 'Sandtable'
+    return res
+  }
+
+  /**
+   * 获取当前镜头类型
+   */
+  getCurrentCameraType() {
+    return this._cameraType
   }
 }
