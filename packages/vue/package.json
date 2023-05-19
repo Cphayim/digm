@@ -1,6 +1,6 @@
 {
   "name": "@cphayim-digm/vue",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "author": "Cphayim <i@cphayim.me>",
   "description": "Encapsulation and enhancement of Digital Model renderer for Vue3, provide hooks and components",
   "license": "ISC",
