@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.7
+
+### Dependencies:
+
+Update dependencies ([#100](https://github.com/Cphayim/digm/pull/100))
+
 ## 0.2.6
 
 ### Affected Packages
