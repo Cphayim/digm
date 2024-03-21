@@ -37,8 +37,8 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1
       '@ombro/tsconfig':
-        specifier: ^1.4.3
-        version: 1.4.3
+        specifier: ^2.0.0
+        version: 2.0.0(typescript@4.9.5)
       '@types/node':
         specifier: ^18.19.17
         version: 18.19.17
@@ -1367,9 +1367,13 @@ packages:
       strip-ansi: 7.0.1
     dev: true
 
-  /@ombro/tsconfig@1.4.3:
-    resolution: {integrity: sha512-RWLBRvwaGEiE6nM8amNzkmy2FytV01sy/r8ZEuMdMflwp6DUZw3eKW4W7VJpv6KzEZqfEWGMse+3cWTAjPUKSw==}
-    engines: {node: ^14.13.1 || >=16.0.0}
+  /@ombro/tsconfig@2.0.0(typescript@4.9.5):
+    resolution: {integrity: sha512-9TGFhcJR6JoPDyc9qPhGKQVci3bnhrFhgIYpozJS/0pMv3d6TSGt4kGRNHpOP0mTicfMR495yBH/c0qwtNQdFw==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      typescript: ^5.0.0
+    dependencies:
+      typescript: 4.9.5
     dev: true
 
   /@rollup/pluginutils@5.0.2:
