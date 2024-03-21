@@ -26,13 +26,13 @@ importers:
         version: 17.8.1
       '@ombro/eslint-config-react-typescript':
         specifier: ^0.1.4
-        version: 0.1.4(eslint@8.56.0)(prettier@2.8.8)(typescript@4.9.5)
+        version: 0.1.4(eslint@8.56.0)(prettier@3.2.5)(typescript@4.9.5)
       '@ombro/eslint-config-typescript':
         specifier: ^0.1.4
-        version: 0.1.4(eslint@8.56.0)(prettier@2.8.8)(typescript@4.9.5)
+        version: 0.1.4(eslint@8.56.0)(prettier@3.2.5)(typescript@4.9.5)
       '@ombro/eslint-config-vue3-typescript':
         specifier: ^0.1.4
-        version: 0.1.4(eslint@8.56.0)(prettier@2.8.8)(typescript@4.9.5)
+        version: 0.1.4(eslint@8.56.0)(prettier@3.2.5)(typescript@4.9.5)
       '@ombro/logger':
         specifier: ^2.0.1
         version: 2.0.1
@@ -76,8 +76,8 @@ importers:
         specifier: ^13.3.0
         version: 13.3.0
       prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
+        specifier: ^3.2.5
+        version: 3.2.5
       rimraf:
         specifier: ^4.4.1
         version: 4.4.1
@@ -1299,7 +1299,7 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@ombro/eslint-config-react-typescript@0.1.4(eslint@8.56.0)(prettier@2.8.8)(typescript@4.9.5):
+  /@ombro/eslint-config-react-typescript@0.1.4(eslint@8.56.0)(prettier@3.2.5)(typescript@4.9.5):
     resolution: {integrity: sha512-T0Qxu6OJ91cTYjUTSjqB2Voy3RGGqrGn64f9/s/NRFiBh/pLxtNNhx4d/13vTiT38dyY0f4cl5vIFnRtGhROZQ==}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
@@ -1312,13 +1312,13 @@ packages:
       eslint-config-prettier: 8.8.0(eslint@8.56.0)
       eslint-plugin-react: 7.32.2(eslint@8.56.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.56.0)
-      prettier: 2.8.8
+      prettier: 3.2.5
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@ombro/eslint-config-typescript@0.1.4(eslint@8.56.0)(prettier@2.8.8)(typescript@4.9.5):
+  /@ombro/eslint-config-typescript@0.1.4(eslint@8.56.0)(prettier@3.2.5)(typescript@4.9.5):
     resolution: {integrity: sha512-+PSnc6SI9lL2sniV8UAL7NTOcThKWg6A5N4UEu5/yU0IY2krqgQ06zpuE2Ypl6xzK95SE4GUyfPeLe0GCoazqQ==}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
@@ -1329,13 +1329,13 @@ packages:
       '@typescript-eslint/parser': 5.58.0(eslint@8.56.0)(typescript@4.9.5)
       eslint: 8.56.0
       eslint-config-prettier: 8.8.0(eslint@8.56.0)
-      prettier: 2.8.8
+      prettier: 3.2.5
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@ombro/eslint-config-vue3-typescript@0.1.4(eslint@8.56.0)(prettier@2.8.8)(typescript@4.9.5):
+  /@ombro/eslint-config-vue3-typescript@0.1.4(eslint@8.56.0)(prettier@3.2.5)(typescript@4.9.5):
     resolution: {integrity: sha512-XMwa8Bw8Lw4iQLCGbWJ5HoBIhEmxgjHOqZ9XiFmn5Sn3PWvh9V/9kz1XiobjHhQwOk5eWR4Q0YDDtefhY57fzg==}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
@@ -1347,7 +1347,7 @@ packages:
       eslint: 8.56.0
       eslint-config-prettier: 8.8.0(eslint@8.56.0)
       eslint-plugin-vue: 9.10.0(eslint@8.56.0)
-      prettier: 2.8.8
+      prettier: 3.2.5
       typescript: 4.9.5
     transitivePeerDependencies:
       - supports-color
@@ -4551,9 +4551,9 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier@2.8.8:
-    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
-    engines: {node: '>=10.13.0'}
+  /prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+    engines: {node: '>=14'}
     hasBin: true
     dev: true
 
