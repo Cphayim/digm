@@ -31,8 +31,8 @@
     "@cphayim-digm/shared": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^18.2.57",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "^18.2.73",
+    "@types/react-dom": "^18.2.22",
     "classnames": "^2.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
