@@ -37,8 +37,8 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       '@ombro/tsconfig':
-        specifier: ^1.4.3
-        version: 1.4.3
+        specifier: ^2.0.1
+        version: 2.0.1(typescript@4.9.5)
       '@types/node':
         specifier: ^18.19.39
         version: 18.19.39
@@ -1393,9 +1393,13 @@ packages:
       - babel-plugin-macros
     dev: true
 
-  /@ombro/tsconfig@1.4.3:
-    resolution: {integrity: sha512-RWLBRvwaGEiE6nM8amNzkmy2FytV01sy/r8ZEuMdMflwp6DUZw3eKW4W7VJpv6KzEZqfEWGMse+3cWTAjPUKSw==}
-    engines: {node: ^14.13.1 || >=16.0.0}
+  /@ombro/tsconfig@2.0.1(typescript@4.9.5):
+    resolution: {integrity: sha512-bqBbVZF1qJFRDAaeimir5NLxBdJsEodLG/m7XF0VUz69X2jiMjjK/GMPqYDkLlhGrmz4P3TrQjN+TWQg1kZSCw==}
+    engines: {node: '>=v16.20.2'}
+    peerDependencies:
+      typescript: ^5.0.0
+    dependencies:
+      typescript: 4.9.5
     dev: true
 
   /@rollup/pluginutils@5.0.2:
