@@ -52,8 +52,8 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0(vite@4.5.2)
       '@vitejs/plugin-vue':
-        specifier: ^4.6.2
-        version: 4.6.2(vite@4.5.2)(vue@3.4.31)
+        specifier: ^6.0.8
+        version: 6.0.8(vite@4.5.2)(vue@3.4.31)
       '@vitejs/plugin-vue-jsx':
         specifier: ^3.1.0
         version: 3.1.0(vite@4.5.2)(vue@3.4.31)
@@ -1398,6 +1398,10 @@ packages:
     engines: {node: ^14.13.1 || >=16.0.0}
     dev: true
 
+  /@rolldown/pluginutils@1.0.1:
+    resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
+    dev: true
+
   /@rollup/pluginutils@5.0.2:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
@@ -1710,13 +1714,14 @@ packages:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue@4.6.2(vite@4.5.2)(vue@3.4.31):
-    resolution: {integrity: sha512-kqf7SGFoG+80aZG6Pf+gsZIVvGSCKE98JbiWqcCV9cThtg91Jav0yvYFC9Zb+jKetNGF6ZKeoaxgZfND21fWKw==}
-    engines: {node: ^14.18.0 || >=16.0.0}
+  /@vitejs/plugin-vue@6.0.8(vite@4.5.2)(vue@3.4.31):
+    resolution: {integrity: sha512-0ZjgOg7oO6farnNGup7yvoM/YXZV84OZxHAwtflItNa/6zzQyVb5LNxyea3FEKEX2XlagIKzrlH7wwxkKgtiew==}
+    engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
-      vite: ^4.0.0 || ^5.0.0
+      vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
       vue: ^3.2.25
     dependencies:
+      '@rolldown/pluginutils': 1.0.1
       vite: 4.5.2(@types/node@18.19.39)
       vue: 3.4.31(typescript@4.9.5)
     dev: true
@@ -1880,7 +1885,7 @@ packages:
     dependencies:
       '@vue/compiler-ssr': 3.4.31
       '@vue/shared': 3.4.31
-      vue: 3.4.31
+      vue: 3.4.31(typescript@4.9.5)
 
   /@vue/shared@3.4.19:
     resolution: {integrity: sha512-/KliRRHMF6LoiThEy+4c1Z4KB/gbPrGjWwJR+crg2otgrf/egKzRaCPvJ51S5oetgsgXLfc4Rm5ZgrKHZrtMSw==}
@@ -5841,6 +5846,7 @@ packages:
       '@vue/runtime-dom': 3.4.31
       '@vue/server-renderer': 3.4.31(vue@3.4.31)
       '@vue/shared': 3.4.31
+    dev: true
 
   /vue@3.4.31(typescript@4.9.5):
     resolution: {integrity: sha512-njqRrOy7W3YLAlVqSKpBebtZpDVg21FPoaq1I7f/+qqBThK9ChAIjkRWgeP6Eat+8C+iia4P3OYqpATP21BCoQ==}
